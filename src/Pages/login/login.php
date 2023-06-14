@@ -68,7 +68,7 @@ Auth::accessLogin();
         </div>
     </div>
 
-    <script src="<?php UrlBase::urlBase; ?>/src/Pages/login/login.js" type="module"></script>    
+    <script src="<?php echo UrlBase::urlBase; ?>/src/Pages/login/login.js" type="module"></script>
 </body>
 
 </html>

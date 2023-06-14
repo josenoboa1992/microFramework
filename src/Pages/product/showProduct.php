@@ -4,7 +4,7 @@
         try {            
             let body = {name,IDtoken};    
             let token = localStorage.getItem("token");
-            let req = await fetch('http://apiphp8.test/product/',{
+            let req = await fetch('http://localhost:8080/api/product/',{
                    headers : {"Content-Type": "application/json", Authorization: `Bearer ${token}`},
                    body: JSON.stringify(body), method: "DELETE"
             });    

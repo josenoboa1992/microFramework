@@ -1,3 +1,4 @@
+
 <!--Registrar un nuevo usuario-->
 <?php require 'saveProduct.php'; ?>
 <br>
