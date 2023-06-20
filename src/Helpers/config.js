@@ -1,6 +1,6 @@
 const config = {};
 
-config.API = "http://apiphp8.test/";
+config.API = "http://api.local/";
 
 config.token = localStorage.getItem("token");
 

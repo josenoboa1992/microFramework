@@ -21,8 +21,8 @@ Auth::accessLogin();
 
 <style>
      body{
-        background: rgb(49,135,76);
-        background: linear-gradient(90deg, rgba(49,135,76,1) 0%, rgba(124,157,99,1) 35%, rgba(0,255,85,1) 100%);
+         background-color: rgb(39 145 201);
+         background: linear-gradient(90deg, rgb(49 124 135) 0%, rgb(99 143 157) 35%, rgb(39 127 161) 100%);
      }
 </style>
 
@@ -34,7 +34,7 @@ Auth::accessLogin();
                     <div class="row justify-content-center">
                         <div class="col-lg-5">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header bg-success">
+                                <div class="card-header color-card">
                                     <h3 class="text-center fw-bold my-4 text-white">Iniciar sesión</h3>
                                 </div>
                                 <form id="frmLogin">
@@ -52,7 +52,7 @@ Auth::accessLogin();
                                     </div>
                                     <div class="card-footer text-center py-3">
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <button class="btn btn-success" type="submit" href="#">Ingresar</button>
+                                            <button class="btn color-card" type="submit" href="#">Ingresar</button>
                                         </div>
                                         <!--Aqui se muestran los errores-->
                                         <div class="alert mt-3 alert-dismissible" role="alert" style="display: none;" id="error"> 
@@ -68,7 +68,7 @@ Auth::accessLogin();
         </div>
     </div>
 
-    <script src="<?php UrlBase::urlBase; ?>/src/Pages/login/login.js" type="module"></script>    
+    <script src="<?php echo UrlBase::urlBase; ?>/src/Pages/login/login.js" type="module"></script>
 </body>
 
 </html>

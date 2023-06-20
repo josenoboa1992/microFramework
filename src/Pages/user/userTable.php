@@ -1,6 +1,6 @@
 <div class="card" style="border:1px solid gray; box-shadow: 1px 2px 5px;">
 
-    <div class="card-header bg-success text-white">
+    <div class="card-header color-card text-white">
         <strong style="font-size:20px;">Administrar Usuarios</strong>
     </div>
        
@@ -9,14 +9,14 @@
             <div class="alert mt-3" role="alert" style="display: none;" id="messageUserDelete">
             </div>
 
-            <button class="btn btn-success mb-3" id="btnUserSave"><i class="fa fa-user mr-2"></i>Registrar</button>    
+            <button class="btn style-button mb-3" id="btnUserSave"><i class="fa fa-user mr-2"></i>Registrar</button>
             <div class="row">   
                 
                 <div class="col-lg-12 col-sm-12" style="background-color:#fdfdfd; border-radius:5px; box-shadow: 1px 1px 3px;">
                 <br>
                     <div class="table-responsive">          
                         <table class="table table-hover table-bordered" style="width:100%;" id="userTable">
-                            <thead class="bg-success text-white">
+                            <thead class="color-card text-white">
                                 <tr>
                                     <th scope="col"></th>
                                     <th scope="col">NOMBRE</th>

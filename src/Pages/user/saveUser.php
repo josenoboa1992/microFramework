@@ -1,6 +1,6 @@
 <div class="card mt-3" style="border:1px solid gray; box-shadow: 1px 2px 5px;" id="UserSave">
 
-    <div class="card-header bg-success text-white">
+    <div class="card-header color-card text-white">
         <strong style=" font-size:20px;">Registrar Nuevo Usuario</strong>
     </div>
 
@@ -68,7 +68,7 @@
                     <div class="form-group">
                         <label> Ayuda</label>
                         <br>
-                        <button type="button" class="btn btn-primary" id="btnprivilegeabout" data-bs-toggle="modal" data-bs-target="#modalAboutPrivilege">
+                        <button type="button" class="style-button" id="btnprivilegeabout" data-bs-toggle="modal" data-bs-target="#modalAboutPrivilege">
                             Ver privilegio
                         </button>
                     </div>
@@ -85,8 +85,8 @@
 
         <div class="card-footer text-muted">
             <button class="btn btn-primary" id="btnUserRegister" type="submit"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Registrar</button>
-            <button class="btn btn-success" id="btnUserEnable"><i class="fa fa-unlock mr-2" aria-hidden="true"></i>Habilitar</button>
-            <button class="btn btn-success" id="btnUserDisabled"><i class="fa fa-lock mr-2" aria-hidden="true"></i>Deshabilitar</button>
+            <button class="btn style-button" id="btnUserEnable"><i class="fa fa-unlock mr-2" aria-hidden="true"></i>Habilitar</button>
+            <button class="btn style-button" id="btnUserDisabled"><i class="fa fa-lock mr-2" aria-hidden="true"></i>Deshabilitar</button>
             <button class="btn btn-danger" id="btnUserClear"><i class="fa fa-trash mr-2" aria-hidden="true"></i>Limpiar</button>
             <button class="btn btn-success" id="btnCloseUserSave"><i class="fas fa-eye-slash mr-2"></i>Ocultar</button>
         </div>

@@ -1,9 +1,9 @@
 <?php
 use Config\UrlBase;
 ?>
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
+<nav class="sb-topnav navbar navbar-expand navbar-dark color-card">
 <!-- Navbar Brand-->
-<a class="navbar-brand ps-3" href="<?php echo UrlBase::urlBase;?>">Nibiru</a>
+<a class="navbar-brand ps-3" href="<?php echo UrlBase::urlBase;?>">Panel Admin</a>
 <!-- Sidebar Toggle-->
 <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 text-white" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
 <!-- Navbar Search-->
@@ -25,4 +25,3 @@ use Config\UrlBase;
 </form>
 
 </nav>
-

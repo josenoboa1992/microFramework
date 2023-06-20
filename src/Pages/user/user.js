@@ -1,5 +1,5 @@
-import error from '../../helpers/error.js';
-import config from '../../helpers/config.js';
+import error from '../../Helpers/error.js';
+import config from '../../Helpers/config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     $('#UserSave').slideUp();
@@ -168,12 +168,12 @@ const clearUserForm = () => {
 
 
 /***********Función para deshabilitar la tabla de usuario****************/
-// const disabledUserTable = () => {
-//     document.getElementById('search_cedula').disabled = true;
-//     document.getElementById('btn_search_cedula').disabled = true;
-//     document.getElementById('btndisabledsearch').style.display = "none";
-//     document.getElementById('btnenablesearch').style.display = "";    
-// }
+const disabledUserTable = () => {
+    document.getElementById('search_cedula').disabled = true;
+    document.getElementById('btn_search_cedula').disabled = true;
+    document.getElementById('btndisabledsearch').style.display = "none";
+    document.getElementById('btnenablesearch').style.display = "";
+}
 
 /*************Función para ocultar la tabla de usuario****************/
 // const hiddenUserTable = () => {
@@ -299,7 +299,9 @@ document.getElementById('btnUserClear').addEventListener('click', e => {
 
 
 /**********************************Registrar usuario*****************************************/
-document.getElementById('frmSaveUser').addEventListener('submit', e => {
+let frmsave=document.querySelector('#frmSaveUser');
+frmsave.addEventListener('submit', e => {
+
    e.preventDefault();  
    config.validateToken();
    
