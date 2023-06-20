@@ -41,7 +41,7 @@
 
 <div class="card mt-3" style="background-color:#fdfdfd; border-radius:5px; box-shadow: 1px 1px 3px;">
 
-    <div class="card-header color-card text-white fw-bold">
+    <div class="card-header bg-success text-white fw-bold">
         Productos registrados
     </div>
    

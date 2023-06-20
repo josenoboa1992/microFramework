@@ -66,6 +66,7 @@ document.getElementById('frmSaveProduct').addEventListener('submit', e => {
             let req = await fetch(`${config.API}product/`,{
                                        headers: {Authorization: `Bearer ${config.token}`},
                                        method: 'POST',body: body});
+            console.log(req);
             let res = await req.json();
 
             if (res.status == "error") {
