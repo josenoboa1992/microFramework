@@ -36,7 +36,7 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="formFile" class="form-label">Imagen del producto</label>
-                        <input class="form-control" type="file" id="product" name="imageName" accept="image/jpeg,image/jpg,image/png" required>
+                        <input class="form-control" type="file" id="product" name="product" accept="image/jpeg,image/jpg,image/png" required>
                         <p>La imagen debe ser(jpg,jpeg,png), tamaño(min:10kb , max:500kb), dimensiones(200x200)</p>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
     </div>    
 
     <div class="card-footer text-muted">
-        <button class="color-card style-button" id="btnSaveProduct" type="submit"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Registrar</button>
+        <button class="btn btn-primary" id="btnSaveProduct" type="submit"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Registrar</button>
     </div>
     </form>
 

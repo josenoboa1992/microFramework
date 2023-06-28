@@ -57,7 +57,14 @@ let es = {
 /********************Mostrar datos de la tabla usuarios*************************/
 const showAllUser = () =>{   
 
-    userTable = $('#userTable').DataTable({       
+    userTable = $('#userTable').DataTable({
+        "rowCallback":function (row,data,index){
+            // Aplicar estilo a las filas
+            $(row).css("font-size", "15px"); // Ajusta el tamaño de fuente según tus necesidades
+
+            // Aplicar estilo a las celdas
+            $("td", row).css("font-weight", "bold");
+        },
         "orderCellsTop": true, 
         "fixedHeader": false,
         "destroy" : true,            
@@ -66,27 +73,39 @@ const showAllUser = () =>{
                 "method" : "GET",                 
                 "url" : `${config.API}user/`,
                 "headers": {
-                    Authorization: `Bearer ${config.token}` 
+                    Authorization: `Bearer ${config.token}`
                 }            
         },
         'columns' :[
             {"data" : "IDToken"},            
-            {"data" : "nombre"},
-            {"data" : "dni"},
-            {"data" : "correo"},
-            {"data" : "rol"},
-            {"data" : "fecha"},                
+            {"data" : "Nombre_Usuario"},
+            {"data" : "Nombre"},
+            {"data" : "Genero"},
+            {"data" : "Número_Documento"},
+            {"data" : "Correo"},
+            {"data" : "Rol"},
+            {"data" : "Empresa"},
+            {"data" : "Número_Teléfonico"},
+            {"data" : "Puntos_Acumulado"},
+            {"data" : "Estado"},
             {"defaultContent" : "<button type='button' class='delete btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-trash' aria-hidden='true'></i></button>"
             }                            
         ],
         "columnDefs": [   // atributo para ocultar columna
             {"targets": [0],"visible": false,"searchable": false},
             {"targets": [1], "width": "10%"},
-            {"targets": [2], "width":"10%"},
-            {"targets": [3], "width":"20%"},
-            {"targets": [4], "width":"5%"},
-            {"targets": [5], "width":"10%"},
-            {"targets": [6], "width":"5%"}
+            {"targets": [2], "width": "10%"},
+            {"targets": [3], "width": "10%"},
+            {"targets": [4], "width": "10%"},
+            {"targets": [5], "width": "10%"},
+            {"targets": [6], "width": "20%"},
+            {"targets": [7], "width": "10%"},
+            {"targets": [8], "width": "10%"},
+            {"targets": [9], "width":"10%"},
+            {"targets": [10], "width":"10%"},
+            {"targets": [11], "width":"30%"},
+
+
         ],
         "responsive":  "true", 
         dom: 'Bfrtilp',                
@@ -97,11 +116,12 @@ const showAllUser = () =>{
                 titleAttr:  'Excel',
                 className:   "btn btn-success",
                 exportOptions: {
-                columns: [1,2,3,4,5]
+                columns: [1,2,3,4,5,6,7,8,9,10,11]
                 }
             }
         ]     
-    });    
+    });
+    console.log(userTable)
     getDataUserDelete();               
 }
 

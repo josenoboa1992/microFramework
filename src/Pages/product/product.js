@@ -55,30 +55,29 @@ const clearProductForm = () => {
 **********************************************************************************************/
 
 /**********************************Registrar producto*****************************************/
-document.getElementById('frmSaveProduct').addEventListener('submit', e => {
-    e.preventDefault();  
-    config.validateToken();
-
-    (async function () {
-        try {
-            let body = new FormData(document.getElementById("frmSaveProduct"));             
-
-            let req = await fetch(`${config.API}product/`,{
-                                       headers: {Authorization: `Bearer ${config.token}`},
-                                       method: 'POST',body: body});
-            console.log(req);
-            let res = await req.json();
-
-            if (res.status == "error") {
-                error("errorSaveProduct","alert-danger" , res.message);
-            } else if (res.status == "ok") {   
-               clearProductForm();                      
-               error("errorSaveProduct","alert-success" , res.message);
-            } else {
-                error("errorSaveProduct","alert-danger" , "Algo salio mal");
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    })()
- });
+// document.getElementById('frmSaveProduct').addEventListener('submit', e => {
+//     e.preventDefault();
+//     config.validateToken();
+//
+//     (async function () {
+//         try {
+//             let body = new FormData(document.getElementById("frmSaveProduct"));
+//
+//             let req = await fetch(`${config.API}product/`,{
+//                                        headers: {Authorization: `Bearer ${config.token}`},
+//                                        method: 'POST',body: body});
+//             let res = await req.json();
+//
+//             if (res.status == "error") {
+//                 error("errorSaveProduct","alert-danger" , res.message);
+//             } else if (res.status == "ok") {
+//                clearProductForm();
+//                error("errorSaveProduct","alert-success" , res.message);
+//             } else {
+//                 error("errorSaveProduct","alert-danger" , "Algo salio mal");
+//             }
+//         } catch (error) {
+//             console.log(error);
+//         }
+//     })()
+//  });

@@ -13,8 +13,6 @@ document.getElementById("frmLogin").addEventListener("submit" , e => {
             let request = await fetch(config.API + `auth/${body.get('email')}/${body.get('password')}/`);
 
             let response = await request.json();
-
-
             if (response.status == "error") {                    
                error("error","alert-danger",response.message);
             } else if (response.status == "ok") {
@@ -26,7 +24,6 @@ document.getElementById("frmLogin").addEventListener("submit" , e => {
                 let request1 = await fetch("./src/Core/dataUser.php",{method: "post", body: body1});
                 //console.log(request1);
                 let response1 = await request1.json();
-                console.log(response1)
 
                 if (response1 == "vacio") {
                    error("error", "alert-danger","Campos vacios 2");

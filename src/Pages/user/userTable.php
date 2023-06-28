@@ -19,12 +19,17 @@
                             <thead class="color-card text-white">
                                 <tr>
                                     <th scope="col"></th>
+                                    <th scope="col">USUARIO</th>
                                     <th scope="col">NOMBRE</th>
-                                    <th scope="col">DNI</th>
+                                    <th scope="col">GENERO</th>
+                                    <th scope="col">DOCUMENTO</th>
                                     <th scope="col">CORREO</th>
                                     <th scope="col">ROL</th>
-                                    <th scope="col">FECHA</th>                  
-                                    <th scope="col">ACCIONES</th>               
+                                    <th scope="col">EMPRESA</th>
+                                    <th scope="col">TELÉFONO</th>
+                                    <th scope="col">PUNTOS</th>
+                                    <th scope="col">ESTADO</th>
+                                    <th scope="col">ACCIONES</th>
                                 </tr>
                                 </thead>
                                 <tbody id="userTableBody">               
