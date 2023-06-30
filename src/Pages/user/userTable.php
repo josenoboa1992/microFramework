@@ -18,7 +18,7 @@
                         <table class="table table-hover table-bordered" style="width:100%;" id="userTable">
                             <thead class="color-card text-white">
                                 <tr>
-                                    <th scope="col"></th>
+                                    <th scope="col">Cod</th>
                                     <th scope="col">USUARIO</th>
                                     <th scope="col">NOMBRE</th>
                                     <th scope="col">GENERO</th>

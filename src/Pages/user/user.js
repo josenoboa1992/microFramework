@@ -14,9 +14,9 @@ let userTable;
 /****************************************Obtener los datos del usuario a borrar**************************************************/
 let getDataUserDelete = function(){
     $("#userTable").on("click","button.delete", function () {
-        let data = userTable.row( $(this).parents("tr") ).data();            
-        document.getElementById('textUserDelete').textContent = "¿Quieres Eliminar el siguiente usuario? : "+data['nombre'];  
-        document.getElementById('userIDToken').value = data['IDToken'];                      
+        let data = userTable.row( $(this).parents("tr") ).data();
+        document.getElementById('textUserDelete').textContent = "¿Quieres Eliminar el siguiente usuario? : "+data['Nombre_Usuario'];
+        document.getElementById('userIDToken').value = data['ID'];
     });
 }
 
@@ -77,7 +77,7 @@ const showAllUser = () =>{
                 }            
         },
         'columns' :[
-            {"data" : "IDToken"},            
+            {"data" : "ID"},
             {"data" : "Nombre_Usuario"},
             {"data" : "Nombre"},
             {"data" : "Genero"},
@@ -92,7 +92,8 @@ const showAllUser = () =>{
             }                            
         ],
         "columnDefs": [   // atributo para ocultar columna
-            {"targets": [0],"visible": false,"searchable": false},
+            // {"targets": [0],"visible": false,"searchable": false},
+            {"targets": [0], "width": "10%"},
             {"targets": [1], "width": "10%"},
             {"targets": [2], "width": "10%"},
             {"targets": [3], "width": "10%"},
@@ -132,7 +133,7 @@ const reloadUserTable = () => {
 
 /*********Función para habilitar el formulario de usuario********/
 const enableUserForm = () => {
-   document.getElementById('nombre').disabled = false;  
+   document.getElementById('nombre').disabled = false;
    document.getElementById('dni').disabled = false;
    document.getElementById('correo').disabled = false;
    document.getElementById('password').disabled = false;
@@ -147,12 +148,12 @@ const enableUserForm = () => {
    document.getElementById('btnUserEnable').style.display = 'none';
    document.getElementById('btnUserRegister').style.display = '';
    document.getElementById('btnUserClear').style.display = '';
-   document.getElementById('btnUserDisabled').style.display = '';   
+   document.getElementById('btnUserDisabled').style.display = '';
 }
 
 /*********Función para deshabilitar el formulario de usuario********/
 const disabledUserForm = () => {
-    document.getElementById('nombre').disabled = true;   
+    document.getElementById('nombre').disabled = true;
     document.getElementById('dni').disabled = true;
     document.getElementById('correo').disabled = true;
     document.getElementById('password').disabled = true;
@@ -171,11 +172,11 @@ const disabledUserForm = () => {
 
 /*******Función para limpiar el formulario de usuario********/
 const clearUserForm = () => {
-    document.getElementById('nombre').value = "";    
+    document.getElementById('nombre').value = "";
     document.getElementById('dni').value = "";
     document.getElementById('correo').value = "";
     document.getElementById('password').value = "";
-    document.getElementById('confirmPassword').value = "";   
+    document.getElementById('confirmPassword').value = "";
 }
 
 /*****************************************************************
@@ -339,7 +340,7 @@ frmsave.addEventListener('submit', e => {
            if (response.status == "error") {
                error("errorSaveUser","alert-danger" , response.message);
            } else if (response.status == "ok") {
-              clearUserForm(); 
+              clearUserForm();
               disabledUserForm();
               reloadUserTable();
               error("errorSaveUser","alert-success" , response.message);

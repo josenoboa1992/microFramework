@@ -10,15 +10,15 @@
 
                 <div class="col-lg-4">
                     <div class="form-group">
-                        <label for="name_user">Nombre</label>
+                        <label for="name">Nombre</label>
                         <input type="text" class="form-control" name="name" id="nombre" placeholder="Ingrese su nombre" required>
                     </div>
                 </div>              
 
                 <div class="col-lg-4">
                     <div class="form-group">
-                        <label for="cedula_user">DNI</label>
-                        <input type="number" class="form-control" name="dni" id="dni" placeholder="Ingrese su DNI" required>
+                        <label for="username">Usuario</label>
+                        <input type="text" class="form-control" name="username" id="dni" placeholder="Ingrese su DNI" required>
                     </div>
                 </div>
 
