@@ -33,8 +33,9 @@ document.getElementById("frmLogin").addEventListener("submit" , e => {
             } else {
                 error("error","alert-danger","Algo salio mal");
             }      
-        } catch (error) {
-            console.log(error);
+        } catch (e) {
+           error("error","alert-danger","API_ERROR");
+            console.log(e);
         }        
     })()        
 })

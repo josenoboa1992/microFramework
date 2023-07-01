@@ -35,7 +35,7 @@ Auth::accessLogin();
                         <div class="col-lg-5">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header color-card">
-                                    <h3 class="text-center fw-bold my-4 text-white">Iniciar sesión</h3>
+                                    <h3 class="text-center fw-bold my-4 text-gray">Iniciar sesión</h3>
                                 </div>
                                 <form id="frmLogin">
                                     <div class="card-body">
@@ -51,8 +51,8 @@ Auth::accessLogin();
 
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <button class="btn color-card" type="submit" href="#">Ingresar</button>
+                                        <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
+                                            <button class="btn btn-outline-success btn-lg" type="submit" href="#">Ingresar</button>
                                         </div>
                                         <!--Aqui se muestran los errores-->
                                         <div class="alert mt-3 alert-dismissible" role="alert" style="display: none;" id="error"> 

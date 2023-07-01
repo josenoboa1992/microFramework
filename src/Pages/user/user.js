@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#UserSave').slideUp();
     disabledUserForm();
     showAllUser();
+    allCompany();
+    getRol()
     //hiddenUserTable();
     //disabledUserTable();
 })
@@ -15,8 +17,8 @@ let userTable;
 let getDataUserDelete = function(){
     $("#userTable").on("click","button.delete", function () {
         let data = userTable.row( $(this).parents("tr") ).data();            
-        document.getElementById('textUserDelete').textContent = "¿Quieres Eliminar el siguiente usuario? : "+data['nombre'];  
-        document.getElementById('userIDToken').value = data['IDToken'];                      
+        document.getElementById('textUserDelete').textContent = "¿Quieres Eliminar el siguiente usuario? : "+data['Nombre_Usuario'];
+        document.getElementById('userIDToken').value = data['ID'];
     });
 }
 
@@ -60,10 +62,11 @@ const showAllUser = () =>{
     userTable = $('#userTable').DataTable({
         "rowCallback":function (row,data,index){
             // Aplicar estilo a las filas
-            $(row).css("font-size", "15px"); // Ajusta el tamaño de fuente según tus necesidades
+            $(row).css("font-size", "12px"); // Ajusta el tamaño de fuente según tus necesidades
 
             // Aplicar estilo a las celdas
             $("td", row).css("font-weight", "bold");
+            $("td", row).css("color", " rgba(0, 0, 0, 0.55)");
         },
         "orderCellsTop": true, 
         "fixedHeader": false,
@@ -77,7 +80,7 @@ const showAllUser = () =>{
                 }            
         },
         'columns' :[
-            {"data" : "IDToken"},            
+            {"data" : "ID"},
             {"data" : "Nombre_Usuario"},
             {"data" : "Nombre"},
             {"data" : "Genero"},
@@ -92,7 +95,8 @@ const showAllUser = () =>{
             }                            
         ],
         "columnDefs": [   // atributo para ocultar columna
-            {"targets": [0],"visible": false,"searchable": false},
+            // {"targets": [0],"visible": false,"searchable": false},
+            {"targets": [0], "width": "10%"},
             {"targets": [1], "width": "10%"},
             {"targets": [2], "width": "10%"},
             {"targets": [3], "width": "10%"},
@@ -114,7 +118,7 @@ const showAllUser = () =>{
                 extend:      "excelHtml5",
                 text:       '<i class="fa fa-file-excel" aria-hidden="true"></i>',
                 titleAttr:  'Excel',
-                className:   "btn btn-success",
+                className:   "btn btn-outline-success",
                 exportOptions: {
                 columns: [1,2,3,4,5,6,7,8,9,10,11]
                 }
@@ -132,11 +136,19 @@ const reloadUserTable = () => {
 
 /*********Función para habilitar el formulario de usuario********/
 const enableUserForm = () => {
-   document.getElementById('nombre').disabled = false;  
-   document.getElementById('dni').disabled = false;
-   document.getElementById('correo').disabled = false;
-   document.getElementById('password').disabled = false;
-   document.getElementById('confirmPassword').disabled = false;
+    document.getElementById('name').disabled=false;
+    document.getElementById('username').disabled=false;
+    document.getElementById('password').disabled=false;
+    document.getElementById('confirmPassword').disabled=false;
+    document.getElementById('lastname').disabled=false;
+    document.getElementById('company').disabled=false;
+    document.getElementById('type_document').disabled=false;
+    document.getElementById('document').disabled=false;
+    document.getElementById('phone').disabled=false;
+    document.getElementById('email').disabled=false;
+    document.getElementById('rol').disabled=false;
+    document.getElementById('gender').disabled=false;
+    document.getElementById('address').disabled=false;
   // document.getElementById('estado').disabled = false;
    document.getElementById('rol').disabled = false;
    document.getElementById('btnprivilegeabout').disabled = false;
@@ -152,13 +164,20 @@ const enableUserForm = () => {
 
 /*********Función para deshabilitar el formulario de usuario********/
 const disabledUserForm = () => {
-    document.getElementById('nombre').disabled = true;   
-    document.getElementById('dni').disabled = true;
-    document.getElementById('correo').disabled = true;
-    document.getElementById('password').disabled = true;
-    document.getElementById('confirmPassword').disabled = true;
+    document.getElementById('name').disabled=true;
+    document.getElementById('username').disabled=true;
+    document.getElementById('password').disabled=true;
+    document.getElementById('confirmPassword').disabled=true;
+    document.getElementById('lastname').disabled=true;
+    document.getElementById('company').disabled=true;
+    document.getElementById('type_document').disabled=true;
+    document.getElementById('document').disabled=true;
+    document.getElementById('phone').disabled=true;
+    document.getElementById('email').disabled=true;
+    document.getElementById('rol').disabled=true;
+    document.getElementById('gender').disabled=true;
+    document.getElementById('address').disabled=true;
     //document.getElementById('estado').disabled = true;
-    document.getElementById('rol').disabled = true;
     document.getElementById('btnprivilegeabout').disabled = true;
     document.getElementById('btnUserRegister').disabled = true;
     document.getElementById('btnUserClear').disabled = true;
@@ -171,11 +190,11 @@ const disabledUserForm = () => {
 
 /*******Función para limpiar el formulario de usuario********/
 const clearUserForm = () => {
-    document.getElementById('nombre').value = "";    
-    document.getElementById('dni').value = "";
-    document.getElementById('correo').value = "";
+    document.getElementById('name').value = "";
+    document.getElementById('username').value = "";
     document.getElementById('password').value = "";
-    document.getElementById('confirmPassword').value = "";   
+    document.getElementById('confirmPassword').value = "";
+    document.getElementById('lastname').value = "";
 }
 
 /*****************************************************************
@@ -206,8 +225,70 @@ const disabledUserTable = () => {
 //     document.getElementById('search_cedula').value = "";
 //     hiddenUserTable();        
 // }
+/*****************************************************************************
+ *                               traer datos de company                     *
+ ******************************************************************************/
+async function allCompany() {
+    try {
+        const request = await fetch(`${config.API}company/`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${config.token}`
+            }
+        });
+        const response = await request.json();
 
+        if (response.status === "error") {
+            error("errorSaveUser", "alert-danger", response.message);
+        } else if (Array.isArray(response.data)) { // Verificar si response.data es un array
+            const selectElement = document.getElementById('company');
+            response.data.forEach(company => {
+                const option = document.createElement('option');
+                option.value = company.ID;
+                option.textContent = company.Nombre;
+                selectElement.appendChild(option);
+            });
+        } else {
+            error("errorSaveUser","alert-danger","API_ERROR");
+            console.error("La propiedad data no es un array:", response);
+        }
+    } catch (error) {
+        error("errorSaveUser","alert-danger","API_ERROR");
+        console.error("Error en la función allCompany:", error);
+    }
+}
 
+/*****************************************************************************
+ *                               traer datos de rol                  *
+ ******************************************************************************/
+async function getRol() {
+    try {
+        const request = await fetch(`${config.API}rol/`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${config.token}`
+            }
+        });
+        const response = await request.json();
+        if (response.status === "error") {
+            error("errorSaveUser", "alert-danger", response.message);
+        } else if (Array.isArray(response.data)) { // Verificar si response.data es un array
+            const selectElement = document.getElementById('rol');
+            response.data.forEach(rol => {
+                const option = document.createElement('option');
+                option.value = rol.role_id;
+                option.textContent = rol.name;
+                selectElement.appendChild(option);
+            });
+        } else {
+            error("errorSaveUser","alert-danger","API_ERROR");
+            console.error("La propiedad data no es un array:", response);
+        }
+    } catch (e) {
+        error("errorSaveUser","alert-danger","API_ERROR");
+        console.error("Error en la función allCompany:", e);
+    }
+}
 /*****************************************************************************
 *                                  Events                                    *
 ******************************************************************************/

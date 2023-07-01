@@ -1,6 +1,6 @@
 <div class="card" style="border:1px solid gray; box-shadow: 1px 2px 5px;">
 
-    <div class="card-header color-card text-white">
+    <div class="card-header color-card text-gray">
         <strong style="font-size:20px;">Administrar Usuarios</strong>
     </div>
        
@@ -16,9 +16,9 @@
                 <br>
                     <div class="table-responsive">          
                         <table class="table table-hover table-bordered" style="width:100%;" id="userTable">
-                            <thead class="color-card text-white">
+                            <thead class="color-card text-gray">
                                 <tr>
-                                    <th scope="col"></th>
+                                    <th scope="col">Cod</th>
                                     <th scope="col">USUARIO</th>
                                     <th scope="col">NOMBRE</th>
                                     <th scope="col">GENERO</th>

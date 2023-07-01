@@ -45,8 +45,12 @@
 
 /*----------------utilidades---------------*/
 .color-card{
-  background-color: #009cb7 !important;
-  color: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  color: rgba(0,0,0, 0.55) !important;
+}
+
+.text-gray{
+  color: #8f8c8c !important;
 }
 
 #frmLogin input{
@@ -68,7 +72,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
-  background-color: #fff;
+  background-color: #f3f3f3 !important;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -7392,7 +7396,7 @@ textarea.form-control-lg {
   color: #212529 !important;
 }
 
-.text-white {
+.text-white{
   color: #fff !important;
 }
 
@@ -11040,29 +11044,30 @@ body {
 }
 
 .sb-sidenav-dark {
-  background-color: #212529;
-  color: rgba(255, 255, 255, 0.5);
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: 1px solid rgba(0, 0, 0, 0.07);
 }
 .sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {
   color: rgba(255, 255, 255, 0.25);
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.55);
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon {
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(0,0,0, 0.55);
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-sidenav-collapse-arrow {
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(0, 0, 0, 0.55);
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
-  color: #fff;
+  color: rgba(0, 0, 0, 0.25);
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link.active {
-  color: #fff;
+  color: rgba(0, 0, 0, 0.25);;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link.active .sb-nav-link-icon {
-  color: #fff;
+  color: rgba(0, 0, 0, 0.25);
 }
 .sb-sidenav-dark .sb-sidenav-footer {
   background-color: #343a40;
@@ -11257,4 +11262,10 @@ body {
   width: 20px !important;
   font-size: 0.75rem;
   border-radius: 0.25rem !important;
+}
+
+
+div#userTable_filter {
+  margin-bottom: 10px;
+
 }

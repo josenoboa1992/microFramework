@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-success">
-                <h5 class="modal-title fw-bold text-white" id="exampleModalLabel">Cambiar Contraseña</h5>
+                <h5 class="modal-title fw-bold text-gray" id="exampleModalLabel">Cambiar Contraseña</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="frmChangePassword">

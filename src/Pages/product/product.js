@@ -36,7 +36,7 @@ const clearProductForm = () => {
 //                 <div class='card p-3' style="background-color:#fdfdfd; border-radius:5px; box-shadow: 1px 1px 3px;">
 //                     <input type='hidden' value='${data.IDtoken}' id='imgIDtoken'>
 //                     <input type='hidden' value='${data.imageName}' id='imgName'>
-//                     <div class='card-header bg-success text-white fw-bold d-flex justify-content-center'>${data.name}</div>
+//                     <div class='card-header bg-success text-gray fw-bold d-flex justify-content-center'>${data.name}</div>
 //                        <img class='img-responsive' src='${data.url}' width='100%' height='200' alt='...' />
 //                     <div class='card-body'>
 //                         <p class='card-text'>${data.description}</p>

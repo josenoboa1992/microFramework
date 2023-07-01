@@ -3,7 +3,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-primary">
-        <h5 class="modal-title text-white fw-bold" id="exampleModalLabel">Acerca de los privilegios</h5>     
+        <h5 class="modal-title text-gray fw-bold" id="exampleModalLabel">Acerca de los privilegios</h5>     
       </div>
       <div class="modal-body">
         <ul class="list-group">
