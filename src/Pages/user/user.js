@@ -178,6 +178,7 @@ const disabledUserForm = () => {
     document.getElementById('gender').disabled=true;
     document.getElementById('address').disabled=true;
     //document.getElementById('estado').disabled = true;
+    document.getElementById('rol').disabled = true;
     document.getElementById('btnprivilegeabout').disabled = true;
     document.getElementById('btnUserRegister').disabled = true;
     document.getElementById('btnUserClear').disabled = true;

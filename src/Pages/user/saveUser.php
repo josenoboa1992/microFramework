@@ -1,6 +1,6 @@
 <div class="card mt-3" style="border:1px solid gray; box-shadow: 1px 2px 5px;" id="UserSave">
 
-    <div class="card-header color-card text-gray">
+    <div class="card-header color-card text-white">
         <strong style=" font-size:20px;">Registrar Nuevo Usuario</strong>
     </div>
 
