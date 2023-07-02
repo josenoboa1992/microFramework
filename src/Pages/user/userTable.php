@@ -40,6 +40,6 @@
             </div><!--end row-->        
     </div><!--end card-body -->
     <div class="card-footer text-muted">
-         <button class="btn btn-success" id="btnReloadUserTable" type="submit"><i class="fa fa-sync mr-2" aria-hidden="true"></i>Actualizar</button>         
+         <button class="btn btn-outline-successsuccess" id="btnReloadUserTable" type="submit"><i class="fa fa-sync mr-2" aria-hidden="true"></i>Actualizar</button>
     </div>  
 </div><!--end card-->

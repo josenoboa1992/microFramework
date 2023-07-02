@@ -91,7 +91,9 @@ const showAllUser = () =>{
             {"data" : "Número_Teléfonico"},
             {"data" : "Puntos_Acumulado"},
             {"data" : "Estado"},
-            {"defaultContent" : "<button type='button' class='delete btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-trash' aria-hidden='true'></i></button>"
+            {"defaultContent" : "<button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-trash' aria-hidden='true'></i></button>" +
+                    "<button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-edit' aria-hidden='true'></i></button>" +
+                    "<button type='button' class='detail' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-eye' aria-hidden='true'></i></button>"
             }                            
         ],
         "columnDefs": [   // atributo para ocultar columna
