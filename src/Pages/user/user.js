@@ -194,6 +194,8 @@ const disabledUserForm = () => {
 
 /*******Función para limpiar el formulario de usuario********/
 const clearUserForm = () => {
+    document.getElementById('phone').value="";
+    document.getElementById('document').value="";
     document.getElementById('name').value = "";
     document.getElementById('username').value = "";
     document.getElementById('password').value = "";
