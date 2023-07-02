@@ -11070,12 +11070,14 @@ body {
   color: rgba(0, 0, 0, 0.25);
 }
 .sb-sidenav-dark .sb-sidenav-footer {
-  background-color: #343a40;
+  background-color: #FFFFFF;
+  color: #5c636a;
 }
 
 .sb-sidenav-light {
   background-color: #f8f9fa;
-  color: #212529;
+  color: rgba(0, 0, 0, 0.55);
+  font-weight: bold;
 }
 .sb-sidenav-light .sb-sidenav-menu .sb-sidenav-menu-heading {
   color: #adb5bd;
@@ -11291,4 +11293,19 @@ background-color: rgba(0, 0, 0, 0.075);
   color: #0d396e !important;
   border-color: #0d396e !important;
   background-color: #FFFFFF !important;
+}
+
+.one-privilege{
+  color: #0b3d91;
+  background-color: #f1f6ff !important;
+}
+
+.second-privilege{
+  color: #006e2c;
+  background-color: #fbfffc!important;
+}
+
+.third-privilege{
+  color: #951d32;
+  background-color: #fffafa !important;
 }

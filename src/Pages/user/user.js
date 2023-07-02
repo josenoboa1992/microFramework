@@ -92,7 +92,7 @@ const showAllUser = () =>{
             {"data" : "Puntos_Acumulado"},
             {"data" : "Estado"},
             {"defaultContent" : "<button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-trash' aria-hidden='true'></i></button>" +
-                    "<button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-edit' aria-hidden='true'></i></button>" +
+                    "<button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#modalUserUpdate'><i class='fa fa-edit' aria-hidden='true'></i></button>" +
                     "<button type='button' class='detail' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-eye' aria-hidden='true'></i></button>"
             }                            
         ],
@@ -437,37 +437,56 @@ frmsave.addEventListener('submit', e => {
 });
 
 /**********************************Eliminar usuario*****************************************/
-document.getElementById('btnUserDelete').addEventListener('click', e => {
-    e.preventDefault();  
-    config.validateToken();
 
-    let body= {
-        IDToken: document.getElementById('userIDToken').value
-    };
- 
-    (async function () {
-        try {
-            let request = await fetch(`${config.API}user/`,{
-                                       headers: {"Content-Type":"application/json" , Authorization: `Bearer ${config.token}`},
-                                       method: 'DELETE',body: JSON.stringify(body)});
-            let response = await request.json();
- 
-            if (response.status == "error") {
-                document.getElementById('btnCloseUserDelete').click();
-                error("messageUserDelete","alert-danger" , response.message);
-            } else if (response.status == "ok") {
-                reloadUserTable();
-                document.getElementById('btnCloseUserDelete').click();           
-                error("messageUserDelete","alert-success" , response.message);
-            } else {
-                document.getElementById('btnCloseUserDelete').click();
-                error("messageUserDelete","alert-danger" , "Algo salio mal");
+$("#userTable").on("click", "button.delete", function () {
+    let data = userTable.row($(this).parents("tr")).data();
+    if (data && data.hasOwnProperty('ID')) {
+        let ID = data['ID'];
+        document.getElementById('userID').value = ID;
+
+        // Llamar a la función que realiza la eliminación del usuario
+        deleteUser(ID);
+    } else {
+        console.error("El objeto 'data' no está definido o no contiene la propiedad 'ID'.");
+    }
+});
+
+function deleteUser(ID) {
+    document.getElementById('btnUserDelete').addEventListener('click', e => {
+        e.preventDefault();
+        config.validateToken();
+
+        let body= {
+            IDToken: document.getElementById('userIDToken').value
+        };
+        console.log(body);
+
+        (async function () {
+            try {
+                let request = await fetch(`${config.API}user/${ID}`, {
+                    headers: {"Content-Type":"application/json" , Authorization: `Bearer ${config.token}`},
+                    method: 'DELETE',
+                    body: JSON.stringify(body)
+                });
+                let response = await request.json();
+
+                if (response.status == "error") {
+                    document.getElementById('btnCloseUserDelete').click();
+                    error("messageUserDelete","alert-danger" , response.message);
+                } else if (response.status == "ok") {
+                    reloadUserTable();
+                    document.getElementById('btnCloseUserDelete').click();
+                    error("messageUserDelete","alert-success" , response.message);
+                } else {
+                    document.getElementById('btnCloseUserDelete').click();
+                    error("messageUserDelete","alert-danger" , "Algo salió mal");
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
-        }
-    })()
- });
+        })();
+    });
+}
 
 
 /*****************************************************************************

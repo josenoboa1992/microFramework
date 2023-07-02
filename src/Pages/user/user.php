@@ -5,6 +5,9 @@
 <!--------Borrar un usuario----------->
 <?php require 'modalUserDelete.php'; ?>
 
+<!--------actualizar un usuario----------->
+<?php require 'modalUserUpdate.php'; ?>
+
 <!--Registrar un nuevo usuario-->
 <?php require 'saveUser.php'; ?>
 <br>
