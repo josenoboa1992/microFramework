@@ -21,8 +21,8 @@ if ($view === 'login') {
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="shortcut icon" href="<?php echo UrlBase::urlBase;?>/public/img/anony.jpg">
-    <title>Dashboard</title>
+    <link rel="shortcut icon" href="<?php echo UrlBase::urlBase;?>/public/img/icon.svg">
+    <title>WORLDINGFOODS</title>
     <link href="<?php echo UrlBase::urlBase;?>/public/css/styles.css" rel="stylesheet" />
     <link href="<?php echo UrlBase::urlBase;?>/public/css/mdb.min.css" rel="stylesheet" />
     <link href="<?php echo UrlBase::urlBase;?>/public/libs/datatables/responsive.bootstrap.min.css" rel="stylesheet" />      
@@ -77,7 +77,7 @@ if ($view === 'login') {
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
-                    <div class="small">Bienvenido</div>                   
+                    <div class="small">Bienvenido <?php echo $_SESSION['name']?></div>
                 </div>
             </nav>
         </div>

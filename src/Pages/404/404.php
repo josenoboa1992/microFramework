@@ -10,7 +10,7 @@ use Config\UrlBase;
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <link rel="shortcut icon" href="<?php echo UrlBase::urlBase; ?>/public/img/anony.jpg">         
+        <link rel="shortcut icon" href="<?php echo UrlBase::urlBase; ?>/public/img/icon.svg">
         <title>404</title>
         <link href="<?php echo UrlBase::urlBase; ?>/public/css/styles.css" rel="stylesheet" />
         <script src="<?php echo UrlBase::urlBase; ?>/public/libs/fontAwesome/all.min.js" crossorigin="anonymous"></script>

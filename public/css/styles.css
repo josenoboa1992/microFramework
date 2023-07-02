@@ -11309,3 +11309,27 @@ background-color: rgba(0, 0, 0, 0.075);
   color: #951d32;
   background-color: #fffafa !important;
 }
+.content-img{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.img-logo img{
+  width: 100%;
+}
+
+.img-logo{
+  max-width: 50%;
+  height: 100%;
+}
+
+.content-title-log img{
+  width: 100%;
+}
+.content-title-log{
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}

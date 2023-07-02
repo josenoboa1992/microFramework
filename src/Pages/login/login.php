@@ -13,7 +13,7 @@ Auth::accessLogin();
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="shortcut icon" href="<?php echo UrlBase::urlBase; ?>/public/img/anony.jpg">
+    <link rel="shortcut icon" href="<?php echo UrlBase::urlBase; ?>/public/img/icon.svg">
     <title>Login</title>
     <link href="<?php echo UrlBase::urlBase; ?>/public/css/styles.css" rel="stylesheet" />
     <link href="<?php echo UrlBase::urlBase;?>/public/css/mdb.min.css" rel="stylesheet" />
@@ -35,7 +35,11 @@ Auth::accessLogin();
                         <div class="col-lg-5">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header color-card">
-                                    <h3 class="text-center fw-bold my-4 text-gray">Iniciar sesión</h3>
+                                    <div class="content-img">
+                                         <div class="img-logo">
+                                            <img src="<?php echo UrlBase::urlBase;?>public/img/worlding.png" alt="title-login">
+                                         </div>
+                                    </div>
                                 </div>
                                 <form id="frmLogin">
                                     <div class="card-body">

@@ -3,7 +3,12 @@ use Config\UrlBase;
 ?>
 <nav class="sb-topnav navbar navbar-expand navbar-dark color-card">
 <!-- Navbar Brand-->
-<a class="navbar-brand ps-3" href="<?php echo UrlBase::urlBase;?>">Microframaework</a>
+<a class="navbar-brand ps-3" href="<?php echo UrlBase::urlBase;?>">WORLDINGFOODS
+    <div class="content-title-log">
+        <img src="<?php echo UrlBase::urlBase;?>public/img/LOGO.png" alt="">
+    </div>
+</a>
+
 <!-- Sidebar Toggle-->
 <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 text-gray" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
 <!-- Navbar Search-->
