@@ -16,9 +16,10 @@ let userTable;
 /****************************************Obtener los datos del usuario a borrar**************************************************/
 let getDataUserDelete = function(){
     $("#userTable").on("click","button.delete", function () {
-        let data = userTable.row( $(this).parents("tr") ).data();            
+
+        let data = userTable.row( $(this).parents("tr") ).data();
         document.getElementById('textUserDelete').textContent = "¿Quieres Eliminar el siguiente usuario? : "+data['Nombre_Usuario'];
-        document.getElementById('userIDToken').value = data['ID'];
+        document.getElementById('idDelete').value = data['ID'];
     });
 }
 
@@ -442,7 +443,7 @@ $("#userTable").on("click", "button.delete", function () {
     let data = userTable.row($(this).parents("tr")).data();
     if (data && data.hasOwnProperty('ID')) {
         let ID = data['ID'];
-        document.getElementById('userID').value = ID;
+        document.getElementById('idDelete').value = ID;
 
         // Llamar a la función que realiza la eliminación del usuario
         deleteUser(ID);
@@ -457,7 +458,7 @@ function deleteUser(ID) {
         config.validateToken();
 
         let body= {
-            IDToken: document.getElementById('userIDToken').value
+            IDToken: document.getElementById('idDelete').value
         };
         console.log(body);
 

@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-gray">
-        <input type="hidden" id="userIDToken">        
+        <input type="hidden" id="idDelete">
         <h5 class="modal-title fw-bold text-gray" id="exampleModalLabel">Eliminar Usuario</h5>       
       </div>
       <div class="modal-body">
