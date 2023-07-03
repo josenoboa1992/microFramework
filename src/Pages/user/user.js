@@ -92,8 +92,9 @@ const showAllUser = () =>{
             {"data" : "Número_Teléfonico"},
             {"data" : "Puntos_Acumulado"},
             {"data" : "Estado"},
+            {"data" : "Rol_Id"},
             {"defaultContent" : "<button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-trash' aria-hidden='true'></i></button>" +
-                    "<button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#modalUserUpdate'><i class='fa fa-edit' aria-hidden='true'></i></button>" +
+                    "<button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#updateUser'><i class='fa fa-edit' aria-hidden='true'></i></button>" +
                     "<button type='button' class='detail' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-eye' aria-hidden='true'></i></button>"
             }                            
         ],
@@ -110,7 +111,8 @@ const showAllUser = () =>{
             {"targets": [8], "width": "10%"},
             {"targets": [9], "width":"10%"},
             {"targets": [10], "width":"10%"},
-            {"targets": [11], "width":"30%"},
+            {"targets": [11], "visible": false,"searchable": false},
+            {"targets": [12], "width":"30%"},
 
 
         ],
@@ -123,7 +125,7 @@ const showAllUser = () =>{
                 titleAttr:  'Excel',
                 className:   "btn btn-outline-success",
                 exportOptions: {
-                columns: [1,2,3,4,5,6,7,8,9,10,11]
+                columns: [1,2,3,4,5,6,7,8,9,10]
                 }
             }
         ]     
@@ -195,6 +197,7 @@ const disabledUserForm = () => {
 /*******Función para limpiar el formulario de usuario********/
 const clearUserForm = () => {
     document.getElementById('phone').value="";
+    document.getElementById('email').value="";
     document.getElementById('document').value="";
     document.getElementById('name').value = "";
     document.getElementById('username').value = "";
@@ -447,7 +450,6 @@ $("#userTable").on("click", "button.delete", function () {
         let ID = data['ID'];
         document.getElementById('idDelete').value = ID;
 
-        // Llamar a la función que realiza la eliminación del usuario
         deleteUser(ID);
     } else {
         console.error("El objeto 'data' no está definido o no contiene la propiedad 'ID'.");
@@ -490,8 +492,110 @@ function deleteUser(ID) {
         })();
     });
 }
+/*****************************************************************************
+ *                  update usuario                                           *
+ *****************************************************************************/
+// Agregar evento de clic al botón de edición
+// Evento de clic para el botón "Editar"
+// Evento de clic para el botón "Editar"
+$('#userTable tbody').on('click', '.edit', function() {
+    // Obtener la fila correspondiente
+    let row = userTable.row($(this).closest('tr')).data();
+
+    // Rellenar los campos del formulario de edición
+    $('#name-update').val(row.Nombre);
+    $('#username-update').val(row.Nombre_Usuario);
+    $('#password-update').val(row.Contraseña);
+    $('#confirmPassword-update').val(row.Contraseña);
+    $('#lastname-update').val(row.Apellido);
+
+    // Limpiar los selectores de empresa y rol
+    $('#company-update').empty();
+    $('#rol-update').empty();
+
+    // Rellenar los selectores de empresa y rol
+    allCompanyUpdate();
+    getRolUpdate().then(() => {
+        // Seleccionar la opción correspondiente al valor de "Empresa" y "Rol" en los selectores
+
+        $('#company-update').val(row.Empresa);
+        $('#rol-update').val(row.Rol_Id);
+    });
 
 
+
+    $('#type_document-update').val(row.Tipo_Documento);
+    $('#document-update').val(row.Número_Documento);
+    $('#phone-update').val(row.Número_Teléfonico);
+    $('#email-update').val(row.Correo);
+    $('#gender-update').val(row.Genero);
+    $('#address-update').val(row.Dirección);
+});
+
+/*****************************************************************************
+ *                               traer datos de company                     *
+ ******************************************************************************/
+async function allCompanyUpdate() {
+    try {
+        const request = await fetch(`${config.API}company/`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${config.token}`
+            }
+        });
+        const response = await request.json();
+
+        if (response.status === "error") {
+            error("errorSaveUser", "alert-danger", response.message);
+        } else if (Array.isArray(response.data)) { // Verificar si response.data es un array
+            const selectElement = document.getElementById('company-update');
+            response.data.forEach(company => {
+                const option = document.createElement('option');
+                option.value = company.ID;
+                option.textContent = company.Nombre;
+                selectElement.appendChild(option);
+            });
+        } else {
+            error("errorSaveUser","alert-danger","API_ERROR");
+            console.error("La propiedad data no es un array:", response);
+        }
+    } catch (error) {
+        error("errorSaveUser","alert-danger","API_ERROR");
+        console.error("Error en la función allCompany:", error);
+    }
+}
+
+/*****************************************************************************
+ *                               traer datos de rol                  *
+ ******************************************************************************/
+async function getRolUpdate() {
+    try {
+        const request = await fetch(`${config.API}rol/`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${config.token}`
+            }
+        });
+        const response = await request.json();
+        if (response.status === "error") {
+            error("errorSaveUser", "alert-danger", response.message);
+        } else if (Array.isArray(response.data)) { // Verificar si response.data es un array
+            const selectElement = document.getElementById('rol-update');
+            response.data.forEach(rol => {
+                const option = document.createElement('option');
+                option.value = rol.role_id;
+                option.textContent = rol.name;
+                selectElement.appendChild(option);
+            });
+        } else {
+            error("errorSaveUser","alert-danger","API_ERROR");
+            console.error("La propiedad data no es un array:", response);
+        }
+    } catch (e) {
+        error("errorSaveUser","alert-danger","API_ERROR");
+        console.error("Error en la función allCompany:", e);
+    }
+}
 /*****************************************************************************
 *                  event for search one user for the dni                  *
 *****************************************************************************/

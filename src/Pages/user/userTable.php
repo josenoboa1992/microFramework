@@ -1,9 +1,9 @@
-<div class="card" style="border:1px solid gray; box-shadow: 1px 2px 5px;">
+<div class="card m-3" style="border:1px solid gray; box-shadow: 1px 2px 5px;">
 
     <div class="card-header color-card text-gray">
         <strong style="font-size:20px;">Administrar Usuarios</strong>
     </div>
-       
+
     <div class="card-body">   
             <!--Aqui se muestran los errores-->
             <div class="alert mt-3" role="alert" style="display: none;" id="messageUserDelete">
@@ -29,6 +29,7 @@
                                     <th scope="col">TELÉFONO</th>
                                     <th scope="col">PUNTOS</th>
                                     <th scope="col">ESTADO</th>
+                                    <th scope="col"></th>
                                     <th scope="col">ACCIONES</th>
                                 </tr>
                                 </thead>
