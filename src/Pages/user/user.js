@@ -92,7 +92,8 @@ const showAllUser = () =>{
             {"data" : "Número_Teléfonico"},
             {"data" : "Puntos_Acumulado"},
             {"data" : "Estado"},
-            {"data" : "Rol_Id"},
+            {"data" : "Role_Id"},
+            {"data" : "Company_Id"},
             {"defaultContent" : "<button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-trash' aria-hidden='true'></i></button>" +
                     "<button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#updateUser'><i class='fa fa-edit' aria-hidden='true'></i></button>" +
                     "<button type='button' class='detail' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-eye' aria-hidden='true'></i></button>"
@@ -112,7 +113,8 @@ const showAllUser = () =>{
             {"targets": [9], "width":"10%"},
             {"targets": [10], "width":"10%"},
             {"targets": [11], "visible": false,"searchable": false},
-            {"targets": [12], "width":"30%"},
+            {"targets": [12], "visible": false,"searchable": false},
+            {"targets": [13], "width":"30%"},
 
 
         ],
@@ -495,35 +497,22 @@ function deleteUser(ID) {
 /*****************************************************************************
  *                  update usuario                                           *
  *****************************************************************************/
-// Agregar evento de clic al botón de edición
-// Evento de clic para el botón "Editar"
-// Evento de clic para el botón "Editar"
-$('#userTable tbody').on('click', '.edit', function() {
-    // Obtener la fila correspondiente
-    let row = userTable.row($(this).closest('tr')).data();
 
-    // Rellenar los campos del formulario de edición
+$('#userTable tbody').on('click', '.edit', function() {
+    let row = userTable.row($(this).closest('tr')).data();
     $('#name-update').val(row.Nombre);
     $('#username-update').val(row.Nombre_Usuario);
-    $('#password-update').val(row.Contraseña);
-    $('#confirmPassword-update').val(row.Contraseña);
-    $('#lastname-update').val(row.Apellido);
 
-    // Limpiar los selectores de empresa y rol
+
+    $('#lastname-update').val(row.Apellido);
     $('#company-update').empty();
     $('#rol-update').empty();
-
-    // Rellenar los selectores de empresa y rol
-    allCompanyUpdate();
+    allCompanyUpdate().then(()=>{
+        $('#company-update').val(row.Company_Id);
+    })
     getRolUpdate().then(() => {
-        // Seleccionar la opción correspondiente al valor de "Empresa" y "Rol" en los selectores
-
-        $('#company-update').val(row.Empresa);
-        $('#rol-update').val(row.Rol_Id);
+        $('#rol-update').val(row.Role_Id);
     });
-
-
-
     $('#type_document-update').val(row.Tipo_Documento);
     $('#document-update').val(row.Número_Documento);
     $('#phone-update').val(row.Número_Teléfonico);
@@ -531,6 +520,19 @@ $('#userTable tbody').on('click', '.edit', function() {
     $('#gender-update').val(row.Genero);
     $('#address-update').val(row.Dirección);
 });
+
+let frmupdate=document.querySelector('#frmUpdateUsuario');
+frmupdate.addEventListener('submit',e=>{
+    e.preventDefault();
+    config.validateToken();
+    let body={};
+    let formData=new FormData(document.getElementById('frmUpdateUsuario'));
+
+    formData.forEach((value,key)=>{body[key]=value});
+
+    console.log(body);
+
+})
 
 /*****************************************************************************
  *                               traer datos de company                     *

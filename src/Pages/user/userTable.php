@@ -30,6 +30,7 @@
                                     <th scope="col">PUNTOS</th>
                                     <th scope="col">ESTADO</th>
                                     <th scope="col"></th>
+                                    <th scope="col"></th>
                                     <th scope="col">ACCIONES</th>
                                 </tr>
                                 </thead>

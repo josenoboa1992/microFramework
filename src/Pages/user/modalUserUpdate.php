@@ -11,7 +11,7 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-
+    <form id="frmUpdateUsuario">
                 <div class="card-body">
                     <div class="row">
 
@@ -46,13 +46,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="password">Contraseña</label>
-                                <input type="password" class="form-control" name="password" id="password-update" placeholder="contraseña" required>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label for="confirmPassword">Confirmar Contraseña</label>
-                                <input type="password" class="form-control" name="confirmPassword" id="confirmPassword-update" placeholder="Repita su contraseña" required>
+                                <input type="password" class="form-control" name="password" id="password-update" placeholder="contraseña" readonly>
                             </div>
                         </div>
 
@@ -118,7 +112,9 @@
                     <button  type="submit" class="btn btn-outline-success">Actualizar</button>
                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
                 </div>
-                    </div>
+            </div>
+
+     </form>
                 </div>
 
 
