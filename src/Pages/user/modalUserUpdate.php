@@ -1,6 +1,6 @@
 <!-- The Modal -->
 <div class="modal" id="updateUser">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
 
             <!-- Modal Header -->
@@ -25,7 +25,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="Name">Nombre</label>
-                                <input type="text" class="form-control" name="username" id="name-update" placeholder="Nombre" required>
+                                <input type="text" class="form-control" name="name" id="name-update" placeholder="Nombre" required>
                             </div>
                         </div>
                         <div class="col-lg-4">
@@ -107,10 +107,13 @@
                         </div>
 
                     </div>
+                    <!--Aqui se muestran los errores-->
+                    <div class="alert mt-3" role="alert" style="display: none;" id="errorUpdateUser">
+                    </div>
                 </div><!-- Modal footer -->
                 <div class="modal-footer">
-                    <button  type="submit" class="btn btn-outline-success">Actualizar</button>
-                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button  type="submit" class="btn btn-outline-success" id="btnUpdateSucess">Actualizar</button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" id="btnUpdateCloseUser">Cerrar</button>
                 </div>
             </div>
 

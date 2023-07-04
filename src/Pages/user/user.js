@@ -497,19 +497,20 @@ function deleteUser(ID) {
 /*****************************************************************************
  *                  update usuario                                           *
  *****************************************************************************/
+let userId; // Declarar la variable userId fuera del evento de clic
 
 $('#userTable tbody').on('click', '.edit', function() {
     let row = userTable.row($(this).closest('tr')).data();
+
     $('#name-update').val(row.Nombre);
     $('#username-update').val(row.Nombre_Usuario);
-
 
     $('#lastname-update').val(row.Apellido);
     $('#company-update').empty();
     $('#rol-update').empty();
-    allCompanyUpdate().then(()=>{
+    allCompanyUpdate().then(() => {
         $('#company-update').val(row.Company_Id);
-    })
+    });
     getRolUpdate().then(() => {
         $('#rol-update').val(row.Role_Id);
     });
@@ -519,21 +520,47 @@ $('#userTable tbody').on('click', '.edit', function() {
     $('#email-update').val(row.Correo);
     $('#gender-update').val(row.Genero);
     $('#address-update').val(row.Dirección);
+
+    // Asignar el ID del usuario a la variable userId
+    userId = row.ID;
+
+    // Actualizar el atributo "action" del formulario con el ID del usuario
+    $('#frmUpdateUsuario').attr('action', `/${userId}`);
 });
 
-let frmupdate=document.querySelector('#frmUpdateUsuario');
-frmupdate.addEventListener('submit',e=>{
+let frmupdate = document.querySelector('#frmUpdateUsuario');
+frmupdate.addEventListener('submit', async e => {
     e.preventDefault();
     config.validateToken();
-    let body={};
-    let formData=new FormData(document.getElementById('frmUpdateUsuario'));
+    let body = {};
 
-    formData.forEach((value,key)=>{body[key]=value});
+    let formData = new FormData(document.getElementById('frmUpdateUsuario'));
 
-    console.log(body);
+    formData.forEach((value, key) => {
+        body[key] = value;
+    });
 
-})
+    try {
+        let request = await fetch(`${config.API}user/${userId}`, {
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${config.token}` },
+            method: 'PUT',
+            body: JSON.stringify(body)
+        });
 
+        let response = await request.json();
+
+        if (response.status == "error") {
+            error('errorUpdateUser', 'alert-danger', response.message);
+        } else if (response.status == "ok") {
+            reloadUserTable();
+            error("errorUpdateUser", "alert-success", response.message);
+        } else {
+            error("errorUpdateUser", "alert-danger", "Algo salió mal");
+        }
+    } catch (e) {
+        // Manejar errores
+    }
+});
 /*****************************************************************************
  *                               traer datos de company                     *
  ******************************************************************************/

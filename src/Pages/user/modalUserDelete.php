@@ -6,7 +6,7 @@
         <h5 class="modal-title fw-bold text-gray" id="exampleModalLabel">Eliminar Usuario</h5>       
       </div>
       <div class="modal-body">
-          <span id="textUserDelete" class="fw-bold text-danger"></span>
+          <span id="textUserDelete" class="fw-bold text-gray"></span>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-danger" id="btnCloseUserDelete" data-bs-dismiss="modal">Cerrar</button>
