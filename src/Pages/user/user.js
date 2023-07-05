@@ -96,7 +96,7 @@ const showAllUser = () =>{
             {"data" : "Company_Id"},
             {"defaultContent" : "<button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-trash' aria-hidden='true'></i></button>" +
                     "<button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#updateUser'><i class='fa fa-edit' aria-hidden='true'></i></button>" +
-                    "<button type='button' class='detail' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-eye' aria-hidden='true'></i></button>"
+                    "<button type='button' class='detail' data-bs-toggle='modal' data-bs-target='#detailsUser'><i class='fa fa-eye' aria-hidden='true'></i></button>"
             }                            
         ],
         "columnDefs": [   // atributo para ocultar columna
@@ -561,6 +561,72 @@ frmupdate.addEventListener('submit', async e => {
         // Manejar errores
     }
 });
+
+/*****************************************************************************
+ *                  detail usuario                                           *
+ *****************************************************************************/
+$('#userTable tbody').on('click', '.detail', function() {
+    let row = $(this).closest('tr');
+
+    let data = userTable.row(row).data();
+    let id_user=data.Número_Documento;
+    alluser(id_user);
+
+});
+
+const username=document.querySelector('#detail-usuario');
+const nombre=document.querySelector('#detail-nombre');
+const apellido=document.querySelector('#detail-apellidos');
+const genero=document.querySelector('#detail-genero');
+const documento=document.querySelector('#detail-document');
+const correo=document.querySelector('#detail-email');
+const telefono=document.querySelector('#detail-telefono');
+const company=document.querySelector('#detail-company');
+const puntos=document.querySelector('#detail-punto');
+const status=document.querySelector('#status');
+const detailName=document.querySelector('#detailName');
+const detailLastName=document.querySelector('#detailLastName');
+
+
+async function alluser(id) {
+    try {
+        const request = await fetch(`${config.API}user/${id}`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${config.token}`
+            }
+        });
+        const response = await request.json();
+        let data=  response.data
+        data.forEach(row =>{
+            detailName.textContent =row.Nombre_Usuario;
+
+            username.value=row.Nombre_Usuario;
+           nombre.value=row.Nombre;
+           apellido.value=row.Apellido;
+           genero.value=row.Genero;
+           documento.value=row.Número_Documento;
+           correo.value=row.Correo;
+           telefono.value=row.Número_Teléfonico;
+            company.value=row.Empresa;
+            status.value=row.Estado;
+            puntos.value=row.Puntos_Acumulado;
+        })
+        if (response.status === "error") {
+            error("errorSaveUser", "alert-danger", response.message);
+        } else if (Array.isArray(response.data)) { // Verificar si response.data es un array
+
+        } else {
+            error("errorSaveUser","alert-danger","API_ERROR");
+            console.error("La propiedad data no es un array:", response);
+        }
+    } catch (error) {
+        error("errorSaveUser","alert-danger","API_ERROR");
+        console.error("Error en la función allCompany:", error);
+    }
+}
+
+
 /*****************************************************************************
  *                               traer datos de company                     *
  ******************************************************************************/

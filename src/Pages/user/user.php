@@ -8,6 +8,9 @@
 <!--------actualizar un usuario----------->
 <?php require 'modalUserUpdate.php'; ?>
 
+<!--------details usuario----------->
+<?php require 'modalUserDetails.php'; ?>
+
 <!--Registrar un nuevo usuario-->
 <?php require 'saveUser.php'; ?>
 <br>

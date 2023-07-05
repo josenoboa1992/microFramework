@@ -11333,3 +11333,19 @@ background-color: rgba(0, 0, 0, 0.075);
   margin-left: 5px;
   margin-bottom: 5px;
 }
+
+img.rounded-circle.img-fluid.img-thumbnail {
+  width: 200px;
+}
+
+.logo-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.background-gray{
+  background-color: #eee;
+}
