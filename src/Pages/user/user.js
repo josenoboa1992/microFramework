@@ -1,5 +1,6 @@
 import error from '../../Helpers/error.js';
 import config from '../../Helpers/config.js';
+import convertFormatHour from "../../Helpers/error.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     $('#UserSave').slideUp();
@@ -585,7 +586,10 @@ const company=document.querySelector('#detail-company');
 const puntos=document.querySelector('#detail-punto');
 const status=document.querySelector('#status');
 const detailName=document.querySelector('#detailName');
+const lastday=document.querySelector('.lastUpdate');
+const rol=document.querySelector('#detailRol');
 const detailLastName=document.querySelector('#detailLastName');
+const location=document.querySelector('#location');
 
 
 async function alluser(id) {
@@ -599,18 +603,35 @@ async function alluser(id) {
         const response = await request.json();
         let data=  response.data
         data.forEach(row =>{
-            detailName.textContent =row.Nombre_Usuario;
+            const {Nombre_Usuario,Nombre,Apellido,Genero,
+                Número_Documento,Correo,Número_Teléfonico,
+                Empresa,Estado,Puntos_Acumulado,Fecha_actualización,Rol,
+                Localizacion
+            }=row;
 
-            username.value=row.Nombre_Usuario;
-           nombre.value=row.Nombre;
-           apellido.value=row.Apellido;
-           genero.value=row.Genero;
-           documento.value=row.Número_Documento;
-           correo.value=row.Correo;
-           telefono.value=row.Número_Teléfonico;
-            company.value=row.Empresa;
-            status.value=row.Estado;
-            puntos.value=row.Puntos_Acumulado;
+            detailName.textContent =Nombre;
+            detailLastName.textContent=Apellido;
+            lastday.textContent= Fecha_actualización;
+            rol.textContent=Rol;
+            location.value=Localizacion===null?'No tiene localizacion':Localizacion;
+            username.value=Nombre_Usuario;
+           nombre.value=Nombre;
+           apellido.value=Apellido;
+           genero.value=Genero;
+           documento.value=Número_Documento;
+           correo.value=Correo;
+           telefono.value=Número_Teléfonico;
+            company.value=Empresa;
+            status.textContent=Estado.charAt(0).toUpperCase() + Estado.slice(1);
+            puntos.value=Puntos_Acumulado;
+            if (Estado === 'active') {
+                status.style.color = 'green';
+                status.style.fontWeight='bold';
+            } else {
+                status.style.color = 'red';
+            }
+
+
         })
         if (response.status === "error") {
             error("errorSaveUser", "alert-danger", response.message);

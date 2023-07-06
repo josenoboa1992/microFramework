@@ -11349,3 +11349,19 @@ img.rounded-circle.img-fluid.img-thumbnail {
 .background-gray{
   background-color: #eee;
 }
+
+#detailsUser label{
+  color: rgba(0,0,0, 0.55);
+  font-weight: bold;
+}
+
+.contenct-detailName a{
+  color: #198754;
+  font-weight: bold;
+}
+
+.contenct-detailName a:hover{
+  color: rgba(25, 135, 84, 0.76);
+  font-weight: bold;
+}
+
