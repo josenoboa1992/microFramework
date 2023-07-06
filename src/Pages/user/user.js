@@ -2,12 +2,13 @@ import error from '../../Helpers/error.js';
 import config from '../../Helpers/config.js';
 import convertFormatHour from "../../Helpers/error.js";
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {    console.log('hola mundo');
     $('#UserSave').slideUp();
     disabledUserForm();
     showAllUser();
     allCompany();
     getRol()
+
     //hiddenUserTable();
     //disabledUserTable();
 })
@@ -55,11 +56,11 @@ let es = {
 }
 
 /*****************************************************************************************
-*                                       Functions                                        * 
+*                                       Functions                                        *
 ******************************************************************************************/
 
 /********************Mostrar datos de la tabla usuarios*************************/
-const showAllUser = () =>{   
+const showAllUser = () =>{
 
     userTable = $('#userTable').DataTable({
         "rowCallback":function (row,data,index){
@@ -70,16 +71,16 @@ const showAllUser = () =>{
             $("td", row).css("font-weight", "bold");
             $("td", row).css("color", " rgba(0, 0, 0, 0.55)");
         },
-        "orderCellsTop": true, 
+        "orderCellsTop": true,
         "fixedHeader": false,
-        "destroy" : true,            
+        "destroy" : true,
         "language": es,
         'ajax' : {
-                "method" : "GET",                 
+                "method" : "GET",
                 "url" : `${config.API}user/`,
                 "headers": {
                     Authorization: `Bearer ${config.token}`
-                }            
+                }
         },
         'columns' :[
             {"data" : "ID"},
@@ -98,7 +99,7 @@ const showAllUser = () =>{
             {"defaultContent" : "<button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-trash' aria-hidden='true'></i></button>" +
                     "<button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#updateUser'><i class='fa fa-edit' aria-hidden='true'></i></button>" +
                     "<button type='button' class='detail' data-bs-toggle='modal' data-bs-target='#detailsUser'><i class='fa fa-eye' aria-hidden='true'></i></button>"
-            }                            
+            }
         ],
         "columnDefs": [   // atributo para ocultar columna
             // {"targets": [0],"visible": false,"searchable": false},
@@ -119,8 +120,8 @@ const showAllUser = () =>{
 
 
         ],
-        "responsive":  "true", 
-        dom: 'Bfrtilp',                
+        "responsive":  "true",
+        dom: 'Bfrtilp',
         "buttons":[
             {
                 extend:      "excelHtml5",
@@ -131,10 +132,10 @@ const showAllUser = () =>{
                 columns: [1,2,3,4,5,6,7,8,9,10]
                 }
             }
-        ]     
+        ]
     });
     console.log(userTable)
-    getDataUserDelete();               
+    getDataUserDelete();
 }
 
 /****Recargar la tabla de usuario****/
@@ -167,7 +168,7 @@ const enableUserForm = () => {
    document.getElementById('btnUserEnable').style.display = 'none';
    document.getElementById('btnUserRegister').style.display = '';
    document.getElementById('btnUserClear').style.display = '';
-   document.getElementById('btnUserDisabled').style.display = '';   
+   document.getElementById('btnUserDisabled').style.display = '';
 }
 
 /*********Función para deshabilitar el formulario de usuario********/
@@ -211,7 +212,7 @@ const clearUserForm = () => {
 
 /*****************************************************************
 *              Function for show the user table                  *
-*****************************************************************/ 
+*****************************************************************/
 // const showUserTable = () => {
 //     document.getElementById('table_user').style.display = "";
 //     document.getElementById('btnclearsearch').style.display = "";
@@ -235,7 +236,7 @@ const disabledUserTable = () => {
 /***********Función para limpiar table de usuario**********/
 // const clearUserTable = () => {
 //     document.getElementById('search_cedula').value = "";
-//     hiddenUserTable();        
+//     hiddenUserTable();
 // }
 /*****************************************************************************
  *                               traer datos de company                     *
@@ -342,7 +343,7 @@ document.getElementById('btnReloadUserTable').addEventListener('click', e => {
 /**************************************************************************
 *                      event for enable user table                        *
 ***************************************************************************/
-// document.getElementById('btnenablesearch').addEventListener('click', e => 
+// document.getElementById('btnenablesearch').addEventListener('click', e =>
 // {
 //     e.preventDefault();
 //     document.getElementById('search_cedula').disabled = false;
@@ -356,7 +357,7 @@ document.getElementById('btnReloadUserTable').addEventListener('click', e => {
 *              event for disabled user user table                           *
 ****************************************************************************/
 // document.getElementById('btndisabledsearch').addEventListener('click', e => {
-//     e.preventDefault();   
+//     e.preventDefault();
 //     disabledUserTable();
 //     clearUserTable();
 // })
@@ -396,17 +397,17 @@ document.getElementById('btnUserClear').addEventListener('click', e => {
 //         document.getElementById("status_user_update").innerHTML = `<option>${status}</option>
 //                                                                    <option>Activo</option>`;
 //     }
-    
+
 //     if(privilege == "1"){
 //         document.getElementById("privilege_user_update").innerHTML = `<option>${privilege}</option>
-//                                                                       <option>2</option><option>3</option>`;                                                                      
+//                                                                       <option>2</option><option>3</option>`;
 //     }else if(privilege == "2"){
 //         document.getElementById("privilege_user_update").innerHTML = `<option>${privilege}</option>
 //                                                                       <option>1</option><option>3</option>`;
 //     }else if(privilege == "3"){
 //         document.getElementById("privilege_user_update").innerHTML = `<option>${privilege}</option>
 //                                                                       <option>1</option><option>2</option>`;
-//     }    
+//     }
 // })
 
 
@@ -415,9 +416,9 @@ document.getElementById('btnUserClear').addEventListener('click', e => {
 let frmsave=document.querySelector('#frmSaveUser');
 frmsave.addEventListener('submit', e => {
 
-   e.preventDefault();  
+   e.preventDefault();
    config.validateToken();
-   
+
    let body = {};
    let formData = new FormData(document.getElementById("frmSaveUser"));
    formData.forEach((value, key) => {body[key] = value});
@@ -432,7 +433,7 @@ frmsave.addEventListener('submit', e => {
            if (response.status == "error") {
                error("errorSaveUser","alert-danger" , response.message);
            } else if (response.status == "ok") {
-              clearUserForm(); 
+              clearUserForm();
               disabledUserForm();
               reloadUserTable();
               error("errorSaveUser","alert-success" , response.message);
@@ -570,7 +571,7 @@ $('#userTable tbody').on('click', '.detail', function() {
     let row = $(this).closest('tr');
 
     let data = userTable.row(row).data();
-    let id_user=data.Número_Documento;
+    let id_user=data.ID;
     alluser(id_user);
 
 });
@@ -717,12 +718,12 @@ async function getRolUpdate() {
 *****************************************************************************/
 // document.getElementById('btn_search_cedula').addEventListener('click', e => {
 //     e.preventDefault();
-     
+
 //      let dni = document.getElementById('search_cedula').value;
 //      let body = new FormData();
 //      body.append('dni',dni);
 //      body.append('function','searchCedula');
-     
+
 //     fetch(REQUEST_USER_CONTROLLER,{method: 'post',body: body})
 //     .then(res => res.json())
 //     .then( res =>{
@@ -734,17 +735,17 @@ async function getRolUpdate() {
 //                 icon: res.icon,
 //                 button: "Aceptar"
 //             });
-//         }else{           
-//             showUserTable();                
-//             document.getElementById('user_token').value = res.token_usuario;          
-//             document.getElementById('user_name').textContent = res.nombre_usuario; 
+//         }else{
+//             showUserTable();
+//             document.getElementById('user_token').value = res.token_usuario;
+//             document.getElementById('user_name').textContent = res.nombre_usuario;
 //             document.getElementById('user_cedula').textContent = res.cedula_usuario;
 //             document.getElementById('user_email').textContent = res.correo_usuario;
 //             document.getElementById('user_date').textContent = res.fecha_usuario;
 //             document.getElementById('user_privilege').textContent = res.privilegio_usuario;
-//             document.getElementById('user_status').textContent = res.estado_usuario;  
-//         }     
-//     }) 
+//             document.getElementById('user_status').textContent = res.estado_usuario;
+//         }
+//     })
 //     .catch(res => console.log(res))
 // })
 
@@ -753,11 +754,11 @@ async function getRolUpdate() {
 *                      event for update user status                          *
 *****************************************************************************/
 // document.getElementById('formUpdateUserPrivilege').addEventListener('submit', e =>{
-//     e.preventDefault();       
+//     e.preventDefault();
 
-//     let token = document.getElementById('user_token').value;    
+//     let token = document.getElementById('user_token').value;
 //     let body = new FormData(document.getElementById("formUpdateUserPrivilege"));
-//     body.append('token',token);   
+//     body.append('token',token);
 //     body.append('function','updateUserStatus');
 
 //     fetch(REQUEST_USER_CONTROLLER,{method: 'post',body: body})
@@ -779,7 +780,7 @@ async function getRolUpdate() {
 //                 button: "Aceptar"
 //             });
 //             clearUserTable();
-//             document.getElementById("modalCloseUpdateUser").click();            
+//             document.getElementById("modalCloseUpdateUser").click();
 //         }else{
 //             swal({
 //                 title: "Algo Salió Mal",
@@ -787,8 +788,8 @@ async function getRolUpdate() {
 //                 icon: "error",
 //                 button: "Aceptar"
 //             });
-//         }              
-       
+//         }
+
 //     })
 //     .catch(res => console.log(res))
 // })
@@ -799,12 +800,12 @@ async function getRolUpdate() {
 *******************************************************************************/
 // document.getElementById('formResetPassword').addEventListener('submit', e => {
 //     e.preventDefault();
-    
-//     let user_token = document.getElementById('user_token').value;     
-//     let body = new FormData(document.getElementById("formResetPassword"));   
-//     body.append('token',user_token);   
+
+//     let user_token = document.getElementById('user_token').value;
+//     let body = new FormData(document.getElementById("formResetPassword"));
+//     body.append('token',user_token);
 //     body.append('function','resetUserPassword');
-     
+
 //     fetch(REQUEST_USER_CONTROLLER,{method: 'post',body: body})
 //     .then(res => res.json())
 //     .then(res => {
@@ -826,7 +827,7 @@ async function getRolUpdate() {
 //                 clearUserTable();
 //                 document.getElementById("password_reset").value = "";
 //                 document.getElementById("confirm_password_reset").value = "";
-//                 document.getElementById("modalCloseResetPassword").click();            
+//                 document.getElementById("modalCloseResetPassword").click();
 //             }else{
 //                 swal({
 //                     title: "Algo Salió Mal",
@@ -834,8 +835,8 @@ async function getRolUpdate() {
 //                     icon: "error",
 //                     button: "Aceptar"
 //                 });
-//             }         
-          
+//             }
+
 //     })
 //     .catch(res => console.log(res))
 // })

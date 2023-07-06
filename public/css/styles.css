@@ -11347,7 +11347,7 @@ img.rounded-circle.img-fluid.img-thumbnail {
 }
 
 .background-gray{
-  background-color: #eee;
+  background-color: #f1f3f4;
 }
 
 #detailsUser label{
@@ -11364,4 +11364,3 @@ img.rounded-circle.img-fluid.img-thumbnail {
   color: rgba(25, 135, 84, 0.76);
   font-weight: bold;
 }
-
