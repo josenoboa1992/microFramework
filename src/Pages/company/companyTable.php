@@ -10,7 +10,7 @@
             <div class="alert mt-3" role="alert" style="display: none;" id="messageCompanyDelete">
             </div>
 
-            <button class="btn style-button mb-3" id="btnCompanySave"><i class="fa fa-user mr-2"></i>Registrar</button>
+            <button class="btn style-button mb-3" id="btnCompanySave"><i class="fa fa-building mr-2"></i>Registrar</button>
             <div class="row">
 
                 <div class="col-lg-12 col-sm-12" style="background-color:#fdfdfd; border-radius:5px; box-shadow: 1px 1px 3px;">
@@ -40,6 +40,6 @@
             </div><!--end row-->
     </div><!--end card-body -->
     <div class="card-footer text-muted">
-         <button class="btn btn-outline-successsuccess" id="btnReloadCompanyTable" type="submit"><i class="fa fa-sync mr-2" aria-hidden="true"></i>Actualizar</button>
+         <button class="btn btn-outline-success" id="btnReloadCompanyTable" type="submit"><i class="fa fa-sync mr-2" aria-hidden="true"></i>Actualizar</button>
     </div>
 </div><!--end card-->

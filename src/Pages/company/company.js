@@ -3,14 +3,14 @@ import config from '../../Helpers/config.js';
 import convertFormatHour from "../../Helpers/error.js";
 
 document.addEventListener('DOMContentLoaded', () => {
-    $('#UserSave').slideUp();
+    $('#companySave').slideUp();
     // disabledUserForm();
     showAllCompany();
     // allCompany();
     // getRol()
 
     //hiddenUserTable();
-    //disabledUserTable();
+    disabledCompanyForm();
 })
 
 let companyTabledo;
@@ -135,6 +135,143 @@ const showAllCompany = () =>{
 }
 
 /****Recargar la tabla de usuario****/
-const reloadUserTable = () => {
+const reloadCompanyTable = () => {
     companyTabledo.ajax.reload();
 }
+
+
+/*****************Ocultar ventana para registrar usuario********************/
+document.getElementById('btnCloseCompanySave').addEventListener('click' , e =>{
+    e.preventDefault();
+    $('#companySave').slideUp();
+    document.getElementById('btnCompanySave').style.display = '';
+})
+
+
+/*****************Mostrar ventana para registrar usuario********************/
+document.getElementById('btnCompanySave').addEventListener('click' , e =>{
+    e.preventDefault();
+    $('#companySave').slideDown();
+  document.querySelector('#btnCompanySave').style.display="none";
+})
+
+/*********************BTN Habilitar formulario de usuario***************/
+document.getElementById('btnCompanyEnable').addEventListener('click', e => {
+    e.preventDefault();
+    enableUserForm();
+})
+
+/*********************BTN Actualizar la tabla de usuario*******************/
+document.getElementById('btnReloadCompanyTable').addEventListener('click', e => {
+    e.preventDefault();
+    reloadCompanyTable();
+})
+document.getElementById('btnCompanyDisabled').addEventListener('click', e => {
+    e.preventDefault();
+    clearCompanyForm();
+    disabledCompanyForm();
+})
+
+
+/*********************Liempiar empresa*******************/
+document.getElementById('btnCompanyClear').addEventListener('click' , e =>{
+    e.preventDefault();
+clearCompanyForm();
+})
+
+
+/*********Función para deshabilitar el formulario de empresa********/
+const disabledCompanyForm = () => {
+
+    document.getElementById('name-company').disabled=true;
+    document.getElementById('Company-address').disabled=true;
+    document.getElementById('Company-contact').disabled=true;
+    document.getElementById('Company-email').disabled=true;
+    document.getElementById('Company-phone').disabled=true;
+    document.getElementById('Company-document').disabled=true;
+    document.getElementById('Company-employee-count').disabled=true;
+    document.getElementById('Company-representative').disabled=true;
+    document.getElementById('Company-type-document').disabled=true;
+
+    document.getElementById('btnCompanyRegister').disabled = true;
+    document.getElementById('btnCompanyClear').disabled = true;
+    document.getElementById('btnCompanyEnable').disabled = false;
+    document.getElementById('btnCompanyRegister').style.display = 'none';
+    document.getElementById('btnCompanyClear').style.display = 'none';
+    document.getElementById('btnCompanyDisabled').style.display = 'none';
+    document.getElementById('btnCompanyEnable').style.display = '';
+}
+
+
+
+
+/*********Función para limpiar el formulario de empresa********/
+const clearCompanyForm=()=>{
+    document.getElementById('name-company').value="";
+    document.getElementById('Company-address').value="";
+    document.getElementById('Company-contact').value="";
+    document.getElementById('Company-email').value="";
+    document.getElementById('Company-phone').value="";
+    document.getElementById('Company-document').value="";
+    document.getElementById('Company-employee-count').value="";
+    document.getElementById('Company-representative').value="";
+    document.getElementById('Company-type-document').value="";
+}
+/*********Función para habilitar el formulario de empresa********/
+const enableUserForm = () => {
+
+    document.getElementById('name-company').disabled=false;
+    document.getElementById('Company-address').disabled=false;
+    document.getElementById('Company-contact').disabled=false;
+    document.getElementById('Company-email').disabled=false;
+    document.getElementById('Company-phone').disabled=false;
+    document.getElementById('Company-document').disabled=false;
+    document.getElementById('Company-type-document').disabled=false;
+    document.getElementById('Company-employee-count').disabled=false;
+    document.getElementById('Company-representative').disabled=false;
+
+    document.getElementById('btnCompanyRegister').disabled = false;
+    document.getElementById('btnCompanyClear').disabled = false;
+    document.getElementById('btnCompanyEnable').disabled = true;
+    document.getElementById('btnCompanyDisabled').disabled = false;
+    document.getElementById('btnCompanyEnable').style.display = 'none';
+    document.getElementById('btnCompanyRegister').style.display = '';
+    document.getElementById('btnCompanyClear').style.display = '';
+    document.getElementById('btnCompanyDisabled').style.display = '';
+}
+
+/**************Registrar empresa ************************/
+const formCompany = document.getElementById('frmSaveCompany');
+formCompany.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    config.validateToken();
+
+    const body = {};
+
+    const formData = new FormData(document.querySelector('#frmSaveCompany'));
+    formData.forEach((value, key) => (body[key] = value));
+
+    try {
+        const request = await fetch(`${config.API}company/`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${config.token}`,
+            },
+            method: "POST",
+            body: JSON.stringify(body),
+        });
+
+        const response = await request.json();
+        if (response.status=='ok'){
+            clearCompanyForm();
+            disabledCompanyForm();
+            reloadCompanyTable();
+            error('errorSaveCompany','alert-success',response.message);
+        }else if(response.status=="error"){
+            error("errorSaveCompany",'alert-danger',response.message);
+        }
+    } catch (e) {
+       console.log(e);
+        error('errorSaveCompany','alert-danger',response.message);
+    }
+});

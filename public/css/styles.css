@@ -11293,11 +11293,11 @@ background-color: rgba(0, 0, 0, 0.075);
   background-color: #FFFFFF;
 }
 #companyTable .delete{
-  color: #12670b;
+  color: #942020;
 }
 
 #companyTable .edit{
-  color: #942020;
+  color: #12670b;
 }
 
 #companyTable .detail{
@@ -11377,4 +11377,9 @@ img.rounded-circle.img-fluid.img-thumbnail {
 .contenct-detailName a:hover{
   color: rgba(25, 135, 84, 0.76);
   font-weight: bold;
+}
+
+#btnCompanySave i{
+  margin-right: 5px;
+  color: rgba(0,0,0, 0.55) !important;
 }

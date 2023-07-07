@@ -414,7 +414,7 @@ document.getElementById('btnUserClear').addEventListener('click', e => {
 
 /**********************************Registrar usuario*****************************************/
 let frmsave=document.querySelector('#frmSaveUser');
-frmsave.addEventListener('submit', e => {
+    frmsave.addEventListener('submit', e => {
 
    e.preventDefault();
    config.validateToken();
