@@ -23,6 +23,7 @@
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Direccion</th>
                                     <th scope="col">Tipo Documento</th>
+                                    <th scope="col">Documento</th>
                                     <th scope="col">Representante</th>
                                     <th scope="col">CORREO</th>
                                     <th scope="col">Cantidad Empleado</th>

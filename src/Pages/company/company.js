@@ -85,6 +85,14 @@ const showAllCompany = () =>{
         'columns' :[
             {"data" : "ID"},
             {"data" : "Nombre"},
+            {"data" : "Dirección"},
+            {"data" : "Tipo_Documento"},
+            {"data" : "Documento"},
+            {"data" : "Representante"},
+            {"data" : "email"},
+            {"data" : "Cantidad_de_empleado"},
+            {"data" : "Contacto"},
+            {"data" : "Estado"},
 
 
             {"defaultContent" : "<button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-trash' aria-hidden='true'></i></button>" +
@@ -97,6 +105,13 @@ const showAllCompany = () =>{
             {"targets": [0], "width": "10%"},
             {"targets": [1], "width": "10%"},
             {"targets": [2], "width": "10%"},
+            {"targets": [3], "width": "10%"},
+            {"targets": [4], "width": "10%"},
+            {"targets": [5], "width": "10%"},
+            {"targets": [6], "width": "10%"},
+            {"targets": [7], "width": "10%"},
+            {"targets": [8], "width": "10%"},
+            {"targets": [9], "width": "30%"},
 
 
 

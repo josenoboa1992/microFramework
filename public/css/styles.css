@@ -11288,7 +11288,21 @@ background-color: rgba(0, 0, 0, 0.075);
 }#userTableBody .detail{
    color: #0d396e;
  }
+#companyTable button{
+  border: none;
+  background-color: #FFFFFF;
+}
+#companyTable .delete{
+  color: #12670b;
+}
 
+#companyTable .edit{
+  color: #942020;
+}
+
+#companyTable .detail{
+  color: #0d396e;
+}
 .page-item.active .page-link {
   color: #0d396e !important;
   border-color: #0d396e !important;
