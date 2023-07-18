@@ -92,8 +92,8 @@ if ($view === 'login') {
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
-                    <div class="small">Bienvenido <?php echo $_SESSION['name']?></div>
-                    <div class="small">apellido <?php echo $_SESSION['client_id']?></div>
+                    <div class="small text-gray">Bienvenido: <strong><?php echo $_SESSION['nameUser'].' '.$_SESSION['lastNameUser']?></strong> </div>
+
                 </div>
             </nav>
         </div>

@@ -20,7 +20,8 @@ if (empty($_POST['name']) || empty($_POST['rol']) || empty($_POST['user']) || em
     $_SESSION['rol'] = $_POST['rol'];
     $_SESSION['user'] = $_POST['user']['username'];
     $_SESSION['client'] = $_POST['client'];
-    $_SESSION['client_id']=$_POST['client']['client_id'];
+    $_SESSION['nameUser']=$_POST['client']['name'];
+    $_SESSION['lastNameUser']=$_POST['client']['lastname'];
     $_SESSION['status'] = true;
     echo json_encode('listo');
 }
