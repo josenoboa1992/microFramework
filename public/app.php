@@ -42,8 +42,8 @@ if ($view === 'login') {
                 <div class="sb-sidenav-menu">
                     <div class="nav">
 
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEmpresa" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
+                        <a class="nav-link collapsed text-green" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEmpresa" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon text-green"><i class="fas fa-building"></i></div>
                             Empresa
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
@@ -53,42 +53,47 @@ if ($view === 'login') {
                             </nav>
                         </div>
 
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                        <a class="nav-link collapsed text-green" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user text-green"></i></div>
                             Usuario
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/user/">Administrar usuario</a>
+                            </nav>
+                        </div>
+
+                         <a class="nav-link collapsed text-green" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProduct" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon text-green"><i class="fas fa-shopping-cart"></i></div>
+                            Producto
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseProduct" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/product/">Administrar producto</a>
                             </nav>
                         </div>
 
-                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Pages
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <!--
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                    Authentication
-                                    <div class="sb-sidenav-collapse-arrow"></div>
-                                </a>
-
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                    Error
-                                    <div class="sb-sidenav-collapse-arrow"></div>
-                                </a>
-                            </nav>
-                        </div> -->
+<!--                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">-->
+<!--                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">-->
+<!--                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">-->
+<!--                                    Authentication-->
+<!--                                    <div class="sb-sidenav-collapse-arrow"></div>-->
+<!--                                </a>-->
+<!---->
+<!--                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">-->
+<!--                                    Error-->
+<!--                                    <div class="sb-sidenav-collapse-arrow"></div>-->
+<!--                                </a>-->
+<!--                            </nav>-->
+<!--                        </div> -->
                       
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Bienvenido <?php echo $_SESSION['name']?></div>
+                    <div class="small">apellido <?php echo $_SESSION['client_id']?></div>
                 </div>
             </nav>
         </div>

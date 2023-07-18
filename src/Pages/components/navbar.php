@@ -3,7 +3,7 @@ use Config\UrlBase;
 ?>
 <nav class="sb-topnav navbar navbar-expand navbar-dark color-card">
 <!-- Navbar Brand-->
-<a class="navbar-brand ps-3" href="<?php echo UrlBase::urlBase;?>">WORLDINGFOODS
+<a class="navbar-brand ps-3" href="<?php echo UrlBase::urlBase;?>">WORLDING<span>FOODS</span>
     <div class="content-title-log">
         <img src="<?php echo UrlBase::urlBase;?>public/img/LOGO.png" alt="">
     </div>

@@ -52,7 +52,9 @@
 .text-gray{
   color: #8f8c8c !important;
 }
-
+.text-green{
+  color: #3c9634 !important;
+}
 #frmLogin input{
   border-radius: 50px !important;
 }
@@ -11382,4 +11384,17 @@ img.rounded-circle.img-fluid.img-thumbnail {
 #btnCompanySave i{
   margin-right: 5px;
   color: rgba(0,0,0, 0.55) !important;
+}
+
+@font-face {
+  font-family: "Biome W01 Regular";
+  src: url("../fonts/Biome W01 Regular.ttf") format("truetype");
+}
+
+.navbar-brand{
+  font-family: "Biome W01 Regular";
+}
+
+.navbar-brand span{
+  color: #50c446;
 }
