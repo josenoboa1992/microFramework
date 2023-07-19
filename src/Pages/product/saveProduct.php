@@ -1,3 +1,5 @@
+
+
 <div class="card mt-3" style="background-color:#fdfdfd; border-radius:5px; box-shadow: 1px 1px 3px;">
 
   <div class="card-header color-card text-gray fw-bold">
@@ -6,13 +8,13 @@
 
     <ul class="nav nav-tabs m-3">
         <li class="nav-item">
-            <a class="nav-link active green-tab" data-bs-toggle="tab" href="#tab1">Categoría</a>
+            <a class="nav-link active green-tab" data-bs-toggle="tab" href="#tab1"  onclick="mostrarTabla('table-category')">Categoría</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#tab2">Producto</a>
+            <a class="nav-link" data-bs-toggle="tab" href="#tab2"  onclick="mostrarTabla('table-product')">Producto</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#tab3">Guarnición</a>
+            <a class="nav-link" data-bs-toggle="tab" href="#tab3" onclick="mostrarTabla('table-garnish')" >Guarnición</a>
         </li>
     </ul>
 
@@ -141,6 +143,8 @@
         </div>
 
 
+
+
     </div>
 
 
@@ -148,3 +152,28 @@
 
 
 </div>
+<script>
+    function mostrarTabla(tabla) {
+        let tableCategory = document.getElementById("table-category");
+        let tableProduct = document.getElementById("table-product");
+        let tableGarnish = document.getElementById("table-garnish");
+
+        // Ocultar todas las tablas primero
+        tableCategory.style.display = "none";
+        tableProduct.style.display = "none";
+        tableGarnish.style.display = "none";
+
+        // Mostrar la tabla correspondiente
+        if (tabla === 'table-category') {
+            tableCategory.style.display = "block";
+        } else if (tabla === 'table-product') {
+            tableProduct.style.display = "block";
+        } else if (tabla === 'table-garnish') {
+            tableGarnish.style.display = "block";
+        }
+    }
+
+
+
+
+</script>

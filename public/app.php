@@ -113,7 +113,7 @@ if ($view === 'login') {
     <script src="<?php echo UrlBase::urlBase;?>/public/libs/sweetalert/sweetalert.min.js"></script>
     <script src="<?php echo UrlBase::urlBase;?>/public/libs/fontawesome/all.min.js"></script>  
     <script src="<?php echo UrlBase::urlBase;?>/public/js/scripts.js" type="module"></script>
-    <script src="<?php echo UrlBase::urlBase; ?>/src/Pages/product/product.js" type="module"></script>
+
 
     <!--Cambiar script dinamicamente-->
     <?php Script::changeScript(); ?>

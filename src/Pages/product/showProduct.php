@@ -1,58 +1,35 @@
-<script>
-    const deleteProduct = async (IDtoken,name) => {        
-
-        try {            
-            let body = {name,IDtoken};    
-            let token = localStorage.getItem("token");
-            let req = await fetch('http://api.local/product/',{
-                   headers : {"Content-Type": "application/json", Authorization: `Bearer ${token}`},
-                   body: JSON.stringify(body), method: "DELETE"
-            });    
-            let res = await req.json();
-           
-            if (res.status == "error") {
-                swal({
-                    title: res.message,
-                    //text: Idtoken,
-                    icon: "error",
-                    button: "Aceptar"
-                });
-            } else if(res.status == "ok"){
-                swal({
-                    title: res.message,
-                    //text: Idtoken,
-                    icon: "success",
-                    button: "Aceptar"
-                });
-            } else {
-                swal({
-                    title: "Algo salio mal",
-                    //text: Idtoken,
-                    icon: "error",
-                    button: "Aceptar"
-                });
-            }    
-        } catch (error) {
-            console.log(error);
-        }
-    }
-</script>
-
-
-<div class="card mt-3" style="background-color:#fdfdfd; border-radius:5px; box-shadow: 1px 1px 3px;">
-
+<div class="card mt-3" style="background-color: #fdfdfd; border-radius: 5px; box-shadow: 1px 1px 3px; display: none;" id="table-product">
     <div class="card-header text-gray fw-bold">
         Productos registrados
     </div>
-   
     <div class="card-body">
-        <!--Aqui se muestran los errores-->
+        <!-- Aquí se mostrarán los errores -->
         <div class="alert mt-3" role="alert" style="display: none;" id="errorShowProduct">
+            <!-- The error messages will be shown here -->
         </div>
 
-        <div class="row" id="rowProduct"> 
-        </div>
-        
-    </div>      
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered" style="width: 100%;" id="proTable">
+                <thead class="color-card text-gray">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">USUARIO</th>
+                    <th scope="col">CATEGORÍA</th>
+                    <th scope="col">PRODUCTO</th>
+                    <th scope="col">DESCRIPCIÓN</th>
+                    <th scope="col">PRECIO</th>
+                    <th scope="col">IMAGEN</th>
+                    <th scope="col">FECHA</th>
+                    <th scope="col">ESTADO</th>
 
+                    <th scope="col">ACCIONES</th>
+                </tr>
+                </thead>
+                <tbody id="proTableBody">
+                <!-- The product information will be dynamically populated here -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
 </div>
