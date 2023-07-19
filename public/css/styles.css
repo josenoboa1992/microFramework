@@ -11398,3 +11398,7 @@ img.rounded-circle.img-fluid.img-thumbnail {
 .navbar-brand span{
   color: #50c446;
 }
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color: #3c9634!important;
+  border-color: #3c9634!important;
+}
