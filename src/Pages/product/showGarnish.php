@@ -8,10 +8,26 @@
 
     <div class="card-body">
         <!--Aqui se muestran los errores-->
-        <div class="alert mt-3" role="alert" style="display: none;" id="errorShowProduct">
+        <div class="alert mt-3" role="alert" style="display: none;" id="errorShowGarnish">
         </div>
 
-        <div class="row" id="rowProduct">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered" style="width: 100%;" id="garTable">
+                <thead class="color-card text-gray">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">PRODUCTO</th>
+                    <th scope="col">GUARNICIÓN</th>
+                    <th scope="col">PRECIO</th>
+                    <th scope="col">DESCRIPCIÓN</th>
+                    <th scope="col">FECHA</th>
+                    <th scope="col">ACCIONES</th>
+                </tr>
+                </thead>
+                <tbody id="garTableBody">
+                <!-- The product information will be dynamically populated here -->
+                </tbody>
+            </table>
         </div>
 
     </div>
