@@ -37,7 +37,7 @@
 
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="formFile" class="form-label">Imagen del producto</label>
+                                <label for="formFile" class="form-label">Imagen de la Categoría</label>
                                 <input class="form-control" type="file" id="product" name="imageName" accept="image/jpeg,image/jpg,image/png" required>
                                 <p>La imagen debe ser(jpg,jpeg,png), tamaño(min:10kb , max:500kb), dimensiones(200x200)</p>
                             </div>

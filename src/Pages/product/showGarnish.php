@@ -19,7 +19,6 @@
                     <th scope="col">PRODUCTO</th>
                     <th scope="col">GUARNICIÓN</th>
                     <th scope="col">PRECIO</th>
-                    <th scope="col">DESCRIPCIÓN</th>
                     <th scope="col">FECHA</th>
                     <th scope="col">ACCIONES</th>
                 </tr>

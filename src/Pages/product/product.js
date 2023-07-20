@@ -261,13 +261,6 @@ const showAllGarnish = () => {
             {"data": "Garnish"},
             {"data": "Precio"},
             {"data": "Fecha"},
-
-            {
-                "data": "url",
-                "render": function (data, type, row) {
-                    return `<img src="${data}" alt="Imagen del producto" width="100" height="100" class="image-data">`;
-                }
-            },
             {
                 "defaultContent": `
           <button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalUserDelete'>
@@ -307,6 +300,6 @@ const showAllGarnish = () => {
 };
 console.log(garTable)
 // Function to reload the product table
-const reloadCatTable = () => {
+const reloadGarTable = () => {
     garTable.ajax.reload();
 };
