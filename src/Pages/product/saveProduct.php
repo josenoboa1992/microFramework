@@ -20,7 +20,7 @@
 
     <div class="tab-content">
         <div id="tab1" class="tab-pane fade show active">
-            <form id="frmCategory" enctype="multipart/form-data">
+            <form id="frmCategoryTable" enctype="multipart/form-data">
                 <div class="card-body">
                     <!--Aqui se muestran los errores-->
                     <div class="alert mt-3" role="alert" style="display: none;" id="errorSaveProduct">
@@ -31,7 +31,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="form-group" class="form-label float-left">Nombre</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="nombre del producto" required>
+                                <input type="text" class="form-control" id="nameProduct" name="name" placeholder="nombre del producto" required>
                             </div>
                         </div>
 
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="card-footer text-muted">
-                    <button class="btn btn-success" id="btncategory" type="submit"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Registrar</button>
+                    <button class="btn btn-success" id="btncategoryTable" type="submit"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Registrar</button>
                 </div>
             </form>
     </div>   <!--     fin de tab 1-->
@@ -63,13 +63,13 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="form-group" class="form-label float-left">Nombre</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="nombre del producto" required>
+                                <input type="text" class="form-control" id="nameCategory" name="name" placeholder="nombre del producto" required>
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label for="privilege_user" class="form-label">Categoría</label>
-                                <select class="form-control" name="role" id="rol">
+                                <select class="form-control" name="role" id="role">
 
                                 </select>
                             </div>
@@ -78,7 +78,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="form-group" class="form-label float-left">Precio</label>
-                                <input type="number" class="form-control" id="price" name="price" placeholder="precio" required>
+                                <input type="number" class="form-control" id="priceProduct" name="price" placeholder="precio" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -91,7 +91,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="formFile" class="form-label">Imagen del producto</label>
-                                <input class="form-control" type="file" id="product" name="imageName" accept="image/jpeg,image/jpg,image/png" required>
+                                <input class="form-control" type="file" id="productPr" name="imageName" accept="image/jpeg,image/jpg,image/png" required>
                                 <p>La imagen debe ser(jpg,jpeg,png), tamaño(min:10kb , max:500kb), dimensiones(200x200)</p>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="form-group" class="form-label float-left">Nombre</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="nombre del producto" required>
+                                <input type="text" class="form-control" id="namePro" name="name" placeholder="nombre del producto" required>
                             </div>
                         </div>
                         <div class="col-lg-6">

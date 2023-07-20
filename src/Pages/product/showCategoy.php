@@ -10,7 +10,21 @@ Categoría registradas
         <div class="alert mt-3" role="alert" style="display: none;" id="errorShowCategory">
         </div>
 
-        <div class="row" id="rowCategory">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered" style="width: 100%;" id="catTable">
+                <thead class="color-card text-gray">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">IMAGEN</th>
+
+                    <th scope="col">ACCIONES</th>
+                </tr>
+                </thead>
+                <tbody id="catTableBody">
+                <!-- The product information will be dynamically populated here -->
+                </tbody>
+            </table>
         </div>
 
     </div>

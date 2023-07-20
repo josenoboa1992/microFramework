@@ -11402,3 +11402,34 @@ img.rounded-circle.img-fluid.img-thumbnail {
   color: #3c9634!important;
   border-color: #3c9634!important;
 }
+
+img.image-data {
+  width: 55px;
+  height: 55px;
+}
+
+#proTableBody .delete{
+  color: #942020;
+}
+#proTableBody  .edit{
+  color: #12670b;
+}#proTableBody  .detail{
+   color: #0d396e;
+ }
+#proTable button{
+  border: none;
+  background-color: #FFFFFF;
+}
+
+#catTableBody .delete{
+  color: #942020;
+}
+#catTableBody .edit{
+  color: #12670b;
+}#catTableBody  .detail{
+   color: #0d396e;
+ }
+#catTableBody button{
+  border: none;
+  background-color: #FFFFFF;
+}
