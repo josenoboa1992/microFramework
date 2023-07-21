@@ -34,7 +34,10 @@
                                     <th scope="col">ACCIONES</th>
                                 </tr>
                                 </thead>
-                                <tbody id="userTableBody">               
+                                <tbody id="userTableBody">
+                                <div class="spinner-overlay">
+                                    <div class="spinner"></div>
+                                </div>
                                 </tbody>
                         </table>
                     </div>

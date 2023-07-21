@@ -48,6 +48,9 @@ Auth::accessLogin();
                                             <input class="form-control" name="email" id="email" type="email" placeholder="name@example.com" required/>
                                             <label for="inputEmail">Correo</label>
                                         </div>
+                                        <div class="spinner-overlay">
+                                            <div class="spinner"></div>
+                                        </div>
                                         <div class="form-floating mb-3">
                                             <input class="form-control" name="password" id="password" type="password" placeholder="Password" required/>
                                             <label for="inputPassword">Contraseña</label>

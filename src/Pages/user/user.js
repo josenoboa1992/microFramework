@@ -2,7 +2,16 @@ import error from '../../Helpers/error.js';
 import config from '../../Helpers/config.js';
 import convertFormatHour from "../../Helpers/error.js";
 
-document.addEventListener('DOMContentLoaded', () => {    console.log('hola mundo');
+function showSpinner() {
+    document.querySelector('.spinner-overlay').style.display = 'block';
+}
+
+// Ocultar el spinner
+function hideSpinner() {
+    document.querySelector('.spinner-overlay').style.display = 'none';
+}
+document.addEventListener('DOMContentLoaded', () => {
+
     $('#UserSave').slideUp();
     disabledUserForm();
     showAllUser();
@@ -60,8 +69,9 @@ let es = {
 ******************************************************************************************/
 
 /********************Mostrar datos de la tabla usuarios*************************/
-const showAllUser = () =>{
 
+const showAllUser = () =>{
+showSpinner();
     userTable = $('#userTable').DataTable({
         "rowCallback":function (row,data,index){
             // Aplicar estilo a las filas
@@ -80,7 +90,10 @@ const showAllUser = () =>{
                 "url" : `${config.API}user/`,
                 "headers": {
                     Authorization: `Bearer ${config.token}`
-                }
+                },
+            "drawCallback": function (settings) {
+                hideSpinner();
+            },
         },
         'columns' :[
             {"data" : "ID"},
@@ -134,6 +147,9 @@ const showAllUser = () =>{
             }
         ]
     });
+setTimeout(()=>{
+    hideSpinner();
+},2000)
     console.log(userTable)
     getDataUserDelete();
 }
@@ -425,6 +441,7 @@ let frmsave=document.querySelector('#frmSaveUser');
 
    (async function () {
        try {
+           showSpinner();
            let request = await fetch(`${config.API}user/`,{
                                       headers: {"Content-Type":"application/json" , Authorization: `Bearer ${config.token}`},
                                       method: 'POST',body: JSON.stringify(body)});
@@ -442,6 +459,8 @@ let frmsave=document.querySelector('#frmSaveUser');
            }
        } catch (error) {
            console.log(error);
+       }finally {
+           hideSpinner();
        }
    })()
 });

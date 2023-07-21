@@ -11433,3 +11433,47 @@ img.image-data {
   border: none;
   background-color: #FFFFFF;
 }
+
+#garTableBody .delete{
+  color: #942020;
+}
+#garTable .edit{
+  color: #12670b;
+}#garTable .detail{
+   color: #0d396e;
+ }
+#garTableBody button{
+  border: none;
+  background-color: #FFFFFF;
+}
+
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo semi-transparente */
+  display: none; /* Ocultar por defecto */
+  z-index: 9999; /* Número alto para asegurar que esté por encima de otros elementos */
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.3);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  margin: auto;
+  position: absolute; /* Ajustar posición */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
