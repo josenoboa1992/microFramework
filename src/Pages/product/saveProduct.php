@@ -23,7 +23,7 @@
             <form id="frmCategoryTable" enctype="multipart/form-data">
                 <div class="card-body">
                     <!--Aqui se muestran los errores-->
-                    <div class="alert mt-3" role="alert" style="display: none;" id="errorSaveProduct">
+                    <div class="alert mt-3" role="alert" style="display: none;" id="errorSaveCategory">
                     </div>
 
                     <div class="row">
@@ -38,7 +38,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="formFile" class="form-label">Imagen de la Categoría</label>
-                                <input class="form-control" type="file" id="product" name="imageName" accept="image/jpeg,image/jpg,image/png" required>
+                                <input class="form-control" type="file" id="imageCategory" name="imageName" accept="image/jpeg,image/jpg,image/png" required>
                                 <p>La imagen debe ser(jpg,jpeg,png), tamaño(min:10kb , max:500kb), dimensiones(200x200)</p>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="formFile" class="form-label">Imagen del producto</label>
-                                <input class="form-control" type="file" id="productPr" name="imageName" accept="image/jpeg,image/jpg,image/png" required>
+                                <input class="form-control" type="file" id="productPr" name="imageNam" accept="image/jpeg,image/jpg,image/png" required>
                                 <p>La imagen debe ser(jpg,jpeg,png), tamaño(min:10kb , max:500kb), dimensiones(200x200)</p>
                             </div>
                         </div>

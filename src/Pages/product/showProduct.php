@@ -26,7 +26,9 @@
                 </tr>
                 </thead>
                 <tbody id="proTableBody">
-                <!-- The product information will be dynamically populated here -->
+                <div class="spinner-overlay">
+                    <div class="spinner"></div>
+                </div>
                 </tbody>
             </table>
         </div>

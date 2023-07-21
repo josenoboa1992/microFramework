@@ -2,21 +2,65 @@ import error from '../../Helpers/error.js';
 import config from '../../Helpers/config.js';
 import convertFormatHour from "../../Helpers/error.js";
 
+function showSpinner() {
+    document.querySelector('.spinner-overlay').style.display = 'block';
+}
+
+// Ocultar el spinner
+function hideSpinner() {
+    document.querySelector('.spinner-overlay').style.display = 'none';
+}
 document.addEventListener('DOMContentLoaded', () => {    console.log('hola mundo');
 
 getRolUpdate();
     showAllproduct();
     showAllcat();
     showAllGarnish();
+    let tableCategoria=document.querySelector('#table-category').style.display="block";
 
 })
 
+let frmcategoria = document.querySelector('#frmCategoryTable');
+frmcategoria.addEventListener('submit', e => {
+    e.preventDefault();
+    config.validateToken();
 
+    let formData = new FormData(document.getElementById("frmCategoryTable"));
+    let imageFile = document.getElementById("imageCategory").files[0]; // Assuming the input for the image has an ID of "imageInput"
+    formData.append('image', imageFile); // Append the image file to the formData with the key "image"
+
+    (async function () {
+        try {
+            showSpinner();
+            let request = await fetch(`${config.API}category/`, {
+                headers: { Authorization: `Bearer ${config.token}` },
+                method: 'POST',
+                body: formData // Use formData directly as the body of the request
+            });
+
+            let response = await request.json();
+            console.log(response);
+
+            if (response.status == "error") {
+                error("errorSaveCategory", "alert-danger", response.message);
+            } else if (response.status == "ok") {
+                reloadCatTable();
+                error("errorSaveCategory", "alert-success", response.message);
+            } else {
+                error("errorSaveCategory", "alert-danger", "Algo salio mal");
+            }
+        } catch (error) {
+            console.log(error);
+        } finally {
+            hideSpinner();
+        }
+    })()
+});
 /*****************************************************************************
  *                               traer datos de rol                  *
  ******************************************************************************/
 async function getRolUpdate() {
-    try {
+    try { showSpinner();
         const request = await fetch(`${config.API}product/`, {
             headers: {
                 "Content-Type": "application/json",
@@ -36,6 +80,8 @@ async function getRolUpdate() {
     } catch (e) {
         error("errorSaveUser","alert-danger","API_ERROR");
         console.error("Error en la función allCompany:", e);
+    }finally {
+        hideSpinner();
     }
 }
 
@@ -76,6 +122,7 @@ let catTable
 let garTable;
 // Function to initialize and show the product table
 const showAllproduct = () => {
+    showSpinner();
     productTable = $('#proTable').DataTable({
         "rowCallback": function (row, data, index) {
             // Apply style to rows
@@ -151,6 +198,10 @@ const showAllproduct = () => {
             }
         ]
     });
+
+    setTimeout(()=>{
+        hideSpinner();
+    },2000)
 };
 console.log(productTable)
 // Function to reload the product table
@@ -161,6 +212,7 @@ const reloadProductTable = () => {
 
 //*************** Tabla categoria* **************************/
 const showAllcat = () => {
+    showSpinner();
     catTable = $('#catTable').DataTable({
         "rowCallback": function (row, data, index) {
             // Apply style to rows
@@ -224,6 +276,9 @@ const showAllcat = () => {
             }
         ]
     });
+    setTimeout(()=>{
+        hideSpinner();
+    },2000)
 };
 console.log(catTable)
 // Function to reload the product table
@@ -235,6 +290,7 @@ const reloadCatTable = () => {
 
 
 const showAllGarnish = () => {
+    showSpinner();
     garTable = $('#garTable').DataTable({
         "rowCallback": function (row, data, index) {
             // Apply style to rows
@@ -297,6 +353,9 @@ const showAllGarnish = () => {
             }
         ]
     });
+    setTimeout(()=>{
+        hideSpinner();
+    },2000)
 };
 console.log(garTable)
 // Function to reload the product table

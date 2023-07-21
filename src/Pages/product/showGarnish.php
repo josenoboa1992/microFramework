@@ -24,7 +24,9 @@
                 </tr>
                 </thead>
                 <tbody id="garTableBody">
-                <!-- The product information will be dynamically populated here -->
+                <div class="spinner-overlay">
+                    <div class="spinner"></div>
+                </div>
                 </tbody>
             </table>
         </div>
