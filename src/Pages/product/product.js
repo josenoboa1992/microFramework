@@ -16,9 +16,140 @@ getRolUpdate();
     showAllproduct();
     showAllcat();
     showAllGarnish();
+    allCategory();
+    allProduct();
     let tableCategoria=document.querySelector('#table-category').style.display="block";
 
 })
+
+
+/*****************************************************************************
+ *                            obtenr  Producto          *
+ ******************************************************************************/
+
+async function allProduct() {
+    try {
+        showSpinner();
+        const request = await fetch(`${config.API}product/`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${config.token}`
+            }
+        });
+        const response = await request.json();
+
+        if (response.status === "error") {
+            error("errorSaveUser", "alert-danger", response.message);
+        } else if (Array.isArray(response.data)) { // Verificar si response.data es un array
+            const selectElement = document.getElementById('garnisProduct');
+            response.data.forEach(garn => {
+                const option = document.createElement('option');
+                option.value = garn.ID;
+                option.textContent = garn.Producto;
+                selectElement.appendChild(option);
+            });
+        } else {
+            error("errorSaveUser","alert-danger","API_ERROR");
+            console.error("La propiedad data no es un array:", response);
+        }
+    } catch (error) {
+        error("errorSaveUser","alert-danger","API_ERROR");
+        console.error("Error en la función allCompany:", error);
+    }finally {
+        hideSpinner();
+    }
+}
+
+/*****************************************************************************
+ *                            obtenr categoria Producto          *
+ ******************************************************************************/
+
+async function allCategory() {
+    try {
+        showSpinner();
+        const request = await fetch(`${config.API}category/`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${config.token}`
+            }
+        });
+        const response = await request.json();
+
+        if (response.status === "error") {
+            error("errorSaveUser", "alert-danger", response.message);
+        } else if (Array.isArray(response.data)) { // Verificar si response.data es un array
+            const selectElement = document.getElementById('categoryProduct');
+            response.data.forEach(cat => {
+                const option = document.createElement('option');
+                option.value = cat.category_id;
+                option.textContent = cat.name;
+                selectElement.appendChild(option);
+            });
+        } else {
+            error("errorSaveUser","alert-danger","API_ERROR");
+            console.error("La propiedad data no es un array:", response);
+        }
+    } catch (error) {
+        error("errorSaveUser","alert-danger","API_ERROR");
+        console.error("Error en la función allCompany:", error);
+    }finally {
+        hideSpinner();
+    }
+}
+
+/*****************************************************************************
+ *                            guardarProducto          *
+ ******************************************************************************/
+
+let frmSaveProduct = document.querySelector('#frmSaveProduct');
+frmSaveProduct.addEventListener('submit', e => {
+    e.preventDefault();
+    config.validateToken();
+
+    // Get the user_id value from the hidden input field
+    let userId = document.getElementById("user_id").value;
+
+    // Logging the user_id value for debugging purposes
+    console.log("user_id: " + userId);
+
+    let formData = new FormData(document.getElementById("frmSaveProduct"));
+    let imageFile = document.getElementById("productImage").files[0];
+    formData.append('image', imageFile);
+
+    // Set the value of the hidden input field to the userId
+    document.getElementById("user_id").value = userId;
+
+
+    (async function () {
+        try {
+            showSpinner();
+            let request = await fetch(`${config.API}product/`, {
+                headers: { Authorization: `Bearer ${config.token}` },
+                method: 'POST',
+                body: formData
+            });
+
+            let response = await request.json();
+            console.log(response);
+
+            if (response.status == "error") {
+                error("errorSaveProduct", "alert-danger", response.message);
+            } else if (response.status == "ok") {
+                reloadProductTable();
+                error("errorSaveProduct", "alert-success", response.message);
+            } else {
+                error("errorSaveProduct", "alert-danger", "Algo salio mal");
+            }
+        } catch (error) {
+            console.log(error);
+        } finally {
+            hideSpinner();
+        }
+    })()
+});
+/*****************************************************************************
+ *                               guardar Categoria                *
+ ******************************************************************************/
 
 let frmcategoria = document.querySelector('#frmCategoryTable');
 frmcategoria.addEventListener('submit', e => {
@@ -26,8 +157,8 @@ frmcategoria.addEventListener('submit', e => {
     config.validateToken();
 
     let formData = new FormData(document.getElementById("frmCategoryTable"));
-    let imageFile = document.getElementById("imageCategory").files[0]; // Assuming the input for the image has an ID of "imageInput"
-    formData.append('image', imageFile); // Append the image file to the formData with the key "image"
+    let imageFile = document.getElementById("imageCategory").files[0];
+    formData.append('image', imageFile);
 
     (async function () {
         try {
@@ -35,7 +166,7 @@ frmcategoria.addEventListener('submit', e => {
             let request = await fetch(`${config.API}category/`, {
                 headers: { Authorization: `Bearer ${config.token}` },
                 method: 'POST',
-                body: formData // Use formData directly as the body of the request
+                body: formData
             });
 
             let response = await request.json();
@@ -56,6 +187,44 @@ frmcategoria.addEventListener('submit', e => {
         }
     })()
 });
+
+/*****************************************************************************
+ *                               guardar Garnish              *
+ ******************************************************************************/
+let frmGarnis=document.querySelector('#frmGarnish');
+frmGarnis.addEventListener('submit', e => {
+
+    e.preventDefault();
+    config.validateToken();
+
+    let body = {};
+    let formData = new FormData(document.getElementById("frmGarnish"));
+    formData.forEach((value, key) => {body[key] = value});
+
+    (async function () {
+        try {
+            showSpinner();
+            let request = await fetch(`${config.API}garnish/`,{
+                headers: {"Content-Type":"application/json" , Authorization: `Bearer ${config.token}`},
+                method: 'POST',body: JSON.stringify(body)});
+            let response = await request.json();
+
+            if (response.status == "error") {
+                error("errorSaveGarnis","alert-danger" , response.message);
+            } else if (response.status == "ok") {
+                reloadGarTable();
+                error("errorSaveGarnis","alert-success" , response.message);
+            } else {
+                error("errorSaveGarnis","alert-danger" , "Algo salio mal");
+            }
+        } catch (error) {
+            console.log(error);
+        }finally {
+            hideSpinner();
+        }
+    })()
+});
+
 /*****************************************************************************
  *                               traer datos de rol                  *
  ******************************************************************************/

@@ -59,17 +59,23 @@
                     </div>
 
                     <div class="row">
+                        <?php
+                        // Assuming $_SESSION['user_id'] holds the user ID
+                        $user_id = $_SESSION['user_id'];
+                        ?>
+                        <!-- Hidden input field for user_id -->
+                        <input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id; ?>">
 
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="form-group" class="form-label float-left">Nombre</label>
-                                <input type="text" class="form-control" id="nameCategory" name="name" placeholder="nombre del producto" required>
+                                <input type="text" class="form-control" id="nameProductT" name="name" placeholder="nombre del producto" required>
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label for="privilege_user" class="form-label">Categoría</label>
-                                <select class="form-control" name="role" id="role">
+                                <select class="form-control" name="category_id" id="categoryProduct">
 
                                 </select>
                             </div>
@@ -91,7 +97,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="formFile" class="form-label">Imagen del producto</label>
-                                <input class="form-control" type="file" id="productPr" name="imageNam" accept="image/jpeg,image/jpg,image/png" required>
+                                <input class="form-control" type="file" id="productImage" name="imageName" accept="image/jpeg,image/jpg,image/png" required>
                                 <p>La imagen debe ser(jpg,jpeg,png), tamaño(min:10kb , max:500kb), dimensiones(200x200)</p>
                             </div>
                         </div>
@@ -105,17 +111,17 @@
             </form>
         </div>
         <div id="tab3" class="tab-pane fade">
-            <form id="frmCategory" enctype="multipart/form-data">
+            <form id="frmGarnish" enctype="multipart/form-data">
                 <div class="card-body">
                     <!--Aqui se muestran los errores-->
-                    <div class="alert mt-3" role="alert" style="display: none;" id="errorSaveProduct">
+                    <div class="alert mt-3" role="alert" style="display: none;" id="errorSaveGarnis">
                     </div>
 
                     <div class="row">
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label for="privilege_user" class="form-label">Producto</label>
-                                <select class="form-control" name="role" id="rol">
+                                <select class="form-control" name="product_id" id="garnisProduct">
 
                                 </select>
                             </div>
