@@ -25,7 +25,10 @@ Categoría registradas
                 <div class="spinner-overlay">
                     <div class="spinner"></div>
                 </div>
+
                 </tbody>
+                <div class="alert mt-3" role="alert" style="display: none;" id="errorCat">
+                </div>
             </table>
         </div>
 

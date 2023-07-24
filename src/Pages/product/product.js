@@ -1,7 +1,66 @@
 import error from '../../Helpers/error.js';
 import config from '../../Helpers/config.js';
 import convertFormatHour from "../../Helpers/error.js";
+let getDataCatDelete = function () {
+    $("#catTable").on("click", "button.delete", function () {
+        let data = catTable.row($(this).parents("tr")).data();
+        document.getElementById('textCatDelete').textContent = "¿Quieres Eliminar la siguiente Categoría? : " + data['name'];
+        let id = data['category_id'];
 
+        let btnDelete = document.getElementById('btnCatDelete'); // Corregido el selector del botón
+        btnDelete.addEventListener('click', e => {
+            deleteCategory(id);
+        });
+    });
+}
+$('#catTable tbody').on('click', '.edit', function() {
+    let row = catTable.row($(this).closest('tr')).data();
+
+    $('#nameUpdateCat').val(row.name);
+    $('#imageUrlCat').val(row.url);
+
+
+});
+
+
+function deleteCategory(ID) {
+    document.getElementById('btnCatDelete').addEventListener('click', e => {
+        e.preventDefault();
+        config.validateToken();
+
+        let body= {
+            IDToken: document.getElementById('idCatDelete').value
+        };
+        console.log(ID);
+
+        (async function () {
+            try {
+                let request = await fetch(`${config.API}category/${ID}`, {
+                    headers: {"Content-Type":"application/json" , Authorization: `Bearer ${config.token}`},
+                    method: 'DELETE',
+                    body: JSON.stringify(body)
+                });
+                let response = await request.json();
+                    console.log(response)
+                if (response.status == "error") {
+                    document.getElementById('btnCloseCatDelete').click();
+                    error("errorCat","alert-danger" , response.message);
+
+                } else if (response.status == "ok") {
+
+                    document.getElementById('btnCloseCatDelete').click();
+                    error("errorCat","alert-success" , response.message);
+                    reloadCatTable();
+                } else {
+                    document.getElementById('btnCloseUserDelete').click();
+                    error("messageUserDelete","alert-danger" , "Algo salió mal");
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        })();
+    });
+}
 function showSpinner() {
     document.querySelector('.spinner-overlay').style.display = 'block';
 }
@@ -10,8 +69,8 @@ function showSpinner() {
 function hideSpinner() {
     document.querySelector('.spinner-overlay').style.display = 'none';
 }
-document.addEventListener('DOMContentLoaded', () => {    console.log('hola mundo');
-
+document.addEventListener('DOMContentLoaded', () => {
+    getDataCatDelete();
 getRolUpdate();
     showAllproduct();
     showAllcat();
@@ -21,6 +80,51 @@ getRolUpdate();
     let tableCategoria=document.querySelector('#table-category').style.display="block";
 
 })
+
+/*****************************************************************************
+ *                              Actualizar categoria             *
+ ******************************************************************************/
+
+let frmUpdateCat = document.querySelector('#frmUpdateCat');
+frmUpdateCat.addEventListener('submit', e => {
+    e.preventDefault();
+    config.validateToken();
+
+    let formData = new FormData(document.getElementById("frmCategoryTable"));
+    let imageFile = document.getElementById("imageCategory").files[0];
+    formData.append('image', imageFile);
+
+    (async function () {
+        try {
+            showSpinner();
+            let request = await fetch(`${config.API}category/`, {
+                headers: { Authorization: `Bearer ${config.token}` },
+                method: 'POST',
+                body: formData
+            });
+
+
+            let response = await request.json();
+            console.log(response);
+
+            if (response.status == "error") {
+                error("errorSaveCategory", "alert-danger", response.message);
+            } else if (response.status == "ok") {
+                reloadCatTable();
+                clearCategory();
+                error("errorSaveCategory", "alert-success", response.message);
+            } else {
+                error("errorSaveCategory", "alert-danger", "Algo salio mal");
+            }
+        } catch (error) {
+            console.log(error);
+        } finally {
+            hideSpinner();
+        }
+
+    })()
+});
+
 
 
 /*****************************************************************************
@@ -130,12 +234,12 @@ frmSaveProduct.addEventListener('submit', e => {
             });
 
             let response = await request.json();
-            console.log(response);
 
             if (response.status == "error") {
                 error("errorSaveProduct", "alert-danger", response.message);
             } else if (response.status == "ok") {
                 reloadProductTable();
+                clearProduct();
                 error("errorSaveProduct", "alert-success", response.message);
             } else {
                 error("errorSaveProduct", "alert-danger", "Algo salio mal");
@@ -169,6 +273,7 @@ frmcategoria.addEventListener('submit', e => {
                 body: formData
             });
 
+
             let response = await request.json();
             console.log(response);
 
@@ -176,6 +281,7 @@ frmcategoria.addEventListener('submit', e => {
                 error("errorSaveCategory", "alert-danger", response.message);
             } else if (response.status == "ok") {
                 reloadCatTable();
+                clearCategory();
                 error("errorSaveCategory", "alert-success", response.message);
             } else {
                 error("errorSaveCategory", "alert-danger", "Algo salio mal");
@@ -185,6 +291,7 @@ frmcategoria.addEventListener('submit', e => {
         } finally {
             hideSpinner();
         }
+
     })()
 });
 
@@ -213,6 +320,7 @@ frmGarnis.addEventListener('submit', e => {
                 error("errorSaveGarnis","alert-danger" , response.message);
             } else if (response.status == "ok") {
                 reloadGarTable();
+                clearGarnish();
                 error("errorSaveGarnis","alert-success" , response.message);
             } else {
                 error("errorSaveGarnis","alert-danger" , "Algo salio mal");
@@ -413,15 +521,13 @@ const showAllcat = () => {
             },
             {
                 "defaultContent": `
-          <button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalUserDelete'>
+          <button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalCatDelete'>
             <i class='fa fa-trash' aria-hidden='true'></i>
           </button>
-          <button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#updateUser'>
+          <button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#updateCat'>
             <i class='fa fa-edit' aria-hidden='true'></i>
           </button>
-          <button type='button' class='detail' data-bs-toggle='modal' data-bs-target='#detailsUser'>
-            <i class='fa fa-eye' aria-hidden='true'></i>
-          </button>
+          
         `
             }
         ],
@@ -494,9 +600,7 @@ const showAllGarnish = () => {
           <button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#updateUser'>
             <i class='fa fa-edit' aria-hidden='true'></i>
           </button>
-          <button type='button' class='detail' data-bs-toggle='modal' data-bs-target='#detailsUser'>
-            <i class='fa fa-eye' aria-hidden='true'></i>
-          </button>
+       
         `
             }
         ],
@@ -531,3 +635,30 @@ console.log(garTable)
 const reloadGarTable = () => {
     garTable.ajax.reload();
 };
+
+//*********************************** clear form ********************************************************/
+const inputCatName=document.querySelector('#nameProduct');
+const CatImage=document.querySelector('#imageCategory');
+const proName=document.querySelector('#nameProductT');
+const proPreci=document.querySelector('#priceProduct');
+const proDesc=document.querySelector('#description');
+const proImage=document.querySelector('#productImage');
+const garName=document.querySelector('#namePro');
+const garPreci=document.querySelector('#price');
+
+function clearCategory(){
+inputCatName.value='';
+CatImage.value='';
+}
+
+const clearProduct=()=>{
+    proName.value='';
+    proPreci.value='';
+    proDesc.value='';
+    proImage.value='';
+}
+
+const clearGarnish=()=>{
+    garName.value='';
+    garPreci.value='';
+}
