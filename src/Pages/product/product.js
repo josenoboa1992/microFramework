@@ -15,10 +15,11 @@ let getDataCatDelete = function () {
 }
 $('#catTable tbody').on('click', '.edit', function() {
     let row = catTable.row($(this).closest('tr')).data();
-
+    $('#idCat').val(row.category_id);
     $('#nameUpdateCat').val(row.name);
     $('#imageUrlCat').val(row.url);
-
+    let id=document.querySelector('#idCat').value;
+    console.log(id);
 
 });
 
