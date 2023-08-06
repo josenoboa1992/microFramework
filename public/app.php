@@ -25,7 +25,7 @@ if ($view === 'login') {
     <title>WORLDINGFOODS</title>
     <link href="<?php echo UrlBase::urlBase;?>/public/css/styles.css" rel="stylesheet" />
     <link href="<?php echo UrlBase::urlBase;?>/public/css/mdb.min.css" rel="stylesheet" />
-    <link href="<?php echo UrlBase::urlBase;?>/public/libs/datatables/responsive.bootstrap.min.css" rel="stylesheet" />      
+    <link href="<?php echo UrlBase::urlBase;?>/public/libs/datatables/responsive.bootstrap.min.css" rel="stylesheet" />
 </head>
 
 <body class="sb-nav-fixed">
@@ -121,6 +121,7 @@ if ($view === 'login') {
     </div>
 
     <script src="<?php echo UrlBase::urlBase;?>/public/libs/bootstrap5/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<?php echo UrlBase::urlBase;?>/public/libs/sweetalert/sweetalert.min.js"></script>
     <script src="<?php echo UrlBase::urlBase;?>/public/libs/fontawesome/all.min.js"></script>  
     <script src="<?php echo UrlBase::urlBase;?>/public/js/scripts.js" type="module"></script>

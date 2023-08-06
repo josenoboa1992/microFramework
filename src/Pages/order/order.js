@@ -52,6 +52,10 @@ async function orderPending() {
                 customerAddress.className = 'card-text';
                 customerAddress.textContent = `Dirección: ${order.address}`;
 
+                const customerPhone = document.createElement('p');
+                customerPhone.className = 'card-text';
+                customerPhone.textContent = `Teléfono: ${order.client_phone}`;
+
                 const companyName = document.createElement('p');
                 companyName.className = 'card-text';
                 companyName.innerHTML = `Pertenece a la Empresa: <span style="color: #12670b">${order.name_company}</span>`;
@@ -101,6 +105,13 @@ async function orderPending() {
                 statusOption5.value = 'cancelled';
                 statusOption5.textContent = 'Cancelado';
 
+                const creationDate = document.createElement('p');
+                creationDate.className = 'card-text';
+                const formattedCreationDate = new Date(order.creation_date).toLocaleDateString();
+                const formattedCreationTime = format12HourTime(order.creation_date);
+                creationDate.innerHTML = `<b>Fecha:</b> ${formattedCreationDate}, ${formattedCreationTime}`;
+
+
                 // Agregar las opciones al select
                 statusSelect.appendChild(statusOption1);
                 statusSelect.appendChild(statusOption2);
@@ -121,12 +132,14 @@ async function orderPending() {
                 cardBody.appendChild(customerInfoTitle);
                 cardBody.appendChild(customerName);
                 cardBody.appendChild(customerAddress);
+                cardBody.appendChild(customerPhone);
                 cardBody.appendChild(companyName);
                 cardBody.appendChild(deliveryTime);
                 cardBody.appendChild(instructionTitle);
                 cardBody.appendChild(quantityInfo);
                 cardBody.appendChild(productInfo);
                 cardBody.appendChild(garnishInfo);
+                cardBody.appendChild(creationDate);
                 cardBody.appendChild(statusSelect);
 
                 card.appendChild(cardBody);
@@ -246,9 +259,24 @@ function updateStatus(orderId, newStatus) {
         data: JSON.stringify(dataToSend), // Convertir el objeto a JSON y enviarlo en el cuerpo de la solicitud
         success: function(data) {
             console.log(data); // Puedes hacer algo con la respuesta del servidor si es necesario
+            // Mostrar alert indicando que la orden fue actualizada
+            alert("¡Orden Actualizada!");
+
+            // Recargar la página después de cerrar el alert
+            location.reload();
         },
         error: function(error) {
             console.error('Error al actualizar el estado:', error);
         }
     });
+}
+
+function format12HourTime(dateString) {
+    const date = new Date(dateString);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours = hours % 12 || 12;
+    const formattedMinutes = minutes.toString().padStart(2, '0');
+    return `${formattedHours}:${formattedMinutes} ${ampm}`;
 }
