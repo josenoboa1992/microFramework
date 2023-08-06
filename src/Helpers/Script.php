@@ -36,7 +36,11 @@ class Script
                 echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-3.6.0.min.js'></script>";
                 echo "<script src='" . UrlBase::urlBase. "/src/Pages/company/company.js' type='module'></script>";
                 self::scriptDatatable();
+            } else if ($params[0]=="order") {
 
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-3.6.0.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/src/Pages/order/order.js' type='module'></script>";
+                self::scriptDatatable();
 
             }
         }

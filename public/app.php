@@ -75,6 +75,17 @@ if ($view === 'login') {
                             </nav>
                         </div>
 
+                        <a class="nav-link collapsed text-green" href="#" data-bs-toggle="collapse" data-bs-target="#collapseOrder" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon text-green"><i class="fa fa-truck"></i></div>
+                            Ordenes
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseOrder" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/order/">Administrar Orden</a>
+                            </nav>
+                        </div>
+
 <!--                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">-->
 <!--                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">-->
 <!--                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">-->

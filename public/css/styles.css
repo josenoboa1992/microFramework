@@ -11477,3 +11477,31 @@ img.image-data {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.nav-item svg.svg-inline--fa {
+  margin-right: 10px;
+}{
+  margin-left: 10px;
+}
+
+.orden-card .card{
+  border: 1px solid #198754;
+  background-color: #fFfFff;
+}
+
+.card-title span{
+  color: #951d32;
+}
+.instruction{
+  font-weight: bold;
+  margin: 5px;
+  text-align: center;
+}
+
+.orden-card select{
+  background-color: #198754;
+  color: #FFFFFF;
+}
+.tab-content{
+  background-color: #f0f1f3;
+}

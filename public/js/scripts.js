@@ -1,17 +1,9 @@
 import error from  '../../src/Helpers/error.js';
 import config from '../../src/Helpers/config.js';
-function showSpinner() {
-    document.querySelector('.spinner-overlay').style.display = 'block';
-}
 
-// Ocultar el spinner
-function hideSpinner() {
-    document.querySelector('.spinner-overlay').style.display = 'none';
-}
-showSpinner()
 window.addEventListener('DOMContentLoaded', event => {
     setTimeout(()=>{
-        hideSpinner();
+
     },1000)
     // Toggle the side navigation
     const sidebarToggle = document.body.querySelector('#sidebarToggle');
