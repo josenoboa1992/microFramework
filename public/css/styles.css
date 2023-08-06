@@ -11505,3 +11505,8 @@ img.image-data {
 .tab-content{
   background-color: #f0f1f3;
 }
+
+span#tab1Counter,span#tab2Counter,span#tab3Counter,span#tab4Counter {
+  color: red;
+  font-size: 10px;
+}
