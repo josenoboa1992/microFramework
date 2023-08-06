@@ -1,3 +1,4 @@
+// JavaScript
 const token = localStorage.getItem("token");
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,6 +21,7 @@ async function orderPending() {
             // error("errorSaveUser", "alert-danger", response.message);
         } else if (Array.isArray(response.data)) {
             const cardContainer = document.getElementById('cardContend');
+            cardContainer.innerHTML = ''; // Limpiar contenido existente
 
             response.data.forEach(order => {
                 console.log(order);
@@ -84,17 +86,34 @@ async function orderPending() {
                 statusOption1.textContent = 'Pendiente';
 
                 const statusOption2 = document.createElement('option');
-                statusOption2.value = 'proceso';
+                statusOption2.value = 'process';
                 statusOption2.textContent = 'en Proceso';
 
                 const statusOption3 = document.createElement('option');
-                statusOption3.value = 'listo';
+                statusOption3.value = 'ready';
                 statusOption3.textContent = 'Listo';
+
+                const statusOption4 = document.createElement('option');
+                statusOption4.value = 'completed';
+                statusOption4.textContent = 'Completado';
+
+                const statusOption5 = document.createElement('option');
+                statusOption5.value = 'cancelled';
+                statusOption5.textContent = 'Cancelado';
 
                 // Agregar las opciones al select
                 statusSelect.appendChild(statusOption1);
                 statusSelect.appendChild(statusOption2);
                 statusSelect.appendChild(statusOption3);
+                statusSelect.appendChild(statusOption4);
+                statusSelect.appendChild(statusOption5);
+
+                // Agregar evento "change" al select para actualizar el estado
+                statusSelect.addEventListener('change', function() {
+                    const newStatus = this.value; // Obtener el valor seleccionado
+                    const orderId = order.order_id; // Obtener el ID de la orden
+                    updateStatus(orderId, newStatus); // Llamar a la función para actualizar el estado
+                });
 
                 // Agregar todos los elementos al DOM en la estructura deseada
                 cardBody.appendChild(orderTitle);
@@ -206,4 +225,30 @@ function getDeliveryTime(preparationInstructions) {
         console.error("Error al parsear las instrucciones de preparación:", error);
         return '';
     }
+}
+
+function updateStatus(orderId, newStatus) {
+    console.log(orderId, newStatus);
+
+    // Objeto con los datos a enviar en la solicitud
+    const dataToSend = {
+        status: newStatus
+    };
+
+    // Realizar la solicitud AJAX al endpoint updateStatus con jQuery
+    $.ajax({
+        url: `http://api.local/order/${newStatus}/${orderId}`,
+        type: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        data: JSON.stringify(dataToSend), // Convertir el objeto a JSON y enviarlo en el cuerpo de la solicitud
+        success: function(data) {
+            console.log(data); // Puedes hacer algo con la respuesta del servidor si es necesario
+        },
+        error: function(error) {
+            console.error('Error al actualizar el estado:', error);
+        }
+    });
 }
