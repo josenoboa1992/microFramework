@@ -16,6 +16,7 @@
                     <div class="row">
 
                         <!-- Hidden input field for user_id -->
+                        <input type="hidden" id="idCat" name="ID">
                         <input type="hidden" id="imageUrlCat" name="imageUrl">
                         <div class="col-lg-4">
                             <div class="form-group">
