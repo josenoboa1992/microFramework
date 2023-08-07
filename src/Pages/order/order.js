@@ -51,7 +51,6 @@ async function orderProcess() {
         });
 
         const response = await request.json();
-        console.log(response);
 
         if (response.status === "error") {
             // error("errorSaveUser", "alert-danger", response.message);
@@ -60,7 +59,6 @@ async function orderProcess() {
             cardContainer.innerHTML = ''; // Limpiar contenido existente
 
             response.data.forEach(order => {
-                console.log(order);
                 const cardDiv = document.createElement('div');
                 cardDiv.className = 'col-md-4 mb-4';
 
@@ -180,7 +178,7 @@ async function orderPending() {
         });
 
         const response = await request.json();
-        console.log(response);
+
 
         if (response.status === "error") {
             // error("errorSaveUser", "alert-danger", response.message);
@@ -189,7 +187,6 @@ async function orderPending() {
             cardContainer.innerHTML = ''; // Limpiar contenido existente
 
             response.data.forEach(order => {
-                console.log(order);
                 const cardDiv = document.createElement('div');
                 cardDiv.className = 'col-md-4 mb-4';
 
@@ -309,7 +306,6 @@ async function orderReady() {
         });
 
         const response = await request.json();
-        console.log(response);
 
         if (response.status === "error") {
             // error("errorSaveUser", "alert-danger", response.message);
@@ -318,7 +314,6 @@ async function orderReady() {
             cardContainer.innerHTML = ''; // Limpiar contenido existente
 
             response.data.forEach(order => {
-                console.log(order);
                 const cardDiv = document.createElement('div');
                 cardDiv.className = 'col-md-4 mb-4';
 
@@ -443,7 +438,7 @@ async function orderCompleted() {
         });
 
         const response = await request.json();
-        console.log(response);
+
 
         if (response.status === "error") {
             // error("errorSaveUser", "alert-danger", response.message);
@@ -452,7 +447,7 @@ async function orderCompleted() {
             cardContainer.innerHTML = ''; // Limpiar contenido existente
 
             response.data.forEach(order => {
-                console.log(order);
+
                 const cardDiv = document.createElement('div');
                 cardDiv.className = 'col-md-4 mb-4';
 
@@ -647,7 +642,6 @@ function getDeliveryTime(preparationInstructions) {
 }
 
 function updateStatus(orderId, newStatus) {
-    console.log(orderId, newStatus);
 
     // Objeto con los datos a enviar en la solicitud
     const dataToSend = {
@@ -664,7 +658,7 @@ function updateStatus(orderId, newStatus) {
         },
         data: JSON.stringify(dataToSend), // Convertir el objeto a JSON y enviarlo en el cuerpo de la solicitud
         success: function(data) {
-            console.log(data); // Puedes hacer algo con la respuesta del servidor si es necesario
+
             // Mostrar alert indicando que la orden fue actualizada
             alert("¡Orden Actualizada!");
 
@@ -702,21 +696,16 @@ function updateTabCounters() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const socket = new WebSocket('ws://api.local:3000');
 
-    socket.addEventListener('open', (event) => {
-        console.log('Conexión WebSocket abierta');
-    });
 
-    socket.addEventListener('message', (event) => {
-        const message = JSON.parse(event.data);
+// Llamar a la función de consulta con la última marca de tiempo al cargar la página
+document.addEventListener('DOMContentLoaded',()=>{
+    setInterval(function() {
+        orderPending();
+        orderProcess();
+        orderReady();
+        orderCompleted()
+        console.log('cargando...')
+    }, 10000);  // Llama a la función cada 10 segundos (10,000 milisegundos)
 
-        if (message.type === 'new_order') {
-            // Aquí puedes manejar la notificación de una nueva orden
-            console.log('Nueva orden:', message.message);
-
-            // Puedes mostrar una alerta, actualizar la interfaz, etc.
-        }
-    });
 });
