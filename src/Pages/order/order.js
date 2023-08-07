@@ -701,3 +701,22 @@ function updateTabCounters() {
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const socket = new WebSocket('ws://api.local:3000');
+
+    socket.addEventListener('open', (event) => {
+        console.log('Conexión WebSocket abierta');
+    });
+
+    socket.addEventListener('message', (event) => {
+        const message = JSON.parse(event.data);
+
+        if (message.type === 'new_order') {
+            // Aquí puedes manejar la notificación de una nueva orden
+            console.log('Nueva orden:', message.message);
+
+            // Puedes mostrar una alerta, actualizar la interfaz, etc.
+        }
+    });
+});
