@@ -18,6 +18,8 @@ class Script
         echo "<script src='" .UrlBase::urlBase. "/public/libs/datatables/responsive.bootstrap.min.js'></script>";                  
     }
 
+
+
     /**************************************Cambiar script dinamicamente*******************************/
     public static function changeScript()
     {
@@ -33,6 +35,7 @@ class Script
                 self::scriptDatatable();
                 echo "<script src='" . UrlBase::urlBase. "/src/Pages/product/product.js' type='module'></script>";
             }else if ($params[0]=="company"){
+
                 echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-3.6.0.min.js'></script>";
                 echo "<script src='" . UrlBase::urlBase. "/src/Pages/company/company.js' type='module'></script>";
                 self::scriptDatatable();
@@ -40,6 +43,13 @@ class Script
 
                 echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-3.6.0.min.js'></script>";
                 echo "<script src='" . UrlBase::urlBase. "/src/Pages/order/order.js' type='module'></script>";
+                self::scriptDatatable();
+
+            }else if ($params[0]=="trans") {
+
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-3.6.0.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-ui.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/src/Pages/trans/trans.js' type='module'></script>";
                 self::scriptDatatable();
 
             }

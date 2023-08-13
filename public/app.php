@@ -26,6 +26,7 @@ if ($view === 'login') {
     <link href="<?php echo UrlBase::urlBase;?>/public/css/styles.css" rel="stylesheet" />
     <link href="<?php echo UrlBase::urlBase;?>/public/css/mdb.min.css" rel="stylesheet" />
     <link href="<?php echo UrlBase::urlBase;?>/public/libs/datatables/responsive.bootstrap.min.css" rel="stylesheet" />
+    <link href="<?php echo UrlBase::urlBase;?>/public/libs/jquery/jquery-ui.min.css" rel="stylesheet" />
 </head>
 
 <body class="sb-nav-fixed">
@@ -86,7 +87,22 @@ if ($view === 'login') {
                             </nav>
                         </div>
 
-<!--                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">-->
+                        <a class="nav-link collapsed text-green" href="#" data-bs-toggle="collapse" data-bs-target="#collapseFinanza" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon text-green"><i class="fas fa-coins"></i></div>
+                            Finanzas
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseFinanza" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/trans/">Transacciones</a>
+                            </nav>
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/order/">Depositos</a>
+                            </nav>
+                        </div>
+
+
+                        <!--                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">-->
 <!--                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">-->
 <!--                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">-->
 <!--                                    Authentication-->

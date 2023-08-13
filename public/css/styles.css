@@ -11510,3 +11510,23 @@ span#tab1Counter,span#tab2Counter,span#tab3Counter,span#tab4Counter {
   color: red;
   font-size: 10px;
 }
+
+
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {
+  background: radial-gradient(#198754, transparent);
+
+}
+
+.container-transaction{
+  background-color: #FFFF;
+  padding: 10px;
+  margin-top: 2rem;
+}
+
+.debito-text,.credito-text{
+  color: #263d26;
+  font-weight:bold;
+}
+th#totalDebitos,th#totalCreditos {
+  font-weight: bold;
+}
