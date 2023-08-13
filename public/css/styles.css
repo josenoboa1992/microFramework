@@ -11530,3 +11530,10 @@ span#tab1Counter,span#tab2Counter,span#tab3Counter,span#tab4Counter {
 th#totalDebitos,th#totalCreditos {
   font-weight: bold;
 }
+
+button.apply-btn.btn-success, button.cancel-btn.btn-danger{
+  border: none;
+  border-radius: 10px;
+  /* text-align: center; */
+  margin-left: 10px;
+}

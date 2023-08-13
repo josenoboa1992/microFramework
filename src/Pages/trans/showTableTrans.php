@@ -1,6 +1,6 @@
 
 <main>
-    <div class="container container-transaction">
+    <div class="container container-transaction p-5">
         <div class="alert bg-white p-3 mt-3" role="alert">
           <h3 class="text-gray">Transacciones</h3>
         </div>

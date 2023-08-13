@@ -97,7 +97,7 @@ if ($view === 'login') {
                                 <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/trans/">Transacciones</a>
                             </nav>
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/order/">Depositos</a>
+                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/deposit/">Depositos</a>
                             </nav>
                         </div>
 
