@@ -1,4 +1,4 @@
-import error from '../../Helpers/error.js';
+
 import config from '../../Helpers/config.js';
 import convertFormatHour from "../../Helpers/error.js";
 
@@ -103,6 +103,11 @@ const showAllDeposit = () =>{
                                    </button>`
             }
         ],
+        "createdRow": function (row, data, dataIndex) {
+            $(row).attr('data-id', data.ID); // Agregar atributo data-id
+            $(row).attr('data-nombre', data.Nombre); // Agregar atributo data-nombre
+            // Agregar más atributos data aquí según sea necesario
+        },
         "columnDefs": [   // atributo para ocultar columna
             // {"targets": [0],"visible": false,"searchable": false},
             {"targets": [0], "width": "10%"},
@@ -133,8 +138,34 @@ const showAllDeposit = () =>{
     getDataUserDelete();
 }
 // Agregar eventos a los botones "Aplicar" y "Cancelar"
-$('#depositTable').on('click', '.apply-btn', function () {
-    // Lógica para manejar el botón "Aplicar"
+let datatable;
+$("#depositTable").on('click', '.apply-btn', function () {
+    // Obtener el user_id de la fila seleccionada
+    const rowData = $(this).closest('tr').data();
+    console.log(rowData);
+    // Verificar si el checkbox de la fila seleccionada está marcado
+    const isChecked = $(this).closest('tr').find('.row-select').prop('checked');
+
+    if (isChecked) {
+        const {id}=rowData;
+        // Enviar solicitud AJAX al endpoint para actualizar la fila
+        $.ajax({
+            method: 'PUT', // O el método que corresponda
+            url: `http://api.local/deposit/${id}`,
+            headers: {
+                Authorization: `Bearer ${config.token}`
+            },
+            data: { /* Datos que deseas enviar para actualizar */ },
+            success: function (response) {
+                // Manejar la respuesta del servidor si es necesario
+                console.log(response);
+                reloadDepositTable();
+            },
+            error: function (error) {
+                // Manejar el error si ocurre
+            }
+        });
+    }
 });
 
 $('#depositTable').on('click', '.cancel-btn', function () {
@@ -253,16 +284,28 @@ formDeposit.addEventListener('submit', async (e) => {
         });
 
         const response = await request.json();
+        console.log(response)
         if (response.status=='ok'){
             clearDepositForm();
             disabledDepositForm();
             reloadDepositTable();
-            error('errorSaveCompany','alert-success',response.message);
+            error('errorSaveDeposit','alert-success',response.message);
         }else if(response.status=="error"){
-            error("errorSaveCompany",'alert-danger',response.message);
+            error("errorSaveDeposit",'alert-danger',response.message);
         }
     } catch (e) {
         console.log(e);
-        error('errorSaveCompany','alert-danger',response.message);
+        error('errorSaveDeposit','alert-danger',response.message);
     }
 });
+
+
+ function error(id,alert,message) {
+    document.getElementById(id).classList.add(alert);
+    document.getElementById(id).textContent = message;
+    document.getElementById(id).style.display = "";
+    setTimeout(() => {
+        document.getElementById(id).style.display = "none";
+        document.getElementById(id).classList.remove(alert);
+    }, 4000);
+}
