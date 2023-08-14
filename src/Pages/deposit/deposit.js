@@ -83,25 +83,42 @@ const showAllDeposit = () =>{
             "headers": {
                 Authorization: `Bearer ${config.token}`
             }
-        },
-        'columns' :[
-            {"data" : "ID"},
-            {"data" : "#usuario"},
-            {"data" : "Nombre"},
-            {"data" : "Monto"},
-            {"data" : "Descripcion"},
-            {"data" : "Estado"},
-
-
+        }, 'columns': [
+            {"data": "ID"},
+            {"data": "#usuario"},
+            {"data": "Nombre"},
+            {"data": "Monto"},
+            {"data": "Descripcion"},
             {
-                "defaultContent": `<input type='checkbox' class='row-select'>
-                                   <button type='button' class='apply-btn btn-success' data-bs-toggle='modal' data-bs-target='#applyModal'>
-                                       Aplicar
-                                   </button>
-                                   <button type='button' class='cancel-btn btn-danger'>
-                                       Cancelar
-                                   </button>`
+                "data": "Estado",
+                "render": function (data, type, row) {
+                    if (data === 'approved') {
+                        return '<span class="badge bg-success">' + data + '</span>';
+                    } else if (data === 'rejected') {
+                        return '<span class="badge bg-danger">' + data + '</span>';
+                    } else {
+                        return '<span class="badge bg-warning text-dark">' + data + '</span>';
+                    }
+                }
+            },
+            {
+                "data": "Estado",
+                "render": function (data, type, row) {
+                    if (data === 'approved'||data === 'rejected') {
+                        return '<button type="button" class="apply-btn btn-success" disabled style="background-color: #ccc;">Aplicar</button>' +
+                            '<button type="button" class="cancel-btn btn-danger" disabled style="background-color: #ccc;">Cancelar</button>';
+                    } else {
+                        return `<input type='checkbox' class='row-select'>
+                    <button type='button' class='apply-btn btn-success' data-bs-toggle='modal' data-bs-target='#applyModal'>
+                        Aplicar
+                    </button>
+                    <button type='button' class='cancel-btn btn-danger'>
+                        Cancelar
+                    </button>`;
+                    }
+                }
             }
+
         ],
         "createdRow": function (row, data, dataIndex) {
             $(row).attr('data-id', data.ID); // Agregar atributo data-id
@@ -129,7 +146,7 @@ const showAllDeposit = () =>{
                 titleAttr:  'Excel',
                 className:   "btn btn-outline-success",
                 exportOptions: {
-                    columns: [1,2,3,4,5,6,7,8,9,10]
+                    columns: [1,2,3,4,5,6]
                 }
             }
         ]
@@ -169,7 +186,32 @@ $("#depositTable").on('click', '.apply-btn', function () {
 });
 
 $('#depositTable').on('click', '.cancel-btn', function () {
-    // Lógica para manejar el botón "Cancelar"
+    // Obtener el user_id de la fila seleccionada
+    const rowData = $(this).closest('tr').data();
+    console.log(rowData);
+    // Verificar si el checkbox de la fila seleccionada está marcado
+    const isChecked = $(this).closest('tr').find('.row-select').prop('checked');
+
+    if (isChecked) {
+        const {id}=rowData;
+        // Enviar solicitud AJAX al endpoint para actualizar la fila
+        $.ajax({
+            method: 'DELETE', // O el método que corresponda
+            url: `http://api.local/deposit/${id}`,
+            headers: {
+                Authorization: `Bearer ${config.token}`
+            },
+            data: { /* Datos que deseas enviar para actualizar */ },
+            success: function (response) {
+                // Manejar la respuesta del servidor si es necesario
+                console.log(response);
+                reloadDepositTable();
+            },
+            error: function (error) {
+                // Manejar el error si ocurre
+            }
+        });
+    }
 });
 /****Recargar la tabla de usuario****/
 const reloadDepositTable = () => {
