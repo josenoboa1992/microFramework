@@ -11537,3 +11537,17 @@ button.apply-btn.btn-success, button.cancel-btn.btn-danger{
   /* text-align: center; */
   margin-left: 10px;
 }
+
+.card-body.complete {
+  border: 1px solid green;
+  border-radius: 10px;
+}
+
+.card-body.cancel {
+  border: 1px solid #942020;
+  border-radius: 10px;
+}
+
+.sale-amount-cancel span{
+  color:#942020;
+}

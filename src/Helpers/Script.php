@@ -59,6 +59,13 @@ class Script
                 echo "<script src='" . UrlBase::urlBase. "/src/Pages/deposit/deposit.js' type='module'></script>";
                 self::scriptDatatable();
 
+            }else if ($params[0]=="sale") {
+
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-3.6.0.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-ui.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/src/Pages/sale/sale.js' type='module'></script>";
+                self::scriptDatatable();
+
             }
         }
     }
