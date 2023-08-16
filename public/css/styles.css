@@ -11551,3 +11551,35 @@ button.apply-btn.btn-success, button.cancel-btn.btn-danger{
 .sale-amount-cancel span{
   color:#942020;
 }
+
+.text-red {
+  color: red !important;
+}
+
+button.detail-sale {
+  border: none;
+  background: #FFF;
+  color: green;
+}
+
+button.detail-sale:hover{
+  border: none;
+  background: #FFF;
+  color: green;
+}
+
+.circle-green {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: green;
+  margin-right: 5px;
+}
+
+.circle-red {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: red;
+  margin-right: 5px;
+}

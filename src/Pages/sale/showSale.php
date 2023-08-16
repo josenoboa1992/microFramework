@@ -1,7 +1,7 @@
-<div class="container bg-white">
+<div class="card m-3 bg-white" style="border:1px solid gray; box-shadow: 1px 2px 5px;">
     <section class="section m-3 p-3 flex-row">
-        <div class="sale m-4 p-3">
-            <h3 class="text-gray font-weight-bold">Ventas</h3>
+        <div class="sale m-2 p-1">
+            <h3 class="text-gray ">Ventas</h3>
         </div>
 
         <div class="row  justify-content-around">
