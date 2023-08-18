@@ -51,6 +51,7 @@ let es = {
         "fixedHeader": false,
         "destroy" : true,
         "language": es,
+        "order": [[0, "desc"]],
         'ajax': {
             method: "GET",
             url: "http://api.local/transaction/",

@@ -77,6 +77,7 @@ const showAllDeposit = () =>{
         "fixedHeader": false,
         "destroy" : true,
         "language": es,
+        "order": [[0, "desc"]],
         'ajax' : {
             "method" : "GET",
             "url" : `${config.API}deposit/`,
