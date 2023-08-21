@@ -63,7 +63,13 @@ const showLockCategory = () =>{
         'columns' :[
             {"data" : "category_id"},
             {"data" : "name"},
-            {"data" : "is_blocked"},
+            {
+                "data": "is_blocked",
+                "render": function(data, type, row) {
+                    let statusText = row.is_blocked === 1 || row.is_blocked === "true" ? "Desactivada" : "Activada";
+                    return statusText;
+                }
+            },
 
             {
                 "data": "category_id",
@@ -173,7 +179,13 @@ const showLockProduct = () => {
             {"data": "ID"},
             {"data": "Categoría"},
             {"data": "Producto"},
-            {"data": "is_blocked"},
+            {
+                "data": "is_blocked",
+                "render": function(data, type, row) {
+                    let statusText = row.is_blocked === 1 || row.is_blocked === "true" ? "Desactivada" : "Activada";
+                    return statusText;
+                }
+            },
 
             {
                 "data": "ID", // Cambiado de "category_id" a "ID"
@@ -191,8 +203,8 @@ const showLockProduct = () => {
         ],
         "columnDefs": [
             {"targets": [0], "width": "10%"},
-            {"targets": [1], "width": "10%"},
-            {"targets": [2], "width": "10%"},
+            {"targets": [1], "width": "20%"},
+            {"targets": [2], "width": "20%"},
             {"targets": [3], "width": "2%"},
 
         ]
