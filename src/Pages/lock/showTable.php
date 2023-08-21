@@ -47,6 +47,11 @@
     </div>
 
     <script>
+        // Llamar a la función de carga al cargar la página
+        document.addEventListener('DOMContentLoaded', cargarTabActivo);
+        let activeTab = 'tab1'; // Inicialmente, el tab activo es 'tab1'
+
+        // Función para mostrar el tab y actualizar la variable activeTab
         function mostrarLock(tabla) {
             let tableCategory = document.getElementById("table-lock-category");
             let tableProduct = document.getElementById("lock-table-product");
@@ -55,15 +60,26 @@
             tableCategory.style.display = "none";
             tableProduct.style.display = "none";
 
-
             // Mostrar la tabla correspondiente
             if (tabla === 'table-lock-category') {
                 tableCategory.style.display = "block";
             } else if (tabla === 'lock-table-product') {
                 tableProduct.style.display = "block";
             }
+
+            // Actualizar la variable activeTab
+            activeTab = tabla;
         }
 
+        // Manejar el cambio de tabs utilizando eventos de Bootstrap
+        $('#myTab a').on('shown.bs.tab', function (e) {
+            activeTab = e.target.getAttribute('href'); // Actualizar la variable activeTab cuando se cambie de tab
+        });
+
+        // Función para cargar el tab activo al cargar la página
+        function cargarTabActivo() {
+            mostrarLock(activeTab); // Mostrar el tab activo almacenado en la variable
+        }
 
 
 
