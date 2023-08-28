@@ -13,15 +13,101 @@ let getDataCatDelete = function () {
         });
     });
 }
+
+
+let getDataProDelete = function () {
+    $("#proTable tbody").on("click", "button.delete", function () {
+
+        let row = $(this).closest("tr");
+        let columns = row.find("td");
+        // Extraer valores de las columnas individuales
+        let product_id = $(columns[0]).text(); // Por ejemplo, primera columna
+        let name_product = $(columns[3]).text(); // Por ejemplo, segunda columna
+        document.getElementById('textProDelete').textContent = "¿Quieres Eliminar el siguiente producto? : " + name_product ;
+
+
+        let btnDelete = document.getElementById('btnProDelete');
+        btnDelete.addEventListener('click', e => {
+
+            deleteProduct(product_id);
+        });
+    });
+}
 $('#catTable tbody').on('click', '.edit', function() {
     let row = catTable.row($(this).closest('tr')).data();
     $('#idCat').val(row.category_id);
     $('#nameUpdateCat').val(row.name);
     $('#imageUrlCat').val(row.url);
     let id=document.querySelector('#idCat').value;
-    console.log(id);
+
+
 
 });
+
+//modal para editar producto al hacer click
+$('#proTable tbody').on('click', '.edit', function() {
+    let row = $(this).closest("tr");
+    let columns = row.find("td");
+
+    // Obtener el contenido de la primera celda
+    let  proid=$(columns[0]).text();
+    let name = $(columns[3]).text();
+    let description = $(columns[4]).text();
+    let price= $(columns[5]).text();
+
+    // Establecer el valor del input con el contenido de la celda
+
+    $('#nameProUpdate').val(name);
+    $('#descriptionPro').val(description);
+    let formattedAmount = price;
+    let numericAmount = parseFloat(formattedAmount.replace(/[^\d.-]/g, ""));
+    $('#priceProUpdate').val(  numericAmount);
+
+    // Llamar a la función para activar el evento submit
+    let btnUpdate=document.getElementById('btnproUpdate');
+    btnUpdate.addEventListener('click',e=>{
+        updateProduct(proid);
+    })
+
+});
+
+
+
+/*****************************************************************************
+ *                              Actualizar producto            *
+ ******************************************************************************/
+function updateProduct(id) {
+    let frmUpdatePro = document.querySelector('#frmUpdatePro');
+    frmUpdatePro.addEventListener('submit', async e => {
+        e.preventDefault();
+        config.validateToken();
+        let body = {};
+        let formData = new FormData(document.getElementById("frmUpdatePro"));
+        formData.forEach((value, key) => {body[key] = value});
+        try {
+            let request = await fetch(`${config.API}product/${id}`, {  // Cambiar la URL adecuadamente
+                headers: { Authorization: `Bearer ${config.token}` },
+                method: 'PUT',body: JSON.stringify(body)});
+
+            let response = await request.json();
+            console.log(response)
+            if (response.status == "error") {
+                error("errorUpdatePro", "alert-danger", response.message);
+            } else if (response.status == "ok") {
+                document.getElementById('btnUpdateClosePro').click();
+                reloadProductTable();
+                error("errorShowProduct", "alert-success", response.message);
+            } else {
+                error("errorUpdatePro", "alert-danger", "Algo salió mal");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    });
+}
+
+
+
 
 
 function deleteCategory(ID) {
@@ -62,6 +148,39 @@ function deleteCategory(ID) {
         })();
     });
 }
+
+function deleteProduct(ID) {
+    document.getElementById('btnProDelete').addEventListener('click', e => {
+        e.preventDefault();
+        config.validateToken();
+
+
+        (async function () {
+            try {
+                let request = await fetch(`${config.API}product/${ID}`, {
+                    headers: {"Content-Type":"application/json" , Authorization: `Bearer ${config.token}`},
+                    method: 'DELETE'
+                });
+                let response = await request.json();
+                console.log(response)
+                if (response.status == "error") {
+                    document.getElementById('btnCloseProDelete').click();
+                    error("errorShowProduct","alert-danger" , response.message);
+
+                } else if (response.status == "ok") {
+                 document.getElementById('btnCloseProDelete').click();
+                    error("errorShowProduct","alert-success" , response.message);
+                    reloadCatTable();
+                } else {
+                    document.getElementById('btnCloseProDelete').click();
+                    error("errorShowProduct","alert-danger" , "Algo salió mal");
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        })();
+    });
+}
 function showSpinner() {
     document.querySelector('.spinner-overlay').style.display = 'block';
 }
@@ -71,11 +190,13 @@ function hideSpinner() {
     document.querySelector('.spinner-overlay').style.display = 'none';
 }
 document.addEventListener('DOMContentLoaded', () => {
-    getDataCatDelete();
+
+
 getRolUpdate();
     showAllproduct();
     showAllcat();
     showAllGarnish();
+    getDataProDelete();
     allCategory();
     allProduct();
     let tableCategoria=document.querySelector('#table-category').style.display="block";
@@ -87,45 +208,42 @@ getRolUpdate();
  ******************************************************************************/
 
 let frmUpdateCat = document.querySelector('#frmUpdateCat');
-frmUpdateCat.addEventListener('submit', e => {
+frmUpdateCat.addEventListener('submit', async e => {
     e.preventDefault();
     config.validateToken();
 
     let formData = new FormData(document.getElementById("frmCategoryTable"));
-    let imageFile = document.getElementById("imageCategory").files[0];
-    formData.append('image', imageFile);
+    let name=document.getElementById('nameUpdateCat').value;
+    let url=document.getElementById('imageUrlCat').value;
+    let imageFile = document.getElementById("imageUdateCategory").files[0];
+    console.log(imageFile+'hi')
+    formData.append('imageName', imageFile);
+    formData.append('name', name);
+    formData.append('imagenUrl', url);
+    let idCategory = parseInt(document.querySelector('#idCat').value);
 
-    (async function () {
-        try {
-            showSpinner();
-            let request = await fetch(`${config.API}category/`, {
-                headers: { Authorization: `Bearer ${config.token}` },
-                method: 'POST',
-                body: formData
-            });
+    try {
+        let request = await fetch(`${config.API}category/${idCategory}`, {
+            headers: { Authorization: `Bearer ${config.token}` },
+            method: 'POST',
+            body: formData
+        });
 
+        let response = await request.json();
 
-            let response = await request.json();
-            console.log(response);
-
-            if (response.status == "error") {
-                error("errorSaveCategory", "alert-danger", response.message);
-            } else if (response.status == "ok") {
-                reloadCatTable();
-                clearCategory();
-                error("errorSaveCategory", "alert-success", response.message);
-            } else {
-                error("errorSaveCategory", "alert-danger", "Algo salio mal");
-            }
-        } catch (error) {
-            console.log(error);
-        } finally {
-            hideSpinner();
+        if (response.status == "error") {
+            error("errorSaveCategory", "alert-danger", response.message);
+        } else if (response.status == "ok") {
+            reloadCatTable();
+            clearCategory();
+            error("errorUpdateCategory", "alert-success", response.message);
+        } else {
+            error("errorUpdateCategory", "alert-danger", "Algo salió mal");
         }
-
-    })()
+    } catch (error) {
+        console.log(error);
+    }
 });
-
 
 
 /*****************************************************************************
@@ -396,7 +514,8 @@ let es = {
 
 // Declare productTable variable to hold DataTable instance
 let productTable;
-let catTable
+let catTable;
+let proTable;
 let garTable;
 // Function to initialize and show the product table
 const showAllproduct = () => {
@@ -438,20 +557,19 @@ const showAllproduct = () => {
             {"data": "Estado"},
             {
                 "defaultContent": `
-          <button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalUserDelete'>
+          <button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalProductDelete'>
             <i class='fa fa-trash' aria-hidden='true'></i>
           </button>
-          <button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#updateUser'>
+          <button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#updatePro'>
             <i class='fa fa-edit' aria-hidden='true'></i>
           </button>
-          <button type='button' class='detail' data-bs-toggle='modal' data-bs-target='#detailsUser'>
-            <i class='fa fa-eye' aria-hidden='true'></i>
-          </button>
+        
         `
             }
         ],
         "columnDefs": [
-            {"targets": [0], "visible": false, "searchable": false},
+            // {"targets": [0], "visible": false, "searchable": false},
+            {"targets": [0], "width": "20%"},
             {"targets": [1], "width": "20%"},
             {"targets": [2], "width": "20%"},
             {"targets": [3], "width": "20%"},
@@ -476,7 +594,7 @@ const showAllproduct = () => {
             }
         ]
     });
-
+    getDataCatDelete();
     setTimeout(()=>{
         hideSpinner();
     },2000)

@@ -8,4 +8,9 @@
 <?php require 'showCategoy.php'; ?>
 <?php require 'modalCatDelete.php';?>
 <?php require 'modalCatUpdate.php';?>
+
+<!--Mostrar datos del product-->
+
+<?php require 'modalProductDelete.php';?>
+<?php require 'modalProductUpdate.php';?>
 <br>

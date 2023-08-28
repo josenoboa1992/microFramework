@@ -20,8 +20,9 @@
                         <thead class="color-card text-gray">
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">#Client</th>
-                            <th scope="col">Nombre</th>
+                            <th scope="col">#Cuenta</th>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Nombre Empresa</th>
                             <th scope="col">Monto</th>
                             <th scope="col">Descripción</th>
                             <th scope="col">Estado</th>

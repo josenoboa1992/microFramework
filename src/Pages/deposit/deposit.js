@@ -86,8 +86,9 @@ const showAllDeposit = () =>{
             }
         }, 'columns': [
             {"data": "ID"},
-            {"data": "#usuario"},
-            {"data": "Nombre"},
+            {"data": "Cuenta"},
+            {"data": "usuario"},
+            {"data": "Nombre_Empresa"},
             {"data": "Monto"},
             {"data": "Descripcion"},
             {
@@ -123,7 +124,8 @@ const showAllDeposit = () =>{
         ],
         "createdRow": function (row, data, dataIndex) {
             $(row).attr('data-id', data.ID); // Agregar atributo data-id
-            $(row).attr('data-nombre', data.Nombre); // Agregar atributo data-nombre
+            $(row).attr('data-cuenta', data.Cuenta);
+            $(row).attr('data-monto', data.Monto);
             // Agregar más atributos data aquí según sea necesario
         },
         "columnDefs": [   // atributo para ocultar columna
@@ -160,20 +162,21 @@ let datatable;
 $("#depositTable").on('click', '.apply-btn', function () {
     // Obtener el user_id de la fila seleccionada
     const rowData = $(this).closest('tr').data();
-    console.log(rowData);
     // Verificar si el checkbox de la fila seleccionada está marcado
     const isChecked = $(this).closest('tr').find('.row-select').prop('checked');
 
     if (isChecked) {
-        const {id}=rowData;
+        let id=rowData.id;
+        let Cuenta=rowData.cuenta;
+        let Monto=rowData.monto;
         // Enviar solicitud AJAX al endpoint para actualizar la fila
         $.ajax({
             method: 'PUT', // O el método que corresponda
-            url: `http://api.local/deposit/${id}`,
+            url: `http://api.local/deposit/${id}/${Cuenta}/${Monto}`,
             headers: {
                 Authorization: `Bearer ${config.token}`
             },
-            data: { /* Datos que deseas enviar para actualizar */ },
+            data: {  },
             success: function (response) {
                 // Manejar la respuesta del servidor si es necesario
                 console.log(response);
@@ -186,15 +189,15 @@ $("#depositTable").on('click', '.apply-btn', function () {
     }
 });
 
-$('#depositTable').on('click', '.cancel-btn', function () {
+$("#depositTable").on('click', '.cancel-btn', function () {
     // Obtener el user_id de la fila seleccionada
     const rowData = $(this).closest('tr').data();
-    console.log(rowData);
     // Verificar si el checkbox de la fila seleccionada está marcado
     const isChecked = $(this).closest('tr').find('.row-select').prop('checked');
 
     if (isChecked) {
-        const {id}=rowData;
+        let id=rowData.id;
+        console.log(id);
         // Enviar solicitud AJAX al endpoint para actualizar la fila
         $.ajax({
             method: 'DELETE', // O el método que corresponda
@@ -202,7 +205,7 @@ $('#depositTable').on('click', '.cancel-btn', function () {
             headers: {
                 Authorization: `Bearer ${config.token}`
             },
-            data: { /* Datos que deseas enviar para actualizar */ },
+            data: {  },
             success: function (response) {
                 // Manejar la respuesta del servidor si es necesario
                 console.log(response);

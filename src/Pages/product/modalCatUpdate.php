@@ -34,7 +34,7 @@
                         </div>
 
                     <!--Aqui se muestran los errores-->
-                    <div class="alert mt-3" role="alert" style="display: none;" id="errorUpdateUser">
+                    <div class="alert mt-3" role="alert" style="display: none;" id="errorUpdateCategory">
                     </div>
                 </div><!-- Modal footer -->
                 <div class="modal-footer">

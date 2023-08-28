@@ -106,12 +106,24 @@ if ($view === 'login') {
                         </div>
                         <a class="nav-link collapsed text-green" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLock" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon text-green"><i class="fas fa-lock"></i></div>
-                            Lock
+                            Bloqueos
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseLock" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/lock/">Administrar Horarios</a>
+                            </nav>
+
+                        </div>
+
+                        <a class="nav-link collapsed text-green" href="#" data-bs-toggle="collapse" data-bs-target="#collapsefactoring" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon text-green"><i class="fas fa-file"></i></div>
+                            Facturación
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsefactoring" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/fact-sale/">Ventas</a>
                             </nav>
 
                         </div>

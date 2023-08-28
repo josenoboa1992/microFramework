@@ -32,6 +32,7 @@
                 <th>ID</th>
                 <th>Descripcion</th>
                 <th>Nombre</th>
+                <th>Empresa</th>
                 <th>Débito</th>
                 <th>Crédito</th>
                 <th>Fecha</th>

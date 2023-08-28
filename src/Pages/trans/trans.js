@@ -73,6 +73,7 @@ let es = {
             { data: 'ID' },
             { data: 'Descripcion' },
             { data: 'Nombre' },
+            { data: 'Empresa' },
             { data: 'Débito' },
             { data: 'Crédito' },
             { data: 'Fecha' },
@@ -83,12 +84,12 @@ let es = {
             let api = this.api();
 
             // Total de débitos
-            let totalDebitos = api.column(3, {page: 'current'}).data().reduce(function (a, b) {
+            let totalDebitos = api.column(4, {page: 'current'}).data().reduce(function (a, b) {
                 return a + parseFloat(b);
             }, 0);
 
             // Total de créditos
-            let totalCreditos = api.column(4, {page: 'current'}).data().reduce(function (a, b) {
+            let totalCreditos = api.column(5, {page: 'current'}).data().reduce(function (a, b) {
                 return a + parseFloat(b);
             }, 0);
 

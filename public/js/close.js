@@ -5,7 +5,7 @@ const axios = require('axios');
 const apiURL = 'http://api.local/blocktime/';
 
 // Tarea programada para restablecer los límites diarios a 0 todos los días a la medianoche
-cron.schedule('9 23 * * *', async () => {
+cron.schedule('13 17 * * *', async () => {
     try {
         // Lógica para consumir la API y restablecer los límites diarios a 0 (pseudocódigo)
         await resetDailyLimitsToZero();
