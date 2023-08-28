@@ -66,7 +66,7 @@ const showLockCategory = () =>{
             {
                 "data": "is_blocked",
                 "render": function(data, type, row) {
-                    let statusText = row.is_blocked === 1 || row.is_blocked === "true" ? "Desactivada" : "Activada";
+                    let statusText = row.is_blocked === 1 || row.is_blocked === "true" ? "Activada" : "Desactivada";
                     return statusText;
                 }
             },
@@ -182,7 +182,7 @@ const showLockProduct = () => {
             {
                 "data": "is_blocked",
                 "render": function(data, type, row) {
-                    let statusText = row.is_blocked === 1 || row.is_blocked === "true" ? "Desactivada" : "Activada";
+                    let statusText = row.is_blocked === 1 || row.is_blocked === "true" ? "Activada" : "Desactivada";
                     return statusText;
                 }
             },

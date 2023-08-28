@@ -9,7 +9,7 @@
             <div class="alert mt-3" role="alert" style="display: none;" id="messageUserDelete">
             </div>
 
-            <button class="btn style-button mb-3" id="btnUserSave"><i class="fa fa-user mr-2"></i>Registrar</button>
+            <button class="btn style-button mb-3" id="btnUserSave"><i class="fa fa-user mr-2"></i> Registrar</button>
             <div class="row">   
                 
                 <div class="col-lg-12 col-sm-12" style="background-color:#fdfdfd; border-radius:5px; box-shadow: 1px 1px 3px;">
