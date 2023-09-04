@@ -55,7 +55,7 @@ const showLockCategory = () =>{
         "language": es,
         'ajax' : {
             "method" : "GET",
-            "url" : `http://api.local/category/`,
+            "url" : `https://api.worldingfoods.com/category/`,
             "headers": {
                 Authorization: `Bearer ${token}`
             }
@@ -103,7 +103,7 @@ const showLockCategory = () =>{
 
         $.ajax({
             type: 'PUT',
-            url: `http://api.local/lock/${is_blocked}/${category_id}`,
+            url: `https://api.worldingfoods.com/lock/${is_blocked}/${category_id}`,
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -170,7 +170,7 @@ const showLockProduct = () => {
         "language": es,
         'ajax': {
             "method": "GET",
-            "url": `http://api.local/product/`,
+            "url": `https://api.worldingfoods.com/product/`,
             "headers": {
                 Authorization: `Bearer ${token}`
             }
@@ -219,7 +219,7 @@ const showLockProduct = () => {
 
         $.ajax({
             type: 'POST',
-            url: `http://api.local/lock/${is_blocked}/${category_id}`,
+            url: `https://api.worldingfoods.com/lock/${is_blocked}/${category_id}`,
             headers: {
                 Authorization: `Bearer ${token}`
             },

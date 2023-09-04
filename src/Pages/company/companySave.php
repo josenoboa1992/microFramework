@@ -45,6 +45,7 @@
                             <option value="registration">Registro</option>
                             <option value="license">Licencia</option>
                             <option value="rnc">RNC</option>
+                            <option value="ced">Cédula</option>
                         </select>
                     </div>
                 </div>
@@ -59,8 +60,8 @@
 
                 <div class="col-lg-4">
                     <div class="form-group">
-                        <label for="representative">Representante</label>
-                        <input type="text" class="form-control" name="representative" id="Company-representative" placeholder="Representante" required>
+                        <label for="representative">Gestor</label>
+                        <input type="text" class="form-control" name="gestor" id="Company-representative" placeholder="Gestor" required>
                     </div>
                 </div>
 
@@ -73,8 +74,8 @@
 
                 <div class="col-lg-4">
                     <div class="form-group">
-                        <label for="employee_count">Números de Empleados</label>
-                        <input type="number" class="form-control" name="employee_count" id="Company-employee-count" placeholder="Número de Empleado" min="0" required>
+                        <label for="employee_count">Cantidad de Empleados</label>
+                        <input type="number" class="form-control" name="employee_count" id="Company-employee-count" placeholder="Cantidad de Empleado" min="0" required>
                     </div>
                 </div>
 

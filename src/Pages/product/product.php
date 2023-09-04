@@ -14,3 +14,8 @@
 <?php require 'modalProductDelete.php';?>
 <?php require 'modalProductUpdate.php';?>
 <br>
+
+<!--Mostrar datos del garnis-->
+
+<?php require 'modalGarnisDelete.php';?>
+<?php require 'modalGarnisUpdate.php';?>

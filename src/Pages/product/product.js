@@ -713,10 +713,10 @@ const showAllGarnish = () => {
             {"data": "Fecha"},
             {
                 "defaultContent": `
-          <button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalUserDelete'>
+          <button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalGarnisDelete'>
             <i class='fa fa-trash' aria-hidden='true'></i>
           </button>
-          <button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#updateUser'>
+          <button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#updateGarnish'>
             <i class='fa fa-edit' aria-hidden='true'></i>
           </button>
        
@@ -781,3 +781,62 @@ const clearGarnish=()=>{
     garName.value='';
     garPreci.value='';
 }
+
+
+$("#garTable tbody").on("click", ".delete", async function () {
+    let row = $(this).closest("tr");
+    let columns = row.find("td");
+    let ID = $(columns[0]).text();
+    let name = $(columns[1]).text();
+
+    let message = "¿Realmente desea eliminar la guarnición " + name + "?";
+    document.getElementById('textGarnishDelete').textContent = message;
+
+    let btnDelete = document.getElementById('btnGarnisDelete');
+    btnDelete.addEventListener('click', async () => {
+        try {
+            const response = await fetch(`${config.API}garnish/${ID}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${config.token}`
+                },
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                document.getElementById('btnCloseGarnisDelete').click();
+
+                if (responseData.status === "ok") {
+                    reloadGarTable()
+                    error("errorShowGarnish", "alert-success", responseData.message);
+                } else {
+                    reloadGarTable()
+                    error("errorShowGarnish", "alert-danger", responseData.message || "Algo salió mal");
+                }
+            } else {
+                throw new Error("Error en la solicitud DELETE");
+            }
+        } catch (error) {
+            document.getElementById('btnCloseGarnisDelete').click();
+            error("errorShowGarnish", "alert-danger", error.message || "Error en la solicitud DELETE");
+        }
+    });
+});
+
+$("#garTable tbody").on("click", ".edit", async function () {
+    let row = $(this).closest("tr");
+    let columns = row.find("td");
+
+    let ID = $(columns[0]).text();
+    let name_garnish = $(columns[2]).text();
+    let name = $(columns[3]).text();
+    let price = name.replace(/\$RD$/, "");
+    console.log(price)
+    let priced = parseFloat(price);
+    $('#productUpdateGarnish').val(ID);
+    $('#nameUpdateGarnish').val(name_garnish);
+    $('#priceUpdateGarnish').val(priced);
+
+
+});

@@ -71,9 +71,9 @@ let es = {
 /********************Mostrar datos de la tabla usuarios*************************/
 
 const showAllUser = () =>{
-showSpinner();
     userTable = $('#userTable').DataTable({
         "rowCallback":function (row,data,index){
+            console.log(2)
             // Aplicar estilo a las filas
             $(row).css("font-size", "12px"); // Ajusta el tamaño de fuente según tus necesidades
 
@@ -92,7 +92,7 @@ showSpinner();
                     Authorization: `Bearer ${config.token}`
                 },
             "drawCallback": function (settings) {
-                hideSpinner();
+                console.log(3)
             },
         },
         'columns' :[
@@ -148,9 +148,8 @@ showSpinner();
         ]
     });
 setTimeout(()=>{
-    hideSpinner();
+
 },2000)
-    console.log(userTable)
     getDataUserDelete();
 }
 
@@ -158,7 +157,6 @@ setTimeout(()=>{
 const reloadUserTable = () => {
     userTable.ajax.reload();
 }
-
 /*********Función para habilitar el formulario de usuario********/
 const enableUserForm = () => {
     document.getElementById('name').disabled=false;
@@ -427,7 +425,6 @@ document.getElementById('btnUserClear').addEventListener('click', e => {
 // })
 
 
-
 /**********************************Registrar usuario*****************************************/
 let frmsave=document.querySelector('#frmSaveUser');
     frmsave.addEventListener('submit', e => {
@@ -458,7 +455,6 @@ let frmsave=document.querySelector('#frmSaveUser');
                error("errorSaveUser","alert-danger" , "Algo salio mal");
            }
        } catch (error) {
-           console.log(error);
        }finally {
            hideSpinner();
        }
@@ -487,7 +483,6 @@ function deleteUser(ID) {
         let body= {
             IDToken: document.getElementById('idDelete').value
         };
-        console.log(body);
 
         (async function () {
             try {
@@ -510,7 +505,6 @@ function deleteUser(ID) {
                     error("messageUserDelete","alert-danger" , "Algo salió mal");
                 }
             } catch (error) {
-                console.log(error);
             }
         })();
     });
@@ -610,7 +604,6 @@ const lastday=document.querySelector('.lastUpdate');
 const rol=document.querySelector('#detailRol');
 const detailLastName=document.querySelector('#detailLastName');
 const location=document.querySelector('#location');
-
 
 async function alluser(id) {
     try {

@@ -53,7 +53,7 @@ document.getElementById("frmLogin").addEventListener("submit" , e => {
                 error("error","alert-danger","Algo salio mal");
             }
         } catch (e) {
-           error("error","alert-danger","API_ERROR");
+           error("error","alert-success","waiting for connection..., Intente nuevamente");
             console.log(e);
         }finally {
             hideSpinner(); // Ocultar el spinner después de la petición fetch

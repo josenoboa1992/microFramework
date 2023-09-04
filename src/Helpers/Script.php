@@ -76,6 +76,11 @@ class Script
                 echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-ui.min.js'></script>";
                 echo "<script src='" . UrlBase::urlBase. "/src/Pages/fact-sale/fact-sale.js' type='module'></script>";
                 self::scriptDatatable();
+            }else if ($params[0]=="admin-user") {
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-3.6.0.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-ui.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/src/Pages/admin-user/admin-user.js' type='module'></script>";
+                self::scriptDatatable();
             }
         }
     }

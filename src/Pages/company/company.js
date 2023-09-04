@@ -59,6 +59,11 @@ let es = {
  *                                       Functions                                        *
  ******************************************************************************************/
 
+
+
+
+
+
 /********************Mostrar datos de la tabla usuarios*************************/
 const showAllCompany = () =>{
 
@@ -95,9 +100,8 @@ const showAllCompany = () =>{
             {"data" : "Estado"},
 
 
-            {"defaultContent" : "<button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalUserDelete'><i class='fa fa-trash' aria-hidden='true'></i></button>" +
-                    "<button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#updateUser'><i class='fa fa-edit' aria-hidden='true'></i></button>" +
-                    "<button type='button' class='detail' data-bs-toggle='modal' data-bs-target='#detailsUser'><i class='fa fa-eye' aria-hidden='true'></i></button>"
+            {"defaultContent" : "<button type='button' class='delete' data-bs-toggle='modal' data-bs-target='#modalCompanyDelete'><i class='fa fa-trash' aria-hidden='true'></i></button>" +
+                    "<button type='button' class='edit' data-bs-toggle='modal' data-bs-target='#updateUser'><i class='fa fa-edit' aria-hidden='true'></i></button>"
             }
         ],
         "columnDefs": [   // atributo para ocultar columna
@@ -275,3 +279,106 @@ formCompany.addEventListener('submit', async (e) => {
         error('errorSaveCompany','alert-danger',response.message);
     }
 });
+
+
+$("#companyTable").on("click", "button.delete", async function () {
+    let data = companyTabledo.row($(this).parents("tr")).data();
+    console.log(data);
+
+    if (data && data.hasOwnProperty('ID')) {
+        let ID = data['ID'];
+        let name = data['Nombre'];
+        console.log(ID);
+
+        let message = "¿Realmente desea eliminar la empresa " + name + "?";
+        document.getElementById('textCompanyDelete').textContent = message;
+
+        let btnDelete = document.getElementById('btnCompanyDelete');
+        btnDelete.addEventListener('click', async () => {
+            try {
+                let request = await fetch(`${config.API}company/${ID}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${config.token}`
+                    },
+                    method: 'DELETE'
+                });
+                let response = await request.json();
+
+                if (response.status == "error") {
+                    document.getElementById('btnCloseCompanyDelete').click();
+                    error("messageCompanyDelete","alert-danger" , response.message);
+                } else if (response.status == "ok") {
+                    reloadCompanyTable()
+                    document.getElementById('btnCloseCompanyDelete').click();
+                    error("messageCompanyDelete","alert-success" , response.message);
+                } else {
+                    document.getElementById('btnCloseCompanyDelete').click();
+                    error("messageCompanyDelete","alert-danger" , "Algo salió mal");
+                }
+            } catch (e) {
+                // Ocurrió un error durante la solicitud
+                document.getElementById('btnCloseCompanyDelete').click();
+                error("messageCompanyDelete", "alert-danger", "Error en la solicitud DELETE");
+            }
+        });
+    } else {
+        console.error("El objeto 'data' no está definido o no contiene la propiedad 'ID'.");
+    }
+});
+
+$("#companyTable").on("click", "button.edit", async function () {
+    let data = companyTabledo.row($(this).parents("tr")).data();
+    console.log(data);
+    const companyId =data['ID'];
+   $('#nameUpdatecompany').val(data['Nombre'])
+   $('#CompanyUpdateaddress').val(data['Dirección'])
+   $('#CompanyUpdate-type-document').val(data['Tipo_Documento'])
+   $('#Company-update-document').val(data['Documento'])
+   $('#Company-update-representative').val(data['Representante'])
+   $('#Company-update-email').val(data['email'])
+   $('#Company-update-employee-count').val(data['Cantidad_de_empleado'])
+   $('#CompanyUpdatephone').val(data['Contacto'])
+    let btnUpdate=document.querySelector('#btnUpdateCompanySucess');
+   btnUpdate.addEventListener('click',e=>{
+       console.log([companyId])
+       e.preventDefault();
+       updateCompanyById(companyId);
+   })
+
+});
+
+
+/**************Registrar empresa ************************/
+// Función para actualizar la empresa por su ID
+async function updateCompanyById(companyId) {
+    config.validateToken();
+
+    const body = {};
+    console.log(body)
+    const formData = new FormData(document.querySelector('#frmUpdateCompany'));
+    formData.forEach((value, key) => (body[key] = value));
+
+    try {
+        console.log(companyId)
+        const request = await fetch(`${config.API}company/${companyId}`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${config.token}`,
+            },
+            method: "PUT",
+            body: JSON.stringify(body),
+        });
+
+        const response = await request.json();
+        if (response.status == 'ok') {
+            reloadCompanyTable();
+            error('errorUpdateCompany', 'alert-success', response.message);
+        } else if (response.status == "error") {
+            error("errorUpdateCompany", 'alert-danger', response.message);
+        }
+    } catch (e) {
+        console.log(e);
+        error('errorUpdateCompany', 'alert-danger', "Hubo un error al actualizar la empresa.");
+    }
+}

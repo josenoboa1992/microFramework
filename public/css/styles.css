@@ -11635,3 +11635,15 @@ button.detail-sale:hover{
 }
 /* end .slideThree */
 
+.edit-btn{
+  background: green;
+  border: none;
+  color: #FFF;
+  padding: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.edit-btn i{
+  margin-right: 5px;
+}
