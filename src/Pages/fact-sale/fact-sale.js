@@ -95,32 +95,58 @@ $(document).ready(function(){
         dataTable.ajax.url(url).load();
     });
 
-    $('#btn_generate_pdf').click(function () {
+    $('#generar_PDF').click(function (e) {
+        e.preventDefault();
         let fechaDesde = $('#buscar_inicio_sale').val();
         let fechaHasta = $('#buscar_fin_sale').val();
 
-        $.ajax({
+        fetch('https://api.worldingfoods.com/pdfsale/' + fechaDesde + '/' + fechaHasta, {
             method: 'GET',
-            url: 'report.php?generate_pdf=true&fechaDesde=' + fechaDesde + '&fechaHasta=' + fechaHasta,
             headers: {
                 Authorization: `Bearer ${token}`
-            },
-            success: function (response) {
-                console.log(response);
-                if (response.success) {
-                    // Maneja la respuesta exitosa
-                    alert('Informe PDF generado y guardado: ' + response.pdfFilename);
-                } else {
-                    // Maneja el error
-                    alert('Error al generar el informe PDF.');
-                }
-            },
-            error: function (error) {
-                console.error(error);
-                alert('Error al generar el informe PDF.');
             }
-        });
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('La solicitud no fue exitosa');
+                }
+                return response.blob();
+            })
+            .then(pdfBlob => {
+                // Aquí tienes el PDF en forma de blob
+                // Continúa con los siguientes pasos para imprimirlo o descargarlo
+                var blobUrl = window.URL.createObjectURL(pdfBlob);
+
+                // Crear un elemento de enlace (a) para iniciar la descarga
+                var a = document.createElement('a');
+                a.href = blobUrl;
+                a.download = 'reporte-venta.pdf'; // Establecer el nombre del archivo
+
+                // Simular un clic en el enlace para iniciar la descarga
+                a.click();
+
+                // Liberar la URL del Blob
+                window.URL.revokeObjectURL(blobUrl);
+
+                // Mostrar un mensaje de éxito
+                Swal.fire({
+                    icon: 'success',
+                    title: 'PDF generado y descargado correctamente',
+                    text: 'El reporte PDF se generó y descargó correctamente.'
+                });
+            })
+            .catch(error => {
+                console.error('Error al obtener el PDF desde la API:', error);
+                // Manejar errores aquí
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al generar o descargar el PDF',
+                    text: 'Ocurrió un error al generar o descargar el informe PDF.'
+                });
+            });
     });
+
+
 
     $("#btnLimpiar_sale").click(function (event) {
         $("#formFechaSale")[0].reset();

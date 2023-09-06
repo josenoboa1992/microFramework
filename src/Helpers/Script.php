@@ -81,6 +81,16 @@ class Script
                 echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-ui.min.js'></script>";
                 echo "<script src='" . UrlBase::urlBase. "/src/Pages/admin-user/admin-user.js' type='module'></script>";
                 self::scriptDatatable();
+            }else if ($params[0]=="fact-company") {
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-3.6.0.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-ui.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/src/Pages/fact-company/fact-company.js' type='module'></script>";
+                self::scriptDatatable();
+            }else if ($params[0]=="detail-company") {
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-3.6.0.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-ui.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/src/Pages/detail-company/detail-company.js' type='module'></script>";
+                self::scriptDatatable();
             }
         }
     }

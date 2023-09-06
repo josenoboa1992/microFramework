@@ -22,7 +22,7 @@
                         <input type='button' id="btnLimpiar_sale" value="Limpiar" class="btn btn-out-danger btn-sm">
                     </td>
                     <td>
-                        <button id="generar PDF"  class="btn form-file-button btn-sm">  <i class="fas fa-file-pdf text-red"></i> PDF</button>
+                        <button id="generar_PDF"  class="btn form-file-button btn-sm">  <i class="fas fa-file-pdf text-red"></i> PDF</button>
                     </td>
                 </tr>
             </table>

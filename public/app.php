@@ -124,6 +124,7 @@ if ($view === 'login') {
                         <div class="collapse" id="collapsefactoring" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/fact-sale/">Ventas</a>
+                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/fact-company/">Empresas</a>
                             </nav>
 
                         </div>
