@@ -4325,6 +4325,9 @@ textarea.form-control-lg {
   flex: 1 1 auto;
   padding: 1rem 1rem;
 }
+input::placeholder,select::placeholder,textarea::placeholder{
+  color: #c2c2c2 !important;
+}
 
 .card-title {
   margin-bottom: 0.5rem;

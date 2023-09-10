@@ -24,6 +24,8 @@
                 <th>ID</th>
                 <th>Nombre_Empresa</th>
                 <th>Usuario</th>
+                <th>Nombre</th>
+                <th>Documento</th>
                 <th>Balance Disponible</th>
                 <th>Balance Pendiente</th>
 

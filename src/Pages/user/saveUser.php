@@ -3,10 +3,11 @@
     <div class="card-header color-card text-white">
         <strong style=" font-size:20px;">Registrar Nuevo Usuario</strong>
     </div>
-
+<?php $user_id=$_SESSION['user_id'];?>
     <form id="frmSaveUser">
         <div class="card-body">
             <div class="row">
+                <input type="hidden" id="user_id" value="<?php echo $user_id;?>">
 
                 <div class="col-lg-4">
                     <div class="form-group">

@@ -21,16 +21,21 @@ class Auth{
     }
 
     /*******************Validar si el usuario tiene privilegios*************************/
-     public static function userPrivilege(){
-         if (isset($_GET['route'])) {
-             $route = explode("/",$_GET['route']);
-             $privilege = $_SESSION['user']['rol'];
-            
-             if ($route[0] == "user" && $privilege > 1) {
-                 echo "<script>window.location.href='".UrlBase::urlBase."main/'</script>";
-             }else if($route[0] == "group" && $privilege > 2){
-                 echo "<script>window.location.href='".UrlBase::urlBase."main/'</script>";
-             }
-         }
-     }
+    public static function userPrivilege(){
+        $privilege = $_SESSION['rol'];
+
+        if ($privilege > 1) {
+            echo "<script>window.location.href='".UrlBase::urlBase."main/'</script>";
+        }
+
+        if (isset($_GET['route'])) {
+            $route = explode("/", $_GET['route']);
+            if ($route[0] == "user" && $privilege > 1) {
+                echo "<script>window.location.href='".UrlBase::urlBase."main/'</script>";
+            } else if($route[0] == "group" && $privilege > 2) {
+                echo "<script>window.location.href='".UrlBase::urlBase."main/'</script>";
+            }
+        }
+    }
+
 }

@@ -94,15 +94,24 @@ const showAllDeposit = () =>{
             {
                 "data": "Estado",
                 "render": function (data, type, row) {
-                    if (data === 'approved') {
-                        return '<span class="badge bg-success">' + data + '</span>';
-                    } else if (data === 'rejected') {
-                        return '<span class="badge bg-danger">' + data + '</span>';
+                    const traducciones = {
+                        'approved': 'Aprobado',
+                        'rejected': 'Rechazado',
+                        'pending': 'Pendiente',
+                    };
+
+                    const estadoTraducido = traducciones[data] || data;
+
+                    if (estadoTraducido === 'Aprobado') {
+                        return '<span class="badge bg-success">' + estadoTraducido + '</span>';
+                    } else if (estadoTraducido === 'Rechazado') {
+                        return '<span class="badge bg-danger">' + estadoTraducido + '</span>';
                     } else {
-                        return '<span class="badge bg-warning text-dark">' + data + '</span>';
+                        return '<span class="badge bg-warning text-dark">' + estadoTraducido + '</span>';
                     }
                 }
             },
+            {"data":"Fecha"},
             {
                 "data": "Estado",
                 "render": function (data, type, row) {
@@ -355,3 +364,10 @@ formDeposit.addEventListener('submit', async (e) => {
         document.getElementById(id).classList.remove(alert);
     }, 4000);
 }
+
+document.getElementById('monto-deposit').addEventListener('input', function() {
+    this.value = this.value.replace(/[^\d.]/g, ''); // Elimina cualquier caracter que no sea un dígito o un punto
+    if(this.value.split('.').length > 2) { // Asegura que solo haya un punto decimal
+        this.value = this.value.slice(0, this.value.lastIndexOf('.'));
+    }
+});

@@ -21,15 +21,15 @@
                                 <tr>
                                     <th scope="col">Cod</th>
                                     <th scope="col">Nombre</th>
-                                    <th scope="col">Direccion</th>
+                                    <th scope="col">Dirección</th>
                                     <th scope="col">Tipo Documento</th>
                                     <th scope="col">Documento</th>
                                     <th scope="col">Representante</th>
-                                    <th scope="col">CORREO</th>
+                                    <th scope="col">Correo</th>
                                     <th scope="col">Cantidad Empleado</th>
-                                    <th scope="col">TELÉFONO</th>
-                                    <th scope="col">ESTADO</th>
-                                    <th scope="col">ACCIONES</th>
+                                    <th scope="col">Teléfono</th>
+                                    <th scope="col">Estados</th>
+                                    <th scope="col">Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody id="companyTableBody">

@@ -20,7 +20,7 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="address">Monto</label>
-                        <input type="number" class="form-control" name="amount" id="monto-deposit" placeholder="0.00" min="0" required>
+                        <input type="text" class="form-control" name="amount" id="monto-deposit" placeholder="0.00" min="0" required pattern="\d+(\.\d{2})?" title="number">
                     </div>
                 </div>
 

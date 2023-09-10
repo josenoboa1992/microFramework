@@ -91,6 +91,11 @@ class Script
                 echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-ui.min.js'></script>";
                 echo "<script src='" . UrlBase::urlBase. "/src/Pages/detail-company/detail-company.js' type='module'></script>";
                 self::scriptDatatable();
+            }else if ($params[0]=="main") {
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-3.6.0.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-ui.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/src/Pages/main/main.js' type='module'></script>";
+                self::scriptDatatable();
             }
         }
     }

@@ -1,4 +1,4 @@
-
+<?php \Core\Auth::userPrivilege(); ?>
 <main>
     <div class="card container-transaction p-5">
         <div class="alert bg-white p-3 mt-3" role="alert">
@@ -30,7 +30,7 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Descripcion</th>
+                <th>Descripción</th>
                 <th>Nombre</th>
                 <th>Empresa</th>
                 <th>Débito</th>

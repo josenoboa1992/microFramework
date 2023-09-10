@@ -49,38 +49,42 @@ const clearFormChangePassword = () => {
 /***************************************************************************************************************
 *                                     Actualizar la contraseña del usuario                                     *
 ****************************************************************************************************************/
-document.getElementById("frmChangePassword").addEventListener("submit" , e => {
+document.getElementById("frmChangePassword").addEventListener("submit", e => {
     e.preventDefault();
     config.validateToken();
-    
+
     (async function () {
-        try {           
+        try {
             let body = {
                 "oldPassword": document.getElementById("oldPassword").value,
                 "newPassword": document.getElementById("newPassword").value,
-                "confirmNewPassword": document.getElementById("confirmNewPassword").value                
-            };            
-           
-            let request = await fetch(`${config.API}user/password/`, {
+                "confirmNewPassword": document.getElementById("confirmNewPassword").value
+            };
+
+            const request = await fetch(`https://api.worldingfoods.com/newpass/password/`, {
                 headers: {
-                        "Content-Type": "application/json",
-                         Authorization: `Bearer ${config.token}`
-                }, 
-                method: 'PATCH', body: JSON.stringify(body)})
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${config.token}`
+                },
+                method: 'PUT',
+                body: JSON.stringify(body)
+            });
+
             let response = await request.json();
-            
+
+
             if (response.status == "error") {
-               error("errorChangePassword","alert-danger",response.message);                              
+                error("errorChangePassword", "alert-danger", response.message);
             } else if (response.status == "ok") {
-                error("errorChangePassword","alert-success",response.message); 
+                error("errorChangePassword", "alert-success", response.message);
                 clearFormChangePassword();
             } else {
-                error("errorChangePassword","alert-danger","Algo salio mal");  
+                error("errorChangePassword", "alert-danger", "Algo salió mal");
             }
-            
+
         } catch (error) {
-            console.log(error);
+            console.error('Error al realizar la solicitud:', error);
+            error("errorChangePassword", "alert-danger", "Error al realizar la solicitud");
         }
-    })()
-    
-})
+    })();
+});

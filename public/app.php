@@ -42,37 +42,40 @@ if ($view === 'login') {
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-
+                        <?php if ($_SESSION['rol']==1){ ;?>
                         <a class="nav-link collapsed text-green" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEmpresa" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon text-green"><i class="fas fa-building"></i></div>
-                            Empresa
+                            Empresas
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
+                        <?php } ;?>
                         <div class="collapse" id="collapseEmpresa" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/company/">Administrar Empresa</a>
+                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/company/">Administrar Empresas</a>
                             </nav>
                         </div>
-
+                        <?php if ($_SESSION['rol']==1){ ;?>
                         <a class="nav-link collapsed text-green" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-user text-green"></i></div>
-                            Usuario
+                            Usuarios
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
+                        <?php } ;?>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/user/">Administrar usuario</a>
+                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/user/">Administrar usuarios</a>
                             </nav>
                         </div>
-
+                        <?php if ($_SESSION['rol']==1 || $_SESSION['rol']==2) { ;?>
                          <a class="nav-link collapsed text-green" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProduct" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon text-green"><i class="fas fa-shopping-cart"></i></div>
-                            Producto
+                            Productos
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
+                        <?php } ;?>
                         <div class="collapse" id="collapseProduct" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/product/">Administrar producto</a>
+                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/product/">Administrar productos</a>
                             </nav>
                         </div>
 
@@ -83,15 +86,17 @@ if ($view === 'login') {
                         </a>
                         <div class="collapse" id="collapseOrder" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/order/">Administrar Orden</a>
+                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/order/">Administrar Ordenes</a>
                             </nav>
                         </div>
-
+                        <?php if ($_SESSION['rol']==1 || $_SESSION['rol']==2) { ;?>
                         <a class="nav-link collapsed text-green" href="#" data-bs-toggle="collapse" data-bs-target="#collapseFinanza" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon text-green"><i class="fas fa-coins"></i></div>
                             Finanzas
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
+
+                        <?php };?>
                         <div class="collapse" id="collapseFinanza" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/trans/">Transacciones</a>
@@ -104,11 +109,14 @@ if ($view === 'login') {
                                 <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/sale/">Ventas</a>
                             </nav>
                         </div>
+                        <?php if ($_SESSION['rol']==1 || $_SESSION['rol']==2) { ;?>
                         <a class="nav-link collapsed text-green" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLock" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon text-green"><i class="fas fa-lock"></i></div>
                             Bloqueos
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
+
+                        <?php } ;?>
                         <div class="collapse" id="collapseLock" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/lock/">Administrar Horarios</a>
@@ -128,12 +136,13 @@ if ($view === 'login') {
                             </nav>
 
                         </div>
-
+                        <?php if ($_SESSION['rol']==1 ) { ;?>
                         <a class="nav-link collapsed text-green" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRole" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon text-green"><i class="fas fa-key"></i></div>
-                           Admin. Permisos.
+                           Permisos
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
+                        <?php }; ?>
                         <div class="collapse" id="collapseRole" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/admin-user/">Roles</a>

@@ -100,7 +100,7 @@ const showLockCategory = () =>{
         let checkbox = $(this);
         let category_id = checkbox.data('category-id');
         let is_blocked = checkbox.prop('checked');
-
+        console.log([is_blocked,category_id])
         $.ajax({
             type: 'PUT',
             url: `https://api.worldingfoods.com/lock/${is_blocked}/${category_id}`,
@@ -194,8 +194,8 @@ const showLockProduct = () => {
                     let checked = isBlocked ? "checked" : "";
 
                     return "<div class='slideThree'>" +
-                        "<input type='checkbox' value='None' id='slideThree_" + data + "' name='check' " + checked + " data-category-id='" + data + "' />" +
-                        "<label for='slideThree_" + data + "'></label>" +
+                        "<input type='checkbox' value='None' id='slideThreep" + data + "' name='check' " + checked + " data-category-id='" + data + "' />" +
+                        "<label for='slideThreep" + data + "'></label>" +
                         "</div>";
                 }
 
@@ -215,7 +215,7 @@ const showLockProduct = () => {
         let category_id = checkbox.data('category-id');
         let is_blocked = checkbox.prop('checked');
 
-        console.log(category_id)
+
 
         $.ajax({
             type: 'POST',

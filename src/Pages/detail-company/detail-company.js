@@ -70,6 +70,8 @@ let dataTable = $('#Tabla_fact_companyClient').DataTable({
         { data: "ID" },
         { data: "Nombre_Empresa" },
         { data: "Usuario" },
+        { data: "Nombre" },
+        { data: "Documento" },
         { data: "Balance_Disponible" },
         { data: "Balance_Pendiente" },
 

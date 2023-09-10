@@ -26,7 +26,8 @@
                             <th scope="col">Monto</th>
                             <th scope="col">Descripción</th>
                             <th scope="col">Estado</th>
-                            <th scope="col">ACCIONES</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                         </thead>
                         <tbody id="depositTableBody">
