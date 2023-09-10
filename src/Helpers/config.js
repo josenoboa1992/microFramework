@@ -1,6 +1,6 @@
 const config = {};
 
-config.API = "https://api.worldingfoods.com/";
+config.API = "http://api.local/";
 
 config.token = localStorage.getItem("token");
 

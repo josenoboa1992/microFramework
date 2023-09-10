@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function orderProcess() {
     try {
-        const request = await fetch(`https://api.worldingfoods.com/order/process`, {
+        const request = await fetch(`http://api.local/order/process`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
@@ -170,7 +170,7 @@ async function orderProcess() {
 
 async function orderPending() {
     try {
-        const request = await fetch(`https://api.worldingfoods.com/order/pending`, {
+        const request = await fetch(`http://api.local/order/pending`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
@@ -298,7 +298,7 @@ async function orderPending() {
 
 async function orderReady() {
     try {
-        const request = await fetch(`https://api.worldingfoods.com/order/ready`, {
+        const request = await fetch(`http://api.local/order/ready`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
@@ -430,7 +430,7 @@ async function orderReady() {
 
 async function orderCompleted() {
     try {
-        const request = await fetch(`https://api.worldingfoods.com/order/completed`, {
+        const request = await fetch(`http://api.local/order/completed`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
@@ -650,7 +650,7 @@ function updateStatus(orderId, newStatus) {
 
     // Realizar la solicitud AJAX al endpoint updateStatus con jQuery
     $.ajax({
-        url: `https://api.worldingfoods.com/order/${newStatus}/${orderId}`,
+        url: `http://api.local/order/${newStatus}/${orderId}`,
         type: 'PUT',
         headers: {
             'Content-Type': 'application/json',

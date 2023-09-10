@@ -2,7 +2,7 @@ const cron = require('node-cron');
 const axios = require('axios');
 
 // URL de la API para actualizar los límites diarios
-const apiURL = 'https://api.worldingfoods.com/blocktime/';
+const apiURL = 'http://api.local/blocktime/';
 
 // Tarea programada para restablecer los límites diarios a 0 todos los días a la medianoche
 cron.schedule('13 17 * * *', async () => {

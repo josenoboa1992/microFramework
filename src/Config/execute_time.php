@@ -1,5 +1,5 @@
 <?php
-$apiUrl = "https://api.worldingfoods.com/blocktime/";
+$apiUrl = "http://api.local/blocktime/";
 
 // Configura la solicitud cURL
 $ch = curl_init($apiUrl);

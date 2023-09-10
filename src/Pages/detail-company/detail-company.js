@@ -51,7 +51,7 @@ let dataTable = $('#Tabla_fact_companyClient').DataTable({
     "order": [[0, "desc"]],
     'ajax': {
         method: "GET",
-        url: `https://api.worldingfoods.com/detail-company/${id}`,
+        url: `http://api.local/detail-company/${id}`,
         headers: {
             Authorization: `Bearer ${token}`
         },
@@ -81,7 +81,7 @@ let dataTable = $('#Tabla_fact_companyClient').DataTable({
 $('#generar_PDF_companyCliente').click(function (e) {
     e.preventDefault();
 
-    fetch(`https://api.worldingfoods.com/pdfclient/${id}`, {
+    fetch(`http://api.local/pdfclient/${id}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${token}`

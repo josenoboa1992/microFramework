@@ -54,7 +54,7 @@ $(document).ready(function(){
         "order": [[0, "desc"]],
         'ajax': {
             method: "GET",
-            url: "https://api.worldingfoods.com/resumetrans/",
+            url: "http://api.local/resumetrans/",
             headers: {
                 Authorization: `Bearer ${token}`
             },

@@ -53,7 +53,7 @@ $(document).ready(function(){
         "order": [[0, "desc"]],
         'ajax': {
             method: "GET",
-            url: "https://api.worldingfoods.com/fact-sale/",
+            url: "http://api.local/fact-sale/",
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -89,7 +89,7 @@ $(document).ready(function(){
     $('#btn_search_sale').click(function () {
         let fechaDesde = $('#buscar_inicio_sale').val();
         let fechaHasta = $('#buscar_fin_sale').val();
-        let url = `https://api.worldingfoods.com/fact-sale/${fechaDesde}/${fechaHasta}`;
+        let url = `http://api.local/fact-sale/${fechaDesde}/${fechaHasta}`;
 
         // Actualiza la URL del objeto DataTable
         dataTable.ajax.url(url).load();
@@ -100,7 +100,7 @@ $(document).ready(function(){
         let fechaDesde = $('#buscar_inicio_sale').val();
         let fechaHasta = $('#buscar_fin_sale').val();
 
-        fetch('https://api.worldingfoods.com/pdfsale/' + fechaDesde + '/' + fechaHasta, {
+        fetch('http://api.local/pdfsale/' + fechaDesde + '/' + fechaHasta, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${token}`
@@ -150,6 +150,6 @@ $(document).ready(function(){
 
     $("#btnLimpiar_sale").click(function (event) {
         $("#formFechaSale")[0].reset();
-        dataTable.ajax.url("https://api.worldingfoods.com/fact-sale/").load(); // Carga todos los datos
+        dataTable.ajax.url("http://api.local/fact-sale/").load(); // Carga todos los datos
     });
 });
