@@ -21,7 +21,7 @@
 
         <div class="card text-green">
             <div class="card-body">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-shopping-cart"></i>
                 <div class="saving">
                     <p >Ordenes completadas</p>
                     <h5 class=""> 0</h5>
