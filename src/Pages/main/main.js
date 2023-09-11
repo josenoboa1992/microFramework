@@ -60,7 +60,7 @@ $(document).ready(function(){
         "order": [[0, "desc"]],
         'ajax': {
             method: "GET",
-            url: "https://api.worldingfoods.com/resumetrans/",
+            url: "http://api.local/resumetrans/",
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -89,7 +89,7 @@ function saletoday() {
 
         (async function () {
             try {
-                let request = await fetch(`https://api.worldingfoods.com/saletoday/`, {
+                let request = await fetch(`http://api.local/saletoday/`, {
                     headers: {"Content-Type":"application/json" , Authorization: `Bearer ${token}`},
                     method: 'get',
                 });
@@ -123,7 +123,7 @@ function countsale() {
 
     (async function () {
         try {
-            let request = await fetch(`https://api.worldingfoods.com/countsale/`, {
+            let request = await fetch(`http://api.local/countsale/`, {
                 headers: {"Content-Type":"application/json" , Authorization: `Bearer ${token}`},
                 method: 'get',
             });
@@ -158,7 +158,7 @@ function countcompany() {
 
     (async function () {
         try {
-            let request = await fetch(`https://api.worldingfoods.com/countcompany/`, {
+            let request = await fetch(`http://api.local/countcompany/`, {
                 headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`},
                 method: 'get',
             });
@@ -190,7 +190,7 @@ function countClient() {
 
     (async function () {
         try {
-            let request = await fetch(`https://api.worldingfoods.com/countclient/`, {
+            let request = await fetch(`http://api.local/countclient/`, {
                 headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`},
                 method: 'get',
             });
