@@ -1,4 +1,4 @@
-<?php \Core\Auth::userPrivilege(); ?>
+
 <div class="card m-3" style="border:1px solid gray; box-shadow: 1px 2px 5px;">
 
     <div class="card-header color-card text-gray">

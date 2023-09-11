@@ -61,7 +61,7 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="representative">Gestor</label>
-                        <input type="text" class="form-control" name="gestor" id="Company-representative" placeholder="Gestor" required>
+                        <input type="text" class="form-control" name="representative" id="Company-representative" placeholder="Gestor" required>
                     </div>
                 </div>
 

@@ -1,4 +1,8 @@
-
+<?php
+use Config\UrlBase;
+if ($_SESSION['rol']==1 ) {
+    header("Location: " . UrlBase::urlBase . "main/");
+?>
 <div class="card mt-3" style="background-color:#fdfdfd; border-radius:5px; box-shadow: 1px 1px 3px; display: none" id="lock-table-product">
 
     <div class="card-header text-gray fw-bold">
@@ -36,3 +40,4 @@
     </div>
 
 </div>
+<?php } ;  ?>

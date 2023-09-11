@@ -1,6 +1,12 @@
 
-const token = localStorage.getItem("token");
 
+const token = localStorage.getItem("token");
+document.addEventListener('DOMContentLoaded',()=>{
+    saletoday();
+    countsale();
+    countcompany();
+    countClient();
+})
 $(document).ready(function(){
 
     // Datapicker
@@ -54,7 +60,7 @@ $(document).ready(function(){
         "order": [[0, "desc"]],
         'ajax': {
             method: "GET",
-            url: "http://api.local/resumetrans/",
+            url: "https://api.worldingfoods.com/resumetrans/",
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -77,3 +83,136 @@ $(document).ready(function(){
         }
     });
 });
+
+let sale=document.getElementById('saletoday');
+function saletoday() {
+
+        (async function () {
+            try {
+                let request = await fetch(`https://api.worldingfoods.com/saletoday/`, {
+                    headers: {"Content-Type":"application/json" , Authorization: `Bearer ${token}`},
+                    method: 'get',
+                });
+
+                let response = await request.json();
+
+                let monto_venta=response.data[0].total_ventas;
+                let numeroDecimal = parseFloat(monto_venta);
+                sale.textContent='RD$ ' + numeroDecimal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
+                if (response.status == "error") {
+                    document.getElementById('btnCloseUserDelete').click();
+                    error("messageUserDelete","alert-danger" , response.message);
+                } else if (response.status == "ok") {
+                    reloadUserTable();
+                    document.getElementById('btnCloseUserDelete').click();
+                    error("messageUserDelete","alert-success" , response.message);
+                } else {
+                    document.getElementById('btnCloseUserDelete').click();
+                    error("messageUserDelete","alert-danger" , "Algo salió mal");
+                }
+            } catch (error) {
+            }
+        })();
+
+}
+
+
+let sale_cantidad=document.getElementById('countsale');
+function countsale() {
+
+    (async function () {
+        try {
+            let request = await fetch(`https://api.worldingfoods.com/countsale/`, {
+                headers: {"Content-Type":"application/json" , Authorization: `Bearer ${token}`},
+                method: 'get',
+            });
+
+            let response = await request.json();
+
+            let monto_count=response.data[0].cantidad_ordenes_completadas;
+
+            sale_cantidad.textContent=monto_count;
+
+            if (response.status == "error") {
+                document.getElementById('btnCloseUserDelete').click();
+                error("messageUserDelete","alert-danger" , response.message);
+            } else if (response.status == "ok") {
+                reloadUserTable();
+                document.getElementById('btnCloseUserDelete').click();
+                error("messageUserDelete","alert-success" , response.message);
+            } else {
+                document.getElementById('btnCloseUserDelete').click();
+                error("messageUserDelete","alert-danger" , "Algo salió mal");
+            }
+        } catch (error) {
+        }
+    })();
+
+}
+
+
+
+let count_count=document.getElementById('countcompany');
+function countcompany() {
+
+    (async function () {
+        try {
+            let request = await fetch(`https://api.worldingfoods.com/countcompany/`, {
+                headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`},
+                method: 'get',
+            });
+
+            let response = await request.json();
+
+            let company_count = response.data[0].cantidad;
+
+            count_count.textContent = company_count;
+
+            if (response.status == "error") {
+                document.getElementById('btnCloseUserDelete').click();
+                error("messageUserDelete", "alert-danger", response.message);
+            } else if (response.status == "ok") {
+                reloadUserTable();
+                document.getElementById('btnCloseUserDelete').click();
+                error("messageUserDelete", "alert-success", response.message);
+            } else {
+                document.getElementById('btnCloseUserDelete').click();
+                error("messageUserDelete", "alert-danger", "Algo salió mal");
+            }
+        } catch (error) {
+        }
+    })();
+}
+
+let count_user=document.getElementById('countuser');
+function countClient() {
+
+    (async function () {
+        try {
+            let request = await fetch(`https://api.worldingfoods.com/countclient/`, {
+                headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`},
+                method: 'get',
+            });
+
+            let response = await request.json();
+
+            let user_count = response.data[0].cantidad;
+
+            count_user.textContent = user_count;
+
+            if (response.status == "error") {
+                document.getElementById('btnCloseUserDelete').click();
+                error("messageUserDelete", "alert-danger", response.message);
+            } else if (response.status == "ok") {
+                reloadUserTable();
+                document.getElementById('btnCloseUserDelete').click();
+                error("messageUserDelete", "alert-success", response.message);
+            } else {
+                document.getElementById('btnCloseUserDelete').click();
+                error("messageUserDelete", "alert-danger", "Algo salió mal");
+            }
+        } catch (error) {
+        }
+    })();
+}
