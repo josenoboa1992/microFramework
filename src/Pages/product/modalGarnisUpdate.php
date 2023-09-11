@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <div class="row">
 
-                        <input type="hidden" class="form-control" name="product_id" id="productUpdateGarnish" placeholder="Nombre" required>
+                        <input type="hi" class="form-control" name="name" id="productUpdateGarnish" placeholder="Nombre" required>
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="Name">Nombre</label>

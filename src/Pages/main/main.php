@@ -8,7 +8,7 @@
                 <i class="fas fa-tag"></i>
                 <div class="saving">
                     <p >Ventas realizadas</p>
-                    <h5 class=""> RD$ 0</h5>
+                    <h5 class="" id="saletoday"> RD$ 0</h5>
 <!--                    <p><span> Balance disponible</span></p>-->
 
                 </div>
@@ -21,10 +21,10 @@
 
         <div class="card text-green">
             <div class="card-body">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-shopping-cart"></i>
                 <div class="saving">
                     <p >Ordenes completadas</p>
-                    <h5 class=""> 0</h5>
+                    <h5 class="" id="countsale"> 0</h5>
 
                 </div>
             </div>
@@ -37,10 +37,10 @@
 
         <div class="card text-green">
             <div class="card-body">
-                <i class="fas fa-list"></i>
+                <i class="fas fa-building"></i>
                 <div class="saving">
                     <p >Empresas registradas</p>
-                    <h5 class=""> 0</h5>
+                    <h5 class="" id="countcompany"> 0</h5>
 
 
                 </div>
@@ -53,10 +53,10 @@
 
         <div class="card text-green">
             <div class="card-body">
-                <i class="fas fa-tag"></i>
+                <i class="fas fa-user text-green"></i>
                 <div class="saving">
                     <p >Usuarios registrados</p>
-                    <h5 class=""> 0</h5>
+                    <h5 class="" id="countuser"> 0</h5>
 
                 </div>
             </div>

@@ -54,7 +54,7 @@ let es = {
         "order": [[0, "desc"]],
         'ajax': {
             method: "GET",
-            url: "https://api.worldingfoods.com/transaction/",
+            url: "http://api.local/transaction/",
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -109,7 +109,7 @@ let es = {
     $('#btn_search').click(function () {
         let fechaDesde = $('#buscar_inicio').val();
         let fechaHasta = $('#buscar_fin').val();
-        let url = `https://api.worldingfoods.com/transaction/${fechaDesde}/${fechaHasta}`;
+        let url = `http://api.local/transaction/${fechaDesde}/${fechaHasta}`;
 
         // Actualiza la URL del objeto DataTable
         dataTable.ajax.url(url).load();
@@ -117,6 +117,6 @@ let es = {
 
     $("#btnLimpiar").click(function (event) {
         $("#formFecha")[0].reset();
-        dataTable.ajax.url("https://api.worldingfoods.com/transaction/").load(); // Carga todos los datos
+        dataTable.ajax.url("http://api.local/transaction/").load(); // Carga todos los datos
     });
 });

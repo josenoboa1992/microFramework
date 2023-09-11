@@ -51,7 +51,7 @@ $(document).ready(function(){
         "order": [[0, "desc"]],
         'ajax': {
             method: "GET",
-            url: "https://api.worldingfoods.com/fact-company/",
+            url: "http://api.local/fact-company/",
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -81,4 +81,53 @@ $(document).ready(function(){
             { data: "Total_Balance_Pendiente" },
         ],
     });
+});
+
+$('#generar_PDF_company').click(function (e) {
+    e.preventDefault();
+
+    fetch('http://api.local/pdfcompany/', {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('La solicitud no fue exitosa');
+            }
+            return response.blob();
+        })
+        .then(pdfBlob => {
+            // Aquí tienes el PDF en forma de blob
+            // Continúa con los siguientes pasos para imprimirlo o descargarlo
+            var blobUrl = window.URL.createObjectURL(pdfBlob);
+
+            // Crear un elemento de enlace (a) para iniciar la descarga
+            var a = document.createElement('a');
+            a.href = blobUrl;
+            a.download = 'reporte-venta.pdf'; // Establecer el nombre del archivo
+
+            // Simular un clic en el enlace para iniciar la descarga
+            a.click();
+
+            // Liberar la URL del Blob
+            window.URL.revokeObjectURL(blobUrl);
+
+            // Mostrar un mensaje de éxito
+            Swal.fire({
+                icon: 'success',
+                title: 'PDF generado y descargado correctamente',
+                text: 'El reporte PDF se generó y descargó correctamente.'
+            });
+        })
+        .catch(error => {
+            console.error('Error al obtener el PDF desde la API:', error);
+            // Manejar errores aquí
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al generar o descargar el PDF',
+                text: 'Ocurrió un error al generar o descargar el informe PDF.'
+            });
+        });
 });

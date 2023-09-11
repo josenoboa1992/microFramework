@@ -61,7 +61,7 @@ document.getElementById("frmChangePassword").addEventListener("submit", e => {
                 "confirmNewPassword": document.getElementById("confirmNewPassword").value
             };
 
-            const request = await fetch(`https://api.worldingfoods.com/newpass/password/`, {
+            const request = await fetch(`http://api.local/newpass/password/`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${config.token}`

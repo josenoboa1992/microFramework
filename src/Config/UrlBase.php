@@ -3,5 +3,5 @@
 namespace Config;
 
 class UrlBase {
-    public const urlBase = 'https://backoffice.worldingfoods.com/';
+    public const urlBase = 'http://microframework.local/';
 }
