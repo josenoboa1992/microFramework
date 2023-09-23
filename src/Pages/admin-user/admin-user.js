@@ -61,7 +61,7 @@ const showAllRol = () =>{
         "language": es,
         'ajax' : {
             "method" : "GET",
-            "url" : `http://api.local/userRol/`,
+            "url" : `https://api.worldingfoods.com//userRol/`,
             "headers": {
                 Authorization: `Bearer ${token}`
             },
@@ -117,7 +117,7 @@ const showAllRol = () =>{
 
 async function getRol() {
     try {
-        const request = await fetch(`http://api.local/rol/`, {
+        const request = await fetch(`https://api.worldingfoods.com//rol/`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
@@ -168,7 +168,7 @@ $(document).on('change', '.change-role-select', function () {
         if (result.isConfirmed) {
             // Enviar los valores al endpoint utilizando AJAX
             $.ajax({
-                url: `http://api.local/rol/${userId}/${newRole}`,
+                url: `https://api.worldingfoods.com//rol/${userId}/${newRole}`,
                 method: 'PUT',
                 "headers": {
                     Authorization: `Bearer ${token}`
@@ -225,7 +225,7 @@ frmsave.addEventListener('submit', e => {
     (async function () {
         try {
 
-            let request = await fetch(`http://api.local/changepass/`,{
+            let request = await fetch(`https://api.worldingfoods.com//changepass/`,{
                 headers: {"Content-Type":"application/json" , Authorization: `Bearer ${token}`},
                 method: 'put',body: JSON.stringify(body)});
             let response = await request.json();

@@ -96,10 +96,16 @@ function saletoday() {
 
                 let response = await request.json();
 
-                let monto_venta=response.data[0].total_ventas;
-                let numeroDecimal = parseFloat(monto_venta);
-                sale.textContent='RD$ ' + numeroDecimal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                let monto_venta = response.data[0].total_ventas;
+                let numeroDecimal;
 
+                if (monto_venta === '' || isNaN(parseFloat(monto_venta))) {
+                    numeroDecimal = 0;
+                } else {
+                    numeroDecimal = parseFloat(monto_venta);
+                }
+
+                sale.textContent = 'RD$ ' + numeroDecimal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
                 if (response.status == "error") {
                     document.getElementById('btnCloseUserDelete').click();
                     error("messageUserDelete","alert-danger" , response.message);

@@ -6,12 +6,17 @@
     </div>
 
     <div class="card-body">
+        <div class="allcheck">
+            <label for=""  id="checkboxContainer"></label>
+        </div>
         <!--Aqui se muestran los errores-->
         <div class="alert mt-3" role="alert" style="display: none;" id="errorShowCategory">
         </div>
 
         <div class="table-responsive">
+
             <table class="table table-hover table-bordered" style="width: 100%;" id="lockCatTable">
+
                 <thead class="color-card text-gray">
                 <tr>
                     <th scope="col">ID</th>
@@ -25,9 +30,11 @@
 
 
                 </tbody>
+
                 <div class="alert mt-3" role="alert" style="display: none;" id="errorCat">
                 </div>
             </table>
+
         </div>
 
     </div>

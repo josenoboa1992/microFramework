@@ -10,6 +10,9 @@ if ($_SESSION['rol']==1 ) {
     </div>
 
     <div class="card-body">
+        <div class="allcheck">
+            <label for=""  id="checkboxContainer2"></label>
+        </div>
         <!--Aqui se muestran los errores-->
         <div class="alert mt-3" role="alert" style="display: none;" id="errorShowProductLock">
         </div>

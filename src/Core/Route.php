@@ -10,7 +10,8 @@ class Route {
 
             $params = explode('/',$_GET['route']);
             $list   = ['main','user','product','cliente','company','order',
-                        'trans','deposit','sale','lock','fact-sale','admin-user','fact-company','detail-company'];
+                        'trans','deposit','sale','lock','fact-sale','admin-user','fact-company','detail-company',
+                          'order-company','list-order'];
     
             if (in_array($params[0] , $list)) {
                 $file = "./src/Pages/{$params[0]}/{$params[0]}.php";

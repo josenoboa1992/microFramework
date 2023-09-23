@@ -96,6 +96,16 @@ class Script
                 echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-ui.min.js'></script>";
                 echo "<script src='" . UrlBase::urlBase. "/src/Pages/main/main.js' type='module'></script>";
                 self::scriptDatatable();
+            }else if ($params[0]=="order-company") {
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-3.6.0.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-ui.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/src/Pages/order-company/order-company.js' type='module'></script>";
+                self::scriptDatatable();
+            }else if ($params[0]=="list-order") {
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-3.6.0.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/public/libs/jquery/jquery-ui.min.js'></script>";
+                echo "<script src='" . UrlBase::urlBase. "/src/Pages/list-order/list-order.js' type='module'></script>";
+                self::scriptDatatable();
             }
         }
     }

@@ -11650,3 +11650,7 @@ button.detail-sale:hover{
 .edit-btn i{
   margin-right: 5px;
 }
+
+.select-state {
+  margin: 10px;
+}

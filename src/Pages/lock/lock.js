@@ -39,7 +39,7 @@ let es = {
 
 let lockCategory;
 const showLockCategory = () =>{
-
+    let hasBlockedCategory = false;
     lockCategory = $('#lockCatTable').DataTable({
         "rowCallback":function (row,data,index){
             // Aplicar estilo a las filas
@@ -55,7 +55,7 @@ const showLockCategory = () =>{
         "language": es,
         'ajax' : {
             "method" : "GET",
-            "url" : `http://api.local/category/`,
+            "url" : `https://api.worldingfoods.com//category/`,
             "headers": {
                 Authorization: `Bearer ${token}`
             }
@@ -66,6 +66,13 @@ const showLockCategory = () =>{
             {
                 "data": "is_blocked",
                 "render": function(data, type, row) {
+                    if (row.is_blocked === 1 || row.is_blocked === "true") {
+                        hasBlockedCategory = true;
+
+                        if (hasBlockedCategory) {
+                            $('#slideThree_All').prop('checked', true);
+                        }
+                    }
                     let statusText = row.is_blocked === 1 || row.is_blocked === "true" ? "Activada" : "Desactivada";
                     return statusText;
                 }
@@ -103,7 +110,7 @@ const showLockCategory = () =>{
         console.log([is_blocked,category_id])
         $.ajax({
             type: 'PUT',
-            url: `http://api.local/lock/${is_blocked}/${category_id}`,
+            url: `https://api.worldingfoods.com//lock/${is_blocked}/${category_id}`,
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -155,6 +162,8 @@ $(document).ready(function() {
 
 let lockProduct;
 const showLockProduct = () => {
+    let hasBlockedPro = false;
+
     lockProduct = $('#lockProTable').DataTable({
         "rowCallback": function (row, data, index) {
             // Aplicar estilo a las filas
@@ -170,7 +179,7 @@ const showLockProduct = () => {
         "language": es,
         'ajax': {
             "method": "GET",
-            "url": `http://api.local/product/`,
+            "url": `https://api.worldingfoods.com//product/`,
             "headers": {
                 Authorization: `Bearer ${token}`
             }
@@ -182,6 +191,14 @@ const showLockProduct = () => {
             {
                 "data": "is_blocked",
                 "render": function(data, type, row) {
+                    if (row.is_blocked === 1 || row.is_blocked === "true") {
+                        hasBlockedPro = true;
+
+                        if (hasBlockedPro) {
+                            $('#slideThree_All2').prop('checked', true);
+                        }
+                    }
+
                     let statusText = row.is_blocked === 1 || row.is_blocked === "true" ? "Activada" : "Desactivada";
                     return statusText;
                 }
@@ -219,7 +236,7 @@ const showLockProduct = () => {
 
         $.ajax({
             type: 'POST',
-            url: `http://api.local/lock/${is_blocked}/${category_id}`,
+            url: `https://api.worldingfoods.com//lock/${is_blocked}/${category_id}`,
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -264,3 +281,106 @@ const reloadProTable = () => {
 const reloadCatTable = () => {
     lockCategory.ajax.reload();
 }
+let customInput = `
+    <div class='slideThree'>
+        <input type='checkbox' value='None' id='slideThree_All' name='check' data-category-id='All' />
+        <label for='slideThree_All'></label>
+    </div>
+    <label for='slideThree_All'>Todas las categorías</label>
+`;
+
+$('#checkboxContainer').html(customInput);
+
+// Verificar y mantener el estado del checkbox al hacer clic
+let checkboxAll = $('#slideThree_All');
+
+// Manejador de evento para el clic en el checkbox
+$('#checkboxContainer').on('change', 'input[type="checkbox"]', function() {
+    // Obtener el estado del checkbox
+    let isChecked = $(this).prop('checked');
+    console.log(isChecked);
+
+    if ($(this).attr('id') === 'slideThree_All') {
+        checkboxAll.prop('checked', isChecked);
+    }
+
+
+
+        $.ajax({
+            type: 'PUT', // O el método que necesites (GET, PUT, etc.)
+            url: `https://api.worldingfoods.com/category-change/${isChecked}`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+
+            success: function(response) {
+                Swal.fire({
+                    title: 'Éxito',
+                    text: 'El bloqueo fue cambiado correctamente',
+                    icon: 'success'
+                }).then(() => {
+                    reloadCatTable();
+                });
+                // Manejar la respuesta de la API
+                console.log(response);
+            },
+            error: function(error) {
+                // Manejar errores en la petición
+                console.error('Error en la petición:', error);
+            }
+        });
+
+});
+
+//producto
+
+let customInputPr = `
+    <div class='slideThree'>
+        <input type='checkbox' value='None' id='slideThree_All2' name='check' data-category-id='All' />
+        <label for='slideThree_All2'></label>
+    </div>
+    <label for='slideThree_All2'>Todos los platos</label>
+`;
+
+$('#checkboxContainer2').html(customInputPr);
+
+// Verificar y mantener el estado del checkbox al hacer clic
+let checkboxAll2 = $('#slideThree_All2');
+
+// Manejador de evento para el clic en el checkbox
+$('#checkboxContainer2').on('change', 'input[type="checkbox"]', function() {
+    // Obtener el estado del checkbox
+    let isChecked = $(this).prop('checked');
+    console.log(isChecked);
+
+    if ($(this).attr('id') === 'slideThree_All2') {
+        checkboxAll2.prop('checked', isChecked);
+    }
+
+
+
+    $.ajax({
+        type: 'PUT', // O el método que necesites (GET, PUT, etc.)
+        url: `https://api.worldingfoods.com/product-change/${isChecked}`,
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+
+        success: function(response) {
+            Swal.fire({
+                title: 'Éxito',
+                text: 'El bloqueo fue cambiado correctamente',
+                icon: 'success'
+            }).then(() => {
+                reloadProTable();
+            });
+            // Manejar la respuesta de la API
+            console.log(response);
+        },
+        error: function(error) {
+            // Manejar errores en la petición
+            console.error('Error en la petición:', error);
+        }
+    });
+
+});

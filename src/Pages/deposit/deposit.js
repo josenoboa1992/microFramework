@@ -181,7 +181,7 @@ $("#depositTable").on('click', '.apply-btn', function () {
         // Enviar solicitud AJAX al endpoint para actualizar la fila
         $.ajax({
             method: 'PUT', // O el método que corresponda
-            url: `http://api.local/deposit/${id}/${Cuenta}/${Monto}`,
+            url: `https://api.worldingfoods.com//deposit/${id}/${Cuenta}/${Monto}`,
             headers: {
                 Authorization: `Bearer ${config.token}`
             },
@@ -210,7 +210,7 @@ $("#depositTable").on('click', '.cancel-btn', function () {
         // Enviar solicitud AJAX al endpoint para actualizar la fila
         $.ajax({
             method: 'DELETE', // O el método que corresponda
-            url: `http://api.local/deposit/${id}`,
+            url: `https://api.worldingfoods.com//deposit/${id}`,
             headers: {
                 Authorization: `Bearer ${config.token}`
             },

@@ -87,6 +87,7 @@ if ($view === 'login') {
                         <div class="collapse" id="collapseOrder" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/order/">Administrar Ordenes</a>
+                                <a class="nav-link" href="<?php echo UrlBase::urlBase; ?>/order-company/">Ordenes por empresa</a>
                             </nav>
                         </div>
                         <?php if ($_SESSION['rol']==1 || $_SESSION['rol']==2) { ;?>

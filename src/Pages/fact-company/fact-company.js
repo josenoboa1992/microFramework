@@ -51,7 +51,7 @@ $(document).ready(function(){
         "order": [[0, "desc"]],
         'ajax': {
             method: "GET",
-            url: "http://api.local/fact-company/",
+            url: "https://api.worldingfoods.com//fact-company/",
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -86,7 +86,7 @@ $(document).ready(function(){
 $('#generar_PDF_company').click(function (e) {
     e.preventDefault();
 
-    fetch('http://api.local/pdfcompany/', {
+    fetch('https://api.worldingfoods.com//pdfcompany/', {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${token}`
